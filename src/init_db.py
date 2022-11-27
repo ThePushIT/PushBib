@@ -1,3 +1,4 @@
+from sqlalchemy.exc import ProgrammingError
 from database import db
 from app import create_app
 
@@ -13,7 +14,7 @@ def create_tables():
         );
         """)
         db.session.commit()
-    except:
+    except ProgrammingError:
         print("Table already exists, passing.")
 
 if __name__ == "__main__":
