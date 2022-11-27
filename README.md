@@ -15,3 +15,5 @@ Code quality:
 App deployment:
 
 ![deployment](https://github.com/ThePushIT/PushBib/actions/workflows/fly.yml/badge.svg?branch=main)
+
+Test...
