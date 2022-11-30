@@ -7,6 +7,12 @@ Project is available for testing here:
 The product backlog and the sprint backlog are available here:
 [https://docs.google.com/spreadsheets/d/1wVqDQOT3J3CMNoINsnSIsk_2CL8YU203paMJjPcnw28/](https://docs.google.com/spreadsheets/d/1wVqDQOT3J3CMNoINsnSIsk_2CL8YU203paMJjPcnw28/)
 
+## Docs (in Finnish)
+
+* [Architecture](/docs/Arkkitehtuuri.md)
+* [Database](/docs/Tietokanta.md)
+* [User guide](/docs/K%C3%A4ytt%C3%B6ohje.md)
+
 ## Testing
 Code quality:
 
