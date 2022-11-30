@@ -26,6 +26,7 @@ class ReferenceRepository:
         return True
 
     def fetch_all_references(self, user_id):
+        # change to accommodate all types of references, not just books
         try:
             print('ollaan tryssa')
             sql = """SELECT authors, title, year, publisher

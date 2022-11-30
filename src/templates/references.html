@@ -21,6 +21,16 @@ Your references
 </form>
 
 <h2>Your references:</h2>
-<p>List references here</p>
+
+<form action="/references/{{user}}" method="GET">
+<!-- change to accommodate all types of references, not just books -->
+  {% for reference in references %}
+    Author(s): {{ reference[0] }}<br>
+    Title: {{ reference[1] }}<br>
+    Year: {{ reference[2] }}<br>
+    Publisher: {{ reference[3] }}<br>
+    <p></p>
+  {% endfor %}
+</form>
 
 {% endblock %}
