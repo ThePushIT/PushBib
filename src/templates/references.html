@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Your references
+{% endblock %}
+
+{% block body %}
+
+<h2>Add a new reference</h2>
+
+<form action="/references/add/{{user}}" method="POST">
+  <input type="text" placeholder="Name of the book" name="name" style="width: 300px;" required />
+  <br>
+  <input type="text" placeholder="Name of the author(s)" name="authors" style="width: 300px;" required />
+  <br>
+  <input type="text" placeholder="Publishing year" name="year" style="width: 300px;" required />
+  <br>
+  <button>Add reference</button>
+</form>
+
+<h2>Your references:</h2>
+<p>List references here</p>
+
+{% endblock %}
