@@ -1,6 +1,7 @@
 from database import db
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
+import secrets
 
 class UserRepository:
     def create(self, username, password):
@@ -13,5 +14,26 @@ class UserRepository:
             return False
 
         return True
+
+    def validate(self, username, password):
+        print("validateen saavuttu")
+        sql = "SELECT id, password FROM users WHERE username=:username"
+        result = db.session.execute(sql, {"username":username})
+        user = result.fetchone()
+        if not user:
+            return False
+        else:
+            if check_password_hash(user.password, password):
+                self.create_session(user.id)
+                return True
+            else:
+                return False
+
+    def create_session(self, user_id):
+        session["user_id"] = user_id
+
+    def id(self):
+        return session.get("user_id", 0)
+
 
 user_repository = UserRepository()
