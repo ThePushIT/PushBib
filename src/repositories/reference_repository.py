@@ -37,5 +37,13 @@ class ReferenceRepository:
         except:
             return False
 
+    def delete_all_books(self):
+        try:
+            db.session.execute("""DELETE FROM books""")
+            db.session.commit()
+            return True
+        except:
+            return False
+
 
 reference_repository = ReferenceRepository()
