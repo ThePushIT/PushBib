@@ -8,7 +8,6 @@ class ReferenceRepository:
         # muutetaan mahdollisesti myöhemmin toimimaan Book Modelin avulla
         # tällöin saa parametrina Bookin
         try:
-            print('ollaan tryssa')
             sql = """INSERT INTO books (user_id, name, authors, year) 
                     VALUES (:user_id, :name, :authors, :year)"""
             db.session.execute(sql, 
@@ -19,6 +18,16 @@ class ReferenceRepository:
                                 "year":year
                                 }
                                 )
+            db.session.commit()
+        except:
+            return False
+
+        return True
+
+    def delete_all(self):
+        try:
+            sql = """DELETE ALL FROM books"""
+            db.session.execute(sql)
             db.session.commit()
         except:
             return False
