@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<body>
+<h1>Luo uusi käyttäjätunnus</h1>
+
+<form action="/signup" method="post">
+Tunnus: <input type="text" name="username" required minlength="5">
+<p>
+Salasana: <input type="password" name="password" required minlength="8">
+<p>
+Vahvista salasana: <input type="password" name="password_again" required minlength="8">
+<p>
+<p>
+<dic class="warningmessage">
+{{ message }}
+</dic>
+<p>
+<input type="submit" value="Luo tunnus">
+</form>
+</body>

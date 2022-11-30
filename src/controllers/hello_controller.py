@@ -1,7 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 hello_controller = Blueprint("hello", __name__)
 
 @hello_controller.route('/')
 def hello():
-    return "Hello World!"
+    return render_template("index.html")
