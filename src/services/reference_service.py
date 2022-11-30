@@ -11,6 +11,7 @@ class ReferenceService:
         self._reference_repository.insert_book_reference(user_id, authors, title, year, publisher)
 
     def get_references(self, user_id):
-        self._reference_repository.fetch_all_references(user_id)
+        return self._reference_repository.fetch_all_references(user_id)
+
 
 reference_service = ReferenceService()
