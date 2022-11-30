@@ -1,4 +1,5 @@
 import os
+from os import getenv
 from flask import Flask
 from dotenv import load_dotenv
 from controllers.hello_controller import hello_controller
@@ -9,6 +10,7 @@ from database import db
 
 app = Flask(__name__)
 load_dotenv()
+app.secret_key = getenv("SECRET_KEY")
 
 def create_app():
     app.register_blueprint(hello_controller)
