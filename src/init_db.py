@@ -8,9 +8,10 @@ app.app_context().push()
 def create_tables():
     try:
         db.session.execute("""
-        CREATE TABLE test (
+        CREATE TABLE users (
             id SERIAL PRIMARY KEY,
-            info TEXT
+            username TEXT UNIQUE,
+            password TEXT
         );
         """)
         db.session.commit()

@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 from controllers.hello_controller import hello_controller
+from controllers.user_controller import user_controller
 from database import db
 
 
@@ -10,6 +11,7 @@ load_dotenv()
 
 def create_app():
     app.register_blueprint(hello_controller)
+    app.register_blueprint(user_controller)
 
     # Fix the URI for Fly configuration
     database_uri = os.getenv("DATABASE_URL")
