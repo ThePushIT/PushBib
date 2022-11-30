@@ -22,11 +22,7 @@ def create_tables():
         db.session.execute("""
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
-<<<<<<< HEAD
             username TEXT UNIQUE,
-=======
-            username TEXT,
->>>>>>> 3f723775cc55555e43504763b467e804a6956082
             password TEXT
         );
         """)
