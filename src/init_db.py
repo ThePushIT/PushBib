@@ -11,9 +11,8 @@ def drop_tables():
     """)
 
     db.session.execute("""
-        DROP TABLE IF EXISTS references_table CASCADE;
+        DROP TABLE IF EXISTS books CASCADE;
     """)
-    db.session.commit()
 
 
 
@@ -33,19 +32,18 @@ def create_tables():
 
     try:
         db.session.execute("""
-        CREATE TABLE references_table (
+        CREATE TABLE books (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
             name TEXT,
             authors TEXT,
-            type TEXT,
             year INT
         );
         """)
         db.session.commit()
-        print('table references created')
+        print('table books created')
     except ProgrammingError:
-        print("Table references already exists, passing.")
+        print("Table books already exists, passing.")
 
 def initialize_db():
     drop_tables()
