@@ -8,7 +8,7 @@ ref_controller = Blueprint("ref", __name__)
 def show_references(user_id):
     # change to accommodate all types of references, not just books
     user = user_id
-    references = reference_service.fetch_all_references(user_id)
+    references = reference_service.get_references(user_id)
 
     return render_template('references.html', user=user, 
                                             references=references)
