@@ -8,7 +8,6 @@ class ReferenceRepository:
         # muutetaan mahdollisesti myöhemmin toimimaan Book Modelin avulla
         # tällöin saa parametrina Bookin
         try:
-            print('ollaan tryssa')
             sql = """INSERT INTO books (user_id, authors, title, year, publisher) 
                     VALUES (:user_id, :authors, :title, :year, :publisher)"""
             db.session.execute(sql, 
@@ -28,11 +27,11 @@ class ReferenceRepository:
     def fetch_all_references(self, user_id):
         # change to accommodate all types of references, not just books
         try:
-            print('ollaan tryssa')
             sql = """SELECT authors, title, year, publisher
                      FROM books
                      WHERE user_id=:user_id
                      ORDER BY authors"""
+            print(db.session.execute(sql, {"user_id": user_id}).fetchall())
             return db.session.execute(sql, {"user_id": user_id}).fetchall()
         except:
             return False
