@@ -35,9 +35,10 @@ def create_tables():
         CREATE TABLE books (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
-            name TEXT,
             authors TEXT,
-            year INT
+            title TEXT,
+            year INT,
+            publisher TEXT
         );
         """)
         db.session.commit()

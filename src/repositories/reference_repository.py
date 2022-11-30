@@ -23,8 +23,18 @@ class ReferenceRepository:
             db.session.commit()
         except:
             return False
-
         return True
+
+    def fetch_all_references(self, user_id):
+        try:
+            print('ollaan tryssa')
+            sql = """SELECT authors, title, year, publisher
+                     FROM books
+                     WHERE user_id=:user_id
+                     ORDER BY authors"""
+            return db.session.execute(sql, {"user_id": user_id}).fetchall()
+        except:
+            return False
 
 
 reference_repository = ReferenceRepository()
