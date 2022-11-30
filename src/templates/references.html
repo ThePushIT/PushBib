@@ -6,16 +6,18 @@ Your references
 
 {% block body %}
 
-<h2>Add a new reference</h2>
+<h2>Add new references</h2>
 
 <form action="/references/add/{{user}}" method="POST">
-  <input type="text" placeholder="Name of the book" name="name" style="width: 300px;" required />
+  <input type="text" placeholder="Author(s)" name="authors" style="width: 300px;" required />
   <br>
-  <input type="text" placeholder="Name of the author(s)" name="authors" style="width: 300px;" required />
+  <input type="text" placeholder="Title" name="title" style="width: 300px;" required />
   <br>
   <input type="text" placeholder="Publishing year" name="year" style="width: 300px;" required />
   <br>
-  <button>Add reference</button>
+  <input type="text" placeholder="Publisher" name="publisher" style="width: 300px;" required />
+  <br>
+  <button>Add new book</button>
 </form>
 
 <h2>Your references:</h2>

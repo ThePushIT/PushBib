@@ -3,13 +3,11 @@ from repositories.reference_repository import reference_repository as default_re
 
 class ReferenceService:
     def __init__(self, reference_repository=default_reference_repository):
-        self._reference_repository = reference_repository
+        self._reference_repository=reference_repository
 
-    def create_reference(self, user_id, name, authors, year):
+    def create_book_reference(self, user_id, name, authors, year, publisher):
         # muutetaan mahdollisesti myöhemmin toimimaan Book Modelin avulla
-
-        #TODO
         # syötteen oikeellisuuden tarkistaminen
-        self._reference_repository.create(user_id, name, authors, year)
+        self._reference_repository.insert_book_reference(user_id, name, authors, year, publisher)
 
 reference_service = ReferenceService()

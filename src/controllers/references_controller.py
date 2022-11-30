@@ -15,17 +15,19 @@ def show_references(user_id):
     return render_template('references.html', user = user)
 
 @ref_controller.route('/references/add/<user_id>', methods = ['POST'])
-def add_reference(user_id):
+def add_book(user_id):
     print(user_id)
     user = user_id
-    name = request.form.get('name')
     authors = request.form.get('authors')
+    title = request.form.get('title')
     year = request.form.get('year')
-    print(name, authors, year, user)
+    publisher = request.form.get('publisher')
+    print(title, authors, year, user, publisher)
 
-    reference_service.create_reference(user_id = user,
-                                        name = name,
+    reference_service.create_book_reference(user_id = user,
+                                        title = title,
                                         authors = authors,
-                                        year = year)
+                                        year = year,
+                                        publisher = publisher)
 
     return redirect(f'/references/{user}')
