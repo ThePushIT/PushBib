@@ -53,7 +53,7 @@ jobs:
         poetry run python3 src/index.py
         poetry run robot src
       env: 
-        DATABASE_URL: postgres://localhost:5432 
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432 
     - name: Export requirements.txt
       run: |
         poetry export --without-hashes --format=requirements.txt > requirements.txt
