@@ -16,16 +16,16 @@ def signup():
 
         if password != password_again:
             message_text = "Salasanat eroavat"
-            return render_template("register.html", message=message_text)
+            return render_template("signup.html", message=message_text)
         if len(username) < 5:
             message_text = "Tunnuksen tulee olla vähintään 5 merkkiä pitkä"
-            return render_template("register.html", message=message_text)
+            return render_template("signup", message=message_text)
         if len(password) < 8:
             message_text = "Salasanan tulee olla vähintään 8 merkkiä pitkä"
-            return render_template("register.html", message=message_text)
+            return render_template("signup.html", message=message_text)
         if len(password) > 25 or len(username) > 25:
             message_text = "Käyttäjätunnus ja/tai salasana on liian pitkä"
-            return render_template("register.html", message=message_text)
+            return render_template("signup.html", message=message_text)
 
     # Onnistunut käyttäjätilin luonti
     if user_service.register(username, password):
@@ -43,4 +43,4 @@ def login():
     if user_service.login(username, password):
         return redirect("/references/" + str(user_service.get_id()))
 
-    return render_template("success.html", message="Väärä käyttäjätunnus tai salasana")
+    return render_template("index.html", message="Väärä käyttäjätunnus tai salasana")
