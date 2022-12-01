@@ -19,7 +19,7 @@ def signup():
             return render_template("signup.html", message=message_text)
         if len(username) < 5:
             message_text = "Username must be at least 5 characters."
-            return render_template("signup", message=message_text)
+            return render_template("signup.html", message=message_text)
         if len(password) < 8:
             message_text = "Password must be at least 8 characters."
             return render_template("signup.html", message=message_text)
