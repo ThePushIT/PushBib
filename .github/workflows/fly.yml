@@ -27,12 +27,10 @@ jobs:
       uses: browser-actions/setup-chrome@latest
     - name: Install ChromeDriver
       uses: nanasess/setup-chromedriver@v1
-    - name: Launch ChromeDriver
+    - name: Test with Robot
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
-    - name: Test with Robot
-      run: |
         poetry run robot src
     - name: Export requirements.txt
       run: |
