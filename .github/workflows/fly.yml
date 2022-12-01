@@ -56,7 +56,7 @@ jobs:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
     - name: Start Flask server
       run: |
-        poetry run nohup python3 src/index.py
+        poetry run python3 src/index.py &
         sleep 10
       env: 
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
