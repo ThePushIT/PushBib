@@ -18,10 +18,10 @@ Go To Login Page
     Go To  ${LOGIN URL}
 
 Login Page Should Be Open
-    Page Should Contain  Tervetuloa viitteidenhallintasovellukseen!
+    Page Should Contain  Welcome to PushPib!
 
 Go To Register Page
     Go To  ${REGISTER URL}
 
 Register Page Should Be Open
-    Page Should Contain  Luo uusi käyttäjätunnus
+    Page Should Contain  Already have an account? Log in

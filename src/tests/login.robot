@@ -10,5 +10,5 @@ Login Page Should Open
 
 Clicking Register Link Should Open Register Page
     Go To Login Page
-    Click Link  rekisteröidy
+    Click Link  Create new user
     Register Page Should Be Open
