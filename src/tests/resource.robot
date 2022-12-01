@@ -18,7 +18,7 @@ Go To Login Page
     Go To  ${LOGIN URL}
 
 Login Page Should Be Open
-    Page Should Contain  Welcome to PushPib!
+    Page Should Contain  Welcome to PushBib!
 
 Go To Register Page
     Go To  ${REGISTER URL}
