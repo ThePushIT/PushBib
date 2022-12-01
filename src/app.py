@@ -12,6 +12,7 @@ app = Flask(__name__)
 load_dotenv()
 app.secret_key = getenv("SECRET_KEY")
 
+
 def create_app():
     app.register_blueprint(hello_controller)
     app.register_blueprint(user_controller)

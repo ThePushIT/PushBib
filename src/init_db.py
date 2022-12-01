@@ -5,6 +5,7 @@ from app import create_app
 app = create_app()
 app.app_context().push()
 
+
 def drop_tables():
     db.session.execute("""
         DROP TABLE IF EXISTS users CASCADE;
@@ -13,7 +14,6 @@ def drop_tables():
     db.session.execute("""
         DROP TABLE IF EXISTS books CASCADE;
     """)
-
 
 
 def create_tables():
@@ -46,9 +46,11 @@ def create_tables():
     except ProgrammingError:
         print("Table books already exists, passing.")
 
+
 def initialize_db():
     drop_tables()
     create_tables()
+
 
 if __name__ == "__main__":
     initialize_db()

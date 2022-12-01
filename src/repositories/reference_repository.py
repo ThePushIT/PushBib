@@ -1,5 +1,6 @@
 from database import db
 
+
 class ReferenceRepository:
     def __init__(self):
         pass
@@ -8,17 +9,17 @@ class ReferenceRepository:
         # muutetaan mahdollisesti myöhemmin toimimaan Book Modelin avulla
         # tällöin saa parametrina Bookin
         try:
-            sql = """INSERT INTO books (user_id, authors, title, year, publisher) 
+            sql = """INSERT INTO books (user_id, authors, title, year, publisher)
                     VALUES (:user_id, :authors, :title, :year, :publisher)"""
-            db.session.execute(sql, 
-                                {
-                                "user_id":user_id,
-                                "authors":authors,
-                                "title":title,
-                                "year":year,
-                                "publisher":publisher
-                                }
-                                )
+            db.session.execute(sql,
+                               {
+                                   "user_id": user_id,
+                                   "authors": authors,
+                                   "title": title,
+                                   "year": year,
+                                   "publisher": publisher
+                               }
+                               )
             db.session.commit()
         except:
             return False
