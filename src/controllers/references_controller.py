@@ -10,14 +10,8 @@ def show_references(user_id):
     # change to accommodate all types of references, not just books
     references = reference_service.get_references(int(user_id))
 
-    references_check = 0
-    if references:
-        references_check = 1
-
     return render_template('references.html', user_id=user_id,
-                           references=references,
-                           references_check=references_check)
-
+                           references=references)
 
 @ref_controller.route('/references/add/<user_id>', methods=['POST'])
 def add_book(user_id):
