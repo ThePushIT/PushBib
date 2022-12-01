@@ -57,7 +57,9 @@ jobs:
     - name: Start Flask server
       run: |
         poetry shell
+        echo "Entered the Poetry shell"
         nohup python3 src/index.py
+        echo "Started Flask server"
         sleep 10
       env: 
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
