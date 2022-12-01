@@ -1,6 +1,33 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block title %}
+Your references
+{% endblock %}
+
+{% block body %}
+
+<h1>Tervetuloa viitteidenhallintasovellukseen!</h1>
 
 <body>
-    <h1>Tervetuloa viitteidenhallintasovellukseen!</h1>
-    <h2>Kirjaudu sisään tai <a href="/signup">rekisteröidy</a></h2>
+    <h2>Kirjaudu sisään</h2>
+    <form action="/login" method="POST">
+        <p>
+            Tunnus:
+        </p>
+        <input type="text" name="username">
+        <p>
+            Salasana:
+        </p>
+        <input type="password" name="password">
+        <p>
+            {{ message }}
+        </p>
+        <input type="submit" value="Kirjaudu">
+
+    </form>
+    <p>
+        <a href="/signup">Rekisteröidy</a>
+    </p>
 </body>
+
+{% endblock %}
