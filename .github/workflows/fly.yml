@@ -23,14 +23,13 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
-    - name: Install Google Chrome
-      uses: browser-actions/setup-chrome@latest
     - name: Install ChromeDriver
       uses: nanasess/setup-chromedriver@v1
     - name: Test with Robot
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
+        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
         poetry run robot src
     - name: Export requirements.txt
       run: |
