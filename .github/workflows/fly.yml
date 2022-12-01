@@ -50,7 +50,7 @@ jobs:
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
         poetry run python3 src/init_db.py
-        poetry run python3 src/index.py
+        timeout 10 poetry run python3 src/index.py
         poetry run robot src
       env: 
         DATABASE_URL: postgres://postgres:postgres@localhost:5432 
