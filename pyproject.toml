@@ -16,6 +16,9 @@ pylint = "^2.15.6"
 
 [tool.poetry.dev-dependencies]
 robotframework = "^6.0.1"
+pytest = "^7.2.0"
+autopep8 = "^2.0.0"
+robotframework-seleniumlibrary = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

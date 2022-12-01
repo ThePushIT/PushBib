@@ -6,19 +6,36 @@ Your references
 
 {% block body %}
 
-<h2>Add a new reference</h2>
+<h2>Add new references</h2>
 
-<form action="/references/add/{{user}}" method="POST">
-  <input type="text" placeholder="Name of the book" name="name" style="width: 300px;" required />
+<form action="/references/add/{{user_id}}" method="POST">
+  <input type="text" placeholder="Author(s)" name="authors" style="width: 300px;" required />
   <br>
-  <input type="text" placeholder="Name of the author(s)" name="authors" style="width: 300px;" required />
+  <input type="text" placeholder="Title" name="title" style="width: 300px;" required />
   <br>
   <input type="text" placeholder="Publishing year" name="year" style="width: 300px;" required />
   <br>
-  <button>Add reference</button>
+  <input type="text" placeholder="Publisher" name="publisher" style="width: 300px;" required />
+  <br><p></p>
+  <button>Add new book</button>
 </form>
 
+{% if not references %}
+  <h2>No references yet!</h2>
+{% else %}
+
 <h2>Your references:</h2>
-<p>List references here</p>
+
+<form action="/references/{{user_id}}" method="GET">
+<!-- change to accommodate all types of references, not just books -->
+  {% for reference in references %}
+    Author(s): {{ reference[0] }}<br>
+    Title: {{ reference[1] }}<br>
+    Year: {{ reference[2] }}<br>
+    Publisher: {{ reference[3] }}<br>
+    <p></p>
+  {% endfor %}
+</form>
+{% endif %}
 
 {% endblock %}

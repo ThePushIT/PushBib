@@ -1,31 +1,30 @@
 from flask import Blueprint, render_template, redirect, request
 from services.reference_service import reference_service
 
+
 ref_controller = Blueprint("ref", __name__)
+
 
 @ref_controller.route('/references/<user_id>')
 def show_references(user_id):
-    user = user_id
-    # find the user in case
-    # find all the references by this user
-    # give as a parameter for the template
+    # change to accommodate all types of references, not just books
+    references = reference_service.get_references(int(user_id))
 
-    #references = reference_service.get_all_references(user_id)
+    return render_template('references.html', user_id=user_id,
+                           references=references)
 
-    return render_template('references.html', user = user)
-
-@ref_controller.route('/references/add/<user_id>', methods = ['POST'])
-def add_reference(user_id):
-    print(user_id)
-    user = user_id
-    name = request.form.get('name')
+@ref_controller.route('/references/add/<user_id>', methods=['POST'])
+def add_book(user_id):
     authors = request.form.get('authors')
+    title = request.form.get('title')
     year = request.form.get('year')
-    print(name, authors, year, user)
+    publisher = request.form.get('publisher')
+    print(user_id, authors, title, year, publisher)
 
-    reference_service.create_reference(user_id = user,
-                                        name = name,
-                                        authors = authors,
-                                        year = year)
+    reference_service.create_book_reference(user_id=user_id,
+                                            title=title,
+                                            authors=authors,
+                                            year=year,
+                                            publisher=publisher)
 
-    return redirect(f'/references/{user}')
+    return redirect(f'/references/{user_id}')

@@ -1,19 +1,38 @@
-<!DOCTYPE html>
-<body>
-<h1>Luo uusi käyttäjätunnus</h1>
+{% extends "layout.html" %}
 
-<form action="/signup" method="post">
-Tunnus: <input type="text" name="username" required minlength="5">
-<p>
-Salasana: <input type="password" name="password" required minlength="8">
-<p>
-Vahvista salasana: <input type="password" name="password_again" required minlength="8">
-<p>
-<p>
-<dic class="warningmessage">
-{{ message }}
-</dic>
-<p>
-<input type="submit" value="Luo tunnus">
-</form>
+{% block title %}
+Your references
+{% endblock %}
+
+{% block body %}
+
+<h1>Create new user</h1>
+
+<body>
+    <form action="/signup" method="post">
+        <p>
+            Username:
+        </p>
+        <input type="text" name="username" required minlength="5">
+        <p>
+            Password:
+        </p>
+        <input type="password" name="password" required minlength="8">
+        <p>
+            Confirm password:
+        </p>
+        <input type="password" name="password_again" required minlength="8">
+        <p>
+            Password length must be 8 characters or over
+        </p>
+        <p>
+            {{ message }}
+        </p>
+        <input type="submit" value="Create">
+    </form>
+    <p>
+        <a href="/">Already have an account? Log in</a>
+    </p>
 </body>
+
+{% endblock %}
