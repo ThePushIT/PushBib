@@ -17,14 +17,11 @@ def signup():
         if password != password_again:
             message_text = "Passwords do not match"
             return render_template("signup.html", message=message_text)
-        if len(username) < 5:
-            message_text = "Username must be at least 5 characters."
+        if len(username) < 5 or len(username) > 25:
+            message_text = "Username length must be between 5 and 25 characters."
             return render_template("signup.html", message=message_text)
-        if len(password) < 8:
-            message_text = "Password must be at least 8 characters."
-            return render_template("signup.html", message=message_text)
-        if len(password) > 25 or len(username) > 25:
-            message_text = "Username or password is too long"
+        if len(password) < 8 or len(password) > 25:
+            message_text = "Password length must be between 8 and 25 characters."
             return render_template("signup.html", message=message_text)
 
     # Onnistunut käyttäjätilin luonti
