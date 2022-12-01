@@ -10,8 +10,6 @@ class AppLibrary:
         requests.post(f"{self._base_url}/tests/reset")
 
     def create_reference(self, authors, title, year, publisher):
-        user = 1
-
         data = {
             "authors": authors,
             "title": title,
@@ -19,4 +17,4 @@ class AppLibrary:
             "publisher": publisher
         }
 
-        requests.post(f"{self._base_url}/tests/references/add/{user}", json=data)
+        requests.post(f"{self._base_url}/tests/references/add/1", json=data)
