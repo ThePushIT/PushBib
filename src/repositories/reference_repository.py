@@ -1,4 +1,5 @@
 from database import db
+from sqlalchemy.exc import ProgrammingError
 
 
 class ReferenceRepository:
@@ -21,7 +22,7 @@ class ReferenceRepository:
                                }
                                )
             db.session.commit()
-        except:
+        except ProgrammingError:
             return False
         return True
 
@@ -34,7 +35,7 @@ class ReferenceRepository:
                      ORDER BY authors"""
             print(db.session.execute(sql, {"user_id": user_id}).fetchall())
             return db.session.execute(sql, {"user_id": user_id}).fetchall()
-        except:
+        except ProgrammingError:
             return False
 
     def delete_all_books(self):
@@ -42,7 +43,7 @@ class ReferenceRepository:
             db.session.execute("""DELETE FROM books""")
             db.session.commit()
             return True
-        except:
+        except ProgrammingError:
             return False
 
 

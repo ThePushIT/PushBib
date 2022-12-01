@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, request, redirect, session
+from flask import render_template, Blueprint, request, redirect
 from services.user_service import user_service
 
 user_controller = Blueprint("user", __name__)

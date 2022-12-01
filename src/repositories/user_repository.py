@@ -1,7 +1,8 @@
-import secrets
+# import secrets
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
 from database import db
+from sqlalchemy.exc import ProgrammingError
 
 
 class UserRepository:
@@ -12,7 +13,7 @@ class UserRepository:
             db.session.execute(
                 sql, {"username": username, "password": hash_value})
             db.session.commit()
-        except:
+        except ProgrammingError:
             return False
 
         return True
