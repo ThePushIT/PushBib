@@ -6,27 +6,27 @@ Your references
 
 {% block body %}
 
-<h1>Tervetuloa viitteidenhallintasovellukseen!</h1>
+<h1>Welcome to PushPib!</h1>
 
 <body>
-    <h2>Kirjaudu sisään</h2>
+    <h2>Login</h2>
     <form action="/login" method="POST">
         <p>
-            Tunnus:
+            Username:
         </p>
         <input type="text" name="username">
         <p>
-            Salasana:
+            Password:
         </p>
         <input type="password" name="password">
         <p>
             {{ message }}
         </p>
-        <input type="submit" value="Kirjaudu">
+        <input type="submit" value="Login">
 
     </form>
     <p>
-        <a href="/signup">Rekisteröidy</a>
+        <a href="/signup">Create new user</a>
     </p>
 </body>
 

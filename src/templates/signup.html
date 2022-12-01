@@ -6,32 +6,32 @@ Your references
 
 {% block body %}
 
-<h1>Luo uusi käyttäjätunnus</h1>
+<h1>Create new user</h1>
 
 <body>
     <form action="/signup" method="post">
         <p>
-            Tunnus:
+            Username:
         </p>
         <input type="text" name="username" required minlength="5">
         <p>
-            Salasana:
+            Password:
         </p>
         <input type="password" name="password" required minlength="8">
         <p>
-            Vahvista salasana:
+            Confirm password:
         </p>
         <input type="password" name="password_again" required minlength="8">
         <p>
-            Salasanan tulee olla vähintään kahdeksan merkkiä pitkä
+            Password length must be 8 characters or over
         </p>
         <p>
             {{ message }}
         </p>
-        <input type="submit" value="Luo tunnus">
+        <input type="submit" value="Create">
     </form>
     <p>
-        <a href="/">Onko sinulla jo tunnus? Kirjaudu sisään</a>
+        <a href="/">Already have an account? Log in</a>
     </p>
 </body>
 

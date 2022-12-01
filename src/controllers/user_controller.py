@@ -15,23 +15,23 @@ def signup():
         password_again = request.form["password_again"]
 
         if password != password_again:
-            message_text = "Salasanat eroavat"
+            message_text = "Passwords do not match"
             return render_template("signup.html", message=message_text)
         if len(username) < 5:
-            message_text = "Tunnuksen tulee olla vähintään 5 merkkiä pitkä"
+            message_text = "Username must be at least 5 characters."
             return render_template("signup", message=message_text)
         if len(password) < 8:
-            message_text = "Salasanan tulee olla vähintään 8 merkkiä pitkä"
+            message_text = "Password must be at least 8 characters."
             return render_template("signup.html", message=message_text)
         if len(password) > 25 or len(username) > 25:
-            message_text = "Käyttäjätunnus ja/tai salasana on liian pitkä"
+            message_text = "Username or password is too long"
             return render_template("signup.html", message=message_text)
 
     # Onnistunut käyttäjätilin luonti
     if user_service.register(username, password):
         return redirect("/references/" + str(user_service.get_id()))
 
-    return render_template("signup.html", message="Käyttäjätunnus on jo käytössä")
+    return render_template("signup.html", message="Username already reserved")
 
 
 @user_controller.route("/login", methods=["POST", "GET"])
@@ -43,4 +43,4 @@ def login():
     if user_service.login(username, password):
         return redirect("/references/" + str(user_service.get_id()))
 
-    return render_template("index.html", message="Väärä käyttäjätunnus tai salasana")
+    return render_template("index.html", message="Wrong username or password")
