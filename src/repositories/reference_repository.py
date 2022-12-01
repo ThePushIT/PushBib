@@ -1,5 +1,5 @@
-from database import db
 from sqlalchemy.exc import ProgrammingError
+from database import db
 
 
 class ReferenceRepository:

@@ -1,8 +1,8 @@
 # import secrets
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
-from database import db
 from sqlalchemy.exc import ProgrammingError
+from database import db
 
 
 class UserRepository:
