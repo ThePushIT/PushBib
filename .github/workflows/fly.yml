@@ -53,13 +53,13 @@ jobs:
       run: |
         poetry run python3 src/init_db.py
       env: 
-        DATABASE_URL: postgresql://postgres:postgres@localhost:5432
+        DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
     - name: Start Flask server
       run: |
         poetry run nohup python3 src/index.py &
         sleep 3
       env: 
-        DATABASE_URL: postgresql://postgres:postgres@localhost:5432
+        DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
     - name: Test with Robot
       run: |
         export DISPLAY=:99
