@@ -20,6 +20,7 @@ def create_app():
 
     # Fix the URI for Fly configuration
     database_uri = os.getenv("DATABASE_URL")
+    database_uri = database_uri.replace("postgres://", "postgresql://")
     app.config["SQLALCHEMY_DATABASE_URI"] = database_uri
 
     db.init_app(app)
