@@ -7,3 +7,8 @@ Suite Teardown  Close Browser
 Login Page Should Open
     Go To Login Page
     Login Page Should Be Open
+
+Clicking Register Link Should Open Register Page
+    Go To Login Page
+    Click Link  rekisteröidy
+    Register Page Should Be Open
