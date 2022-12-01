@@ -44,16 +44,25 @@ jobs:
         poetry install
     - name: Install ChromeDriver
       uses: nanasess/setup-chromedriver@v1
-    - name: Test with Robot
+    - name: Start ChromeDriver
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+    - name: Initialize database
+      run: |
         poetry run python3 src/init_db.py
-        timeout 10 poetry run python3 src/index.py
-        poetry run robot src
       env: 
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432 
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432
+    - name: Start Flask server
+      run: |
+        nohup poetry run python3 src/index.py
+        sleep 10
+      env: 
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432
+    - name: Test with Robot
+      run: |
+        poetry run robot src
     - name: Export requirements.txt
       run: |
         poetry export --without-hashes --format=requirements.txt > requirements.txt
