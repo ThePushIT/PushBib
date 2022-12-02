@@ -18,5 +18,8 @@ class UserService:
     def get_id(self):
         return self._user_repository.id()
 
+    def delete_all_users(self):
+        return self._user_repository.delete_all_users()
+
 
 user_service = UserService()
