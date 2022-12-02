@@ -53,21 +53,22 @@ jobs:
       run: |
         poetry run python3 src/init_db.py
       env: 
-        DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432
     - name: Start Flask server
       run: |
         poetry run nohup python3 src/index.py &
         sleep 3
       env: 
-        DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432
     - name: Test with Robot
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
         poetry run robot src
-      env: 
-        DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        FLASK_ENV: development
     - name: Export requirements.txt
       run: |
         poetry export --without-hashes --format=requirements.txt > requirements.txt
