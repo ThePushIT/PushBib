@@ -7,33 +7,44 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  runner-job:
     runs-on: ubuntu-latest
+  # Service containers to run with `runner-job`
     services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+        # Label used to access the service container
+        postgres:
+          # Docker Hub image
+          image: postgres
+          # Provide the password for postgres
+          env:
+            POSTGRES_PASSWORD: postgres
+          # Set health checks to wait until postgres has started
+          options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+          ports:
+            # Maps tcp port 5432 on service container to the host
+            - 5432:5432
+
+
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
       with:
-        python-version: 3.8
-    - name: Install Poetry
-      run: pip install poetry
+        python-version: "3.10"
+    - name: Install poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
     - name: Install dependencies
-      run: poetry install
-    - name: Setup chromedriver
-      uses: nanasess/setup-chromedriver@master
-    - name: Configure chromedriver
+      run: |
+        poetry install
+    - name: Install ChromeDriver
+      uses: nanasess/setup-chromedriver@v1
+    - name: Start ChromeDriver
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
@@ -42,12 +53,19 @@ jobs:
       run: |
         poetry run python3 src/init_db.py
       env:
-        DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
-    - name: Run robot tests
-      run: bash run_robot_tests.sh
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432
+    - name: Start Flask server
+      run: |
+        poetry run nohup python3 src/index.py &
+        sleep 3
       env:
-        DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
-        FLASK_ENV: development
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432
+    - name: Test with Robot
+      run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
+        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+        poetry run robot src
     - name: Export requirements.txt
       run: |
         poetry export --without-hashes --format=requirements.txt > requirements.txt
