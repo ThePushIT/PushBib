@@ -1,7 +1,7 @@
 # import secrets
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
-from sqlalchemy.exc import ProgrammingError
+from sqlalchemy.exc import ProgrammingError, IntegrityError
 from database import db
 
 
@@ -13,7 +13,7 @@ class UserRepository:
             db.session.execute(
                 sql, {"username": username, "password": hash_value})
             db.session.commit()
-        except ProgrammingError:
+        except IntegrityError:
             return False
 
         return True
@@ -37,6 +37,16 @@ class UserRepository:
 
     def id(self):
         return session.get("user_id", 0)
+
+    def delete_all_users(self):
+        sql = 'DELETE FROM users'
+        try:
+            db.session.execute(sql)
+            db.session.commit()
+            return True
+        except ProgrammingError:
+            return False
+
 
 
 user_repository = UserRepository()

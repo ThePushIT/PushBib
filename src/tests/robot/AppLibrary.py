@@ -7,7 +7,8 @@ class AppLibrary:
         self.reset_application()
 
     def reset_application(self):
-        requests.post(f"{self._base_url}/tests/reset")
+        print('reset application funktiota kutsuttu')
+        requests.post(f"{self._base_url}/tests/reset/")
 
     def create_reference(self, authors, title, year, publisher):
         user = 1

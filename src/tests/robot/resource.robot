@@ -4,11 +4,23 @@ Library  ./AppLibrary.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  chrome
-${DELAY}  0.5 seconds
+${BROWSER}  headlesschrome
+${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}/references/1
+${LOGIN URL}  http://${SERVER}
+${REGISTER URL}  http://${SERVER}/signup
+
 
 *** Keywords ***
+Generic Setup
+    Clear Databases
+    Open And Configure Browser
+    Go To Register Page And Register User
+    
+Register Setup
+    Clear Databases
+    Open And Configure Browser
+
 Open And Configure Browser
     Open Browser  browser=${BROWSER}
     Maximize Browser Window
@@ -19,3 +31,64 @@ Home Page Should Be Open
 
 Go To Home Page
     Go To  ${HOME URL}
+
+Go To Login Page
+    Go To  ${LOGIN URL}
+
+Login Page Should Be Open
+    Page Should Contain  Welcome to PushBib!
+
+Go To Register Page
+    Go To  ${REGISTER URL}
+
+Register Page Should Be Open
+    Page Should Contain  Already have an account? Log in
+
+Go To Register Page And Register User
+    Go To Register Page
+    Set Register Parameters  kalle  jeejeejee   jeejeejee
+    Submit Register
+    Home Page Should Be Open
+    
+Set Register Parameters
+    [Arguments]  ${username}  ${password}  ${password_again}
+    Input Text  username  ${username}
+    Input Text  password  ${password}
+    Input Text   password_again  ${password_again}
+    Submit Register
+
+Submit Register
+    Click Button  register
+
+Register Should Succeed
+    Home Page Should Be Open
+
+Register Should Fail With Message
+    [arguments]  ${message}
+    Register Page Should Be Open
+    Page Should Contain  ${message}
+
+Set Login Parameters
+    [Arguments]  ${username}  ${password}
+    Input Text  username  ${username}
+    Input Text  password  ${password}
+    Submit Login
+
+Submit Login
+    Click Button  Login
+
+Login Should Succeed
+    Home Page Should Be Open
+
+Go To Login Page And Login User
+    Go To Login Page
+    Set Login Parameters  kalle  jeejeejee
+    Submit Login
+    Home Page Should Be Open
+
+Clear Databases
+    Reset Application
+    # tyhjennä kaikki testitietokannasta
+
+    
+    
