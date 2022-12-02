@@ -66,9 +66,6 @@ jobs:
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
         poetry run robot src
-      env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432
-        FLASK_ENV: development
     - name: Export requirements.txt
       run: |
         poetry export --without-hashes --format=requirements.txt > requirements.txt
