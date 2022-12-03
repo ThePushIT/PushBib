@@ -25,3 +25,6 @@ FLASK_ENV = development
 
 1. Käynnistä testitietokanta ajamalla `poetry run invoke startdatabase`
 2. Käynnistä sovellus ajamalla `poetry run invoke starttestapp`. Tällöin ympäristömuuttujat haetaan .env.test -tiedostosta eikä .env -tiedostosta.
+
+## Testien ajaminen
+Yksikkötestit voit ajaa käskyllä `poetry run invoke unittests`. Yksikkötestien haarautumakattavuuden voit testata ajamalla `poetry run invoke coveragereport`. Robottitestit voit ajaa käskyll' `poetry run invoke robottests`.  
