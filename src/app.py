@@ -1,31 +1,22 @@
 import os
 from os import getenv
 from flask import Flask
-from dotenv import load_dotenv
 from controllers.hello_controller import hello_controller
 from controllers.user_controller import user_controller
 from controllers.references_controller import ref_controller
 from controllers.test_controller import test_controller
 from database import db
-
-
-app = Flask(__name__, template_folder='templates')
-load_dotenv()
-app.secret_key = getenv("SECRET_KEY")
-
-
-ENV = os.getenv("FLASK_ENV") or 'production'
-print('env', ENV)
+from config import DATABASE_URL, ENV, SECRET_KEY
 
 def create_app():
+    app = Flask(__name__)
+
     app.register_blueprint(hello_controller)
     app.register_blueprint(user_controller)
     app.register_blueprint(ref_controller)
 
-    # Fix the URI for Fly configuration
-    database_uri = os.getenv("DATABASE_URL")
-    database_uri = database_uri.replace("postgres://", "postgresql://")
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_uri
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
+    app.secret_key = SECRET_KEY
 
     if ENV == "development":
         app.register_blueprint(test_controller)
