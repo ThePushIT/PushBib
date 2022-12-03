@@ -1,6 +1,6 @@
 *** Settings ***
 Resource  resource.robot
-Suite Setup  Generic Setup
+Suite Setup  Reference Setup
 Suite Teardown  Close Browser
 Test Setup  Go To Login Page And Login User
 

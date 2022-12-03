@@ -4,15 +4,15 @@ Library  ./AppLibrary.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  chrome
-${DELAY}  0.5 seconds
+${BROWSER}  headlesschrome
+${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}/references/1
 ${LOGIN URL}  http://${SERVER}
 ${REGISTER URL}  http://${SERVER}/signup
 
 
 *** Keywords ***
-Generic Setup
+Reference Setup
     Clear Databases
     Open And Configure Browser
     Go To Register Page And Register User
@@ -55,7 +55,6 @@ Set Register Parameters
     Input Text  username  ${username}
     Input Text  password  ${password}
     Input Text   password_again  ${password_again}
-    Submit Register
 
 Submit Register
     Click Button  register
@@ -72,7 +71,6 @@ Set Login Parameters
     [Arguments]  ${username}  ${password}
     Input Text  username  ${username}
     Input Text  password  ${password}
-    Submit Login
 
 Submit Login
     Click Button  Login
