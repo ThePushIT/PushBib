@@ -19,6 +19,7 @@ def show_references(user_id):
     return render_template('references.html', user_id=user_id,
                            references=references)
 
+
 @ref_controller.route('/references/add/<user_id>', methods=['POST'])
 def add_book(user_id):
 

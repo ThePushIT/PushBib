@@ -20,8 +20,7 @@ class TestReferenceRepository(unittest.TestCase):
 
     def test_insert_book_reference_succeeds(self):
         reference_repository.insert_book_reference(
-                            '1', "Anonyymi", "Kiva kirja", 2020, "Otava")
+            '1', "Anonyymi", "Kiva kirja", 2020, "Otava")
         books = reference_repository.fetch_all_references(1)
         print(books)
         self.assertEqual(1, len(books))
-

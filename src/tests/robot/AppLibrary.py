@@ -1,5 +1,6 @@
 import requests
 
+
 class AppLibrary:
     def __init__(self):
         self._base_url = "http://localhost:5000"
@@ -20,4 +21,5 @@ class AppLibrary:
             "publisher": publisher
         }
 
-        requests.post(f"{self._base_url}/tests/references/add/{user}", json=data)
+        requests.post(
+            f"{self._base_url}/tests/references/add/{user}", json=data)

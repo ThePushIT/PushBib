@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint
 from services.reference_service import reference_service
 from services.user_service import user_service
 

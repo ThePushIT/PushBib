@@ -18,4 +18,5 @@ class ReferenceService:
     def delete_all_book_references(self):
         return self._reference_repository.delete_all_books()
 
+
 reference_service = ReferenceService()

@@ -48,5 +48,4 @@ class UserRepository:
             return False
 
 
-
 user_repository = UserRepository()

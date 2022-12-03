@@ -1,5 +1,3 @@
-import os
-from os import getenv
 from flask import Flask
 from controllers.hello_controller import hello_controller
 from controllers.user_controller import user_controller
@@ -7,6 +5,7 @@ from controllers.references_controller import ref_controller
 from controllers.test_controller import test_controller
 from database import db
 from config import DATABASE_URL, ENV, SECRET_KEY
+
 
 def create_app():
     app = Flask(__name__)
