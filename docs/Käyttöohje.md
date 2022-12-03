@@ -9,7 +9,7 @@
 ## Ohjelman käynnistys
 Siirry poetryn virtuaaliympäristöön suorittamalla komento `poetry shell` ja käynnistä ohjelma komennolla `python3 src/index.py`.
 
-## Testin alustus
+## Testitietokannan alustus
 1. Avaa psql komentorivi komennolla `psql`
 2. Luo uusi testitietokanta kommennolla `create database referencetest`
 3. Varmista, että juuresta löytyy tiedosto .env.test, jonka sisältö on 
@@ -19,5 +19,8 @@ DATABASE_URL=postgresql+psycopg2:///referencetest
 FLASK_ENV = development
 
 4. Alusta testitetokanta ajamalla `poetry run dotenv -f .env.test run -- python3 src/init_db.py`
-5. Käynnistä testitietokanta (ajamalla `start-pg.sh`jos asensit tietokannan tällä skriptillä https://github.com/hy-tsoha/local-pg)
-6. Käynnistä sovellus ajamalla `poetry run dotenv -f .env.test run -- python3 src/index.py`. Tällöin ympäristömuuttujat haetaan .env.test -tiedostosta eikä .env -tiedostosta.
+
+## Ohjelman ja tietokannan käynnistäminen testejä ajaessa
+
+1. Käynnistä testitietokanta (ajamalla `start-pg.sh`jos asensit tietokannan tällä skriptillä https://github.com/hy-tsoha/local-pg)
+2. Käynnistä sovellus ajamalla `poetry run dotenv -f .env.test run -- python3 src/index.py`. Tällöin ympäristömuuttujat haetaan .env.test -tiedostosta eikä .env -tiedostosta.
