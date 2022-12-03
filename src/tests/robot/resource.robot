@@ -6,7 +6,7 @@ Library  ./AppLibrary.py
 ${SERVER}  localhost:5000
 ${BROWSER}  headlesschrome
 ${DELAY}  0 seconds
-${HOME URL}  http://${SERVER}/references/1
+${HOME URL}  http://${SERVER}/references/
 ${LOGIN URL}  http://${SERVER}
 ${REGISTER URL}  http://${SERVER}/signup
 

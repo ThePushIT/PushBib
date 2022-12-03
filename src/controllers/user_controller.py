@@ -26,7 +26,7 @@ def signup():
 
     # Onnistunut käyttäjätilin luonti
     if user_service.register(username, password):
-        return redirect("/references/" + str(user_service.get_id()))
+        return redirect("/references/")
 
     return render_template("signup.html", message="Username already reserved")
 
@@ -38,6 +38,5 @@ def login():
 
     # Onnistunut kirjautuminen
     if user_service.login(username, password):
-        return redirect("/references/" + str(user_service.get_id()))
-
+        return redirect("/references/")
     return render_template("index.html", message="Wrong username or password")

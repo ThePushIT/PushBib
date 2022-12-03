@@ -8,7 +8,7 @@ Your references
 
 <h2>Add new references</h2>
 
-<form action="/references/add/{{user_id}}" method="POST">
+<form action="/references/add/" method="POST">
   <input type="text" placeholder="Author(s)" name="authors" style="width: 300px;" required />
   <br>
   <input type="text" placeholder="Title" name="title" style="width: 300px;" required />
@@ -26,7 +26,7 @@ Your references
 
 <h2>Your references:</h2>
 
-<form action="/references/{{user_id}}" method="GET">
+<form action="/references/" method="GET">
 <!-- change to accommodate all types of references, not just books -->
   {% for reference in references %}
     Author(s): {{ reference[0] }}<br>

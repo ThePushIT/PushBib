@@ -1,18 +1,16 @@
 from flask import Blueprint, render_template, redirect, request
 from services.reference_service import reference_service
+from services.user_service import user_service
 
 
 ref_controller = Blueprint("ref", __name__)
 
 
-@ref_controller.route('/references/<user_id>')
-def show_references(user_id):
+@ref_controller.route('/references/')
+def show_references():
     # change to accommodate all types of references, not just books
 
-    # TODO
-    # poista user id routesta ja sen sijaan hae tässä kohtaa käyttäjän id
-    # id = user_service.get_id() tyyliin
-    # hae tämän id:n perusteella referencet
+    user_id = user_service.get_id()
 
     references = reference_service.get_references(int(user_id))
 
@@ -20,13 +18,10 @@ def show_references(user_id):
                            references=references)
 
 
-@ref_controller.route('/references/add/<user_id>', methods=['POST'])
-def add_book(user_id):
+@ref_controller.route('/references/add/', methods=['POST'])
+def add_book():
 
-    # TODO
-    # poista user id routesta ja sen sijaan hae tässä kohtaa käyttäjän id
-    # id = user_service.get_id() tyyliin
-    # hae tämän id:n perusteella referencet
+    user_id = user_service.get_id()
 
     authors = request.form.get('authors')
     title = request.form.get('title')
@@ -40,4 +35,4 @@ def add_book(user_id):
                                             year=year,
                                             publisher=publisher)
 
-    return redirect(f'/references/{user_id}')
+    return redirect('/references/')

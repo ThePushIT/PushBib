@@ -14,7 +14,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 if DATABASE_URL is None:
     raise Exception(
-        f"Database URI is not defined with the DATABASE_URL environment variable"
+        "Database URI is not defined with the DATABASE_URL environment variable"
     )
 
 # Fix for Fly
