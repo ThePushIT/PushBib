@@ -14,6 +14,38 @@ Add Reference With Authors, Title, Year and Publisher
     Submit Book
     Page Should Contain  The best book ever
 
+Add Reference With Missing Author Should Not Work
+    Home Page Should Be Open
+    Set Reference Title  The best book ever
+    Set Reference Year  2000
+    Set Reference Publisher  WSOY
+    Submit Book
+    Page Should Not Contain  New Author
+
+Add Reference With Missing Name Should Not Work
+    Home Page Should Be Open
+    Set Reference Authors  New Author
+    Set Reference Year  2000
+    Set Reference Publisher  WSOY
+    Submit Book
+    Page Should Not Contain  New Author
+
+Add Reference With Missing Year Should Not Work
+    Home Page Should Be Open
+    Set Reference Authors  New Author
+    Set Reference Title  The best book ever
+    Set Reference Publisher  WSOY
+    Submit Book
+    Page Should Not Contain  New Author
+
+Add Reference With Missing Publisher Should Not Work
+    Home Page Should Be Open
+    Set Reference Authors  New Author
+    Set Reference Title  The best book ever
+    Set Reference Year  2000
+    Submit Book
+    Page Should Not Contain  New Author
+
 *** Keywords ***
 Set Reference Authors
     [Arguments]  ${authors}
