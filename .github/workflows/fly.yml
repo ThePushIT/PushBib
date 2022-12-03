@@ -60,6 +60,7 @@ jobs:
         sleep 3
       env:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        FLASK_ENV: development
     - name: Test with Robot
       run: |
         export DISPLAY=:99
