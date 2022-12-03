@@ -16,10 +16,12 @@ Reference Setup
     Clear Databases
     Open And Configure Browser
     Go To Register Page And Register User
+    Register Keyword To Run On Failure  None
     
 Register Setup
     Clear Databases
     Open And Configure Browser
+    Register Keyword To Run On Failure  None
 
 Open And Configure Browser
     Open Browser  browser=${BROWSER}
