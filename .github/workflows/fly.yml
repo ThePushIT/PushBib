@@ -61,6 +61,7 @@ jobs:
       env:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
         FLASK_ENV: development
+        SECRET_KEY: secretysecret:)
     - name: Test with Robot
       run: |
         export DISPLAY=:99
