@@ -27,6 +27,12 @@ Registering With Already Taken Username Should Not Work
     Set Register Parameters  testuser  testpassword  testpassword
     Register Should Fail With Message  Username already reserved
 
+Register With Too Short Username Should Not Work
+    Go To Register Page
+    Set Register Parameters  test  testpassword  testpassword
+    Register Page Should Be Open
+
+
 Login With Existing Username Should Work
     Go to Register Page
     Set Register Parameters  testuser  testpassword  testpassword
@@ -34,3 +40,9 @@ Login With Existing Username Should Work
     Go To Login Page
     Set Login Parameters  testuser  testpassword
     Login Should Succeed
+
+Login With Nonexisting Username Should Not Work
+    Go To Login Page
+    Set Login Parameters  testuser  testpassword
+    Login Should Fail With Message  Wrong username or password
+

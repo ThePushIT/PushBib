@@ -4,8 +4,8 @@ Library  ./AppLibrary.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  headlesschrome
-${DELAY}  0 seconds
+${BROWSER}  chrome
+${DELAY}  0.5 seconds
 ${HOME URL}  http://${SERVER}/references/1
 ${LOGIN URL}  http://${SERVER}
 ${REGISTER URL}  http://${SERVER}/signup
@@ -79,6 +79,11 @@ Submit Login
 
 Login Should Succeed
     Home Page Should Be Open
+
+Login Should Fail With Message
+    [arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
 
 Go To Login Page And Login User
     Go To Login Page
