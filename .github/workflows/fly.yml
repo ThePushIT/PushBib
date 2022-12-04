@@ -6,6 +6,11 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432
+  FLASK_ENV: development
+  SECRET_KEY: secretysecret:)
+
 jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
@@ -47,8 +52,6 @@ jobs:
     - name: Initialize database for tests
       run: |
         poetry run python3 src/init_db.py
-      env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432
     - name: Run unit tests
       run: poetry run coverage run --branch -m pytest
     - name: Save coverage report
@@ -59,10 +62,6 @@ jobs:
       run: |
         poetry run nohup python3 src/index.py &
         sleep 3
-      env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432
-        FLASK_ENV: development
-        SECRET_KEY: secretysecret:)
     - name: Run end-to-end tests
       run: |
         export DISPLAY=:99
