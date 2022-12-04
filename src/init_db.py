@@ -8,23 +8,10 @@ app.app_context().push()
 
 def drop_tables():
     db.session.execute("""
-        DROP TABLE IF EXISTS users CASCADE;
+        DROP TABLE IF EXISTS users, books, articles, inproceedings CASCADE;
     """)
 
-    db.session.execute("""
-        DROP TABLE IF EXISTS books CASCADE;
-    """)
-
-    db.session.execute("""
-        DROP TABLE IF EXISTS articles CASCADE;
-    """)
-
-    db.session.execute("""
-        DROP TABLE IF EXISTS inproceedings CASCADE;
-    """)
-
-
-def create_tables():
+def create_user_table():
     try:
         db.session.execute("""
         CREATE TABLE users (
@@ -38,6 +25,7 @@ def create_tables():
     except ProgrammingError:
         print("Table users already exists, passing.")
 
+def create_reference_tables():
     try:
         db.session.execute("""
         CREATE TABLE books (
@@ -92,7 +80,8 @@ def create_tables():
 
 def initialize_db():
     drop_tables()
-    create_tables()
+    create_user_table()
+    create_reference_tables()
 
 
 if __name__ == "__main__":
