@@ -6,36 +6,82 @@ Your references
 
 {% block body %}
 
-<h2>Add new references</h2>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='dropdown_forms.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
-<form action="/references/add/" method="POST">
-  <input type="text" placeholder="Author(s)" name="authors" style="width: 300px;" required />
-  <br>
-  <input type="text" placeholder="Title" name="title" style="width: 300px;" required />
-  <br>
-  <input type="text" placeholder="Publishing year" name="year" style="width: 300px;" required />
-  <br>
-  <input type="text" placeholder="Publisher" name="publisher" style="width: 300px;" required />
-  <br><p></p>
-  <button>Add new book</button>
-</form>
+<select class="div-toggle" data-target=".book-div,.article-div,.inproceeding-div">
+  <option value="choose" data-show=".choose">Choose reference type...</option>
+  <option value="book" data-show=".book">Book</option>
+  <option value="article" data-show=".article">Article</option>
+  <option value="inproceeding" data-show=".inproceeding">Inproceeding</option>
+</select>
+<p></p>
 
-{% if not references %}
-  <h2>No references yet!</h2>
-{% else %}
+<div class="book-div">
+  <div class="book hide">
+    <form action="/references/book/" method="post">
+      <label for="authors">Author(s)</label>
+      <input type="text" class="form-control" name="authors">
+      <br>
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title">
+      <br>
+      <label for="year">Year</label>
+      <input type="text" class="form-control" name="year">
+      <br>
+      <label for="publisher">Publisher</label>
+      <input type="text" class="form-control" name="publisher">
+      <br>
+      <button type="submit" class="btn btn-outline-primary">Submit</button>
+    </form>
+  </div>
+</div>
 
-<h2>Your references:</h2>
+<div class="article-div">
+  <div class="article hide">
+    <form action="/references/article/" method="post">
+      <label for="authors">Author(s)</label>
+      <input type="text" class="form-control" name="authors">
+      <br>
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title">
+      <br>
+      <label for="journal">Journal</label>
+      <input type="text" class="form-control" name="journal">
+      <br>
+      <label for="year">Year</label>
+      <input type="text" class="form-control" name="year">
+      <br>
+      <label for="volume">Volume</label>
+      <input type="text" class="form-control" name="volume">
+      <br>
+      <label for="pages">Pages</label>
+      <input type="text" class="form-control" name="pages">
+      <br>
+      <button type="submit" class="btn btn-outline-primary">Submit</button>
+    </form>
+  </div>
+</div>
 
-<form action="/references/" method="GET">
-<!-- change to accommodate all types of references, not just books -->
-  {% for reference in references %}
-    Author(s): {{ reference[0] }}<br>
-    Title: {{ reference[1] }}<br>
-    Year: {{ reference[2] }}<br>
-    Publisher: {{ reference[3] }}<br>
-    <p></p>
-  {% endfor %}
-</form>
-{% endif %}
+<div class="inproceeding-div">
+  <div class="inproceeding hide">
+    <form action="/references/inproceeding/" method="post">
+      <label for="authors">Author(s)</label>
+      <input type="text" class="form-control" name="authors">
+      <br>
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title">
+      <br>
+      <label for="year">Year</label>
+      <input type="text" class="form-control" name="year">
+      <br>
+      <label for="booktitle">Booktitle</label>
+      <input type="text" class="form-control" name="booktitle">
+      <br>
+      <button type="submit" class="btn btn-outline-primary">Submit</button>
+    </form>
+  </div>
+</div>
 
 {% endblock %}
