@@ -64,4 +64,4 @@ Set Reference Publisher
     Input Text  publisher  ${publisher}
 
 Submit Book
-    Click Button  Add new book
+    Click Button  Submit
