@@ -49,11 +49,17 @@ jobs:
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-    - name: Initialize database
+    - name: Initialize database for tests
       run: |
         poetry run python3 src/init_db.py
       env:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
+    - name: Run unit tests
+      run: coverage run --branch -m pytest
+    - name: Save coverage report
+      run: coverage xml
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@latest
     - name: Start Flask server
       run: |
         poetry run nohup python3 src/index.py &
@@ -62,7 +68,7 @@ jobs:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
         FLASK_ENV: development
         SECRET_KEY: secretysecret:)
-    - name: Test with Robot
+    - name: Run end-to-end tests
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
