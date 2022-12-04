@@ -26,8 +26,8 @@ def add_book():
     year = request.form.get('year')
     publisher = request.form.get('publisher')
 
-    reference_service.create_book_reference(user_id=user_id, authors=authors, 
-                                            title=title, year=year, publisher=publisher)
+    reference_service.create_book_reference(user_id=user_id, authors=authors,
+                                            title=title, year=year,publisher=publisher)
 
     return redirect('/references/')
 
@@ -57,7 +57,7 @@ def add_inproceeding():
     year = request.form.get('year')
     booktitle = request.form.get('booktitle')
 
-    reference_service.create_inproceeding_reference(user_id=user_id, authors=authors, 
+    reference_service.create_inproceeding_reference(user_id=user_id, authors=authors,
                                                     title=title, year=year, booktitle=booktitle)
 
     return redirect('/references/')
