@@ -1,13 +1,13 @@
 # This workflow will install Python dependencies, run tests and deploy the application to the Fly environment
 
-name: Upload to Fly
+name: Upload coverage report and deploy to Fly
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  runner-job:
+  test-and-deploy:
     runs-on: ubuntu-latest
   # Service containers to run with `runner-job`
     services:
@@ -59,7 +59,7 @@ jobs:
     - name: Save coverage report
       run: coverage xml
     - name: Upload coverage report to Codecov
-      uses: codecov/codecov-action@latest
+      uses: codecov/codecov-action@v3.1.1
     - name: Start Flask server
       run: |
         poetry run nohup python3 src/index.py &
