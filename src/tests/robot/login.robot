@@ -36,7 +36,6 @@ Register With Too Short Username Should Not Work
     Submit Register
     Register Page Should Be Open
 
-
 Login With Existing Username Should Work
     Go to Register Page
     Set Register Parameters  testuser  testpassword  testpassword

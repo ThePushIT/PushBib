@@ -4,9 +4,9 @@ Library  ./AppLibrary.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${BROWSER}  headlesschrome
-${DELAY}  0 seconds
-${HOME URL}  http://${SERVER}/references/
+${BROWSER}  chrome
+${DELAY}  0.2 seconds
+${HOME URL}  http://${SERVER}/references
 ${LOGIN URL}  http://${SERVER}
 ${REGISTER URL}  http://${SERVER}/signup
 
@@ -59,7 +59,7 @@ Set Register Parameters
     Input Text   password_again  ${password_again}
 
 Submit Register
-    Click Button  register
+    Click Button  Register
 
 Register Should Succeed
     Home Page Should Be Open
