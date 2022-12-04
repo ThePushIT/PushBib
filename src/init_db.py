@@ -15,6 +15,14 @@ def drop_tables():
         DROP TABLE IF EXISTS books CASCADE;
     """)
 
+    db.session.execute("""
+        DROP TABLE IF EXISTS articles CASCADE;
+    """)
+
+    db.session.execute("""
+        DROP TABLE IF EXISTS inproceedings CASCADE;
+    """)
+
 
 def create_tables():
     try:
@@ -26,7 +34,7 @@ def create_tables():
         );
         """)
         db.session.commit()
-        print('table users created')
+        print('Table users created')
     except ProgrammingError:
         print("Table users already exists, passing.")
 
@@ -42,9 +50,44 @@ def create_tables():
         );
         """)
         db.session.commit()
-        print('table books created')
+        print('Table books created')
     except ProgrammingError:
         print("Table books already exists, passing.")
+
+    try:
+        db.session.execute("""
+        CREATE TABLE articles (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users,
+            authors TEXT,
+            title TEXT,
+            journal TEXT,
+            year INT,
+            volume INT,
+            pages TEXT
+
+        );
+        """)
+        db.session.commit()
+        print('Table articles created')
+    except ProgrammingError:
+        print("Table articles already exists, passing.")
+
+    try:
+        db.session.execute("""
+        CREATE TABLE inproceedings (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users,
+            authors TEXT,
+            title TEXT,
+            year INT,
+            booktitle TEXT
+        );
+        """)
+        db.session.commit()
+        print('Table inproceedings created')
+    except ProgrammingError:
+        print("Table inproceedings already exists, passing.")
 
 
 def initialize_db():

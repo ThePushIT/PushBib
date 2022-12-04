@@ -84,4 +84,39 @@ Your references
   </div>
 </div>
 
+{% if books or articles or inproceedings %}
+<h2>Your references:</h2>
+
+<form action="/references/" method="get">
+  {% for book in books %}
+    Author(s): {{ book[0] }}<br>
+    Title: {{ book[1] }}<br>
+    Year: {{ book[2] }}<br>
+    Publisher: {{ book[3] }}<br>
+    <p></p>
+  {% endfor %}
+
+  {% for article in articles %}
+    Author(s): {{ article[0] }}<br>
+    Title: {{ article[1] }}<br>
+    Journal: {{ article[2] }}<br>
+    Year: {{ article[3] }}<br>
+    Volume: {{ article[4] }}<br>
+    Pages: {{ article[5] }}<br>   
+    <p></p>
+  {% endfor %}
+
+  {% for inproceeding in inproceedings %}
+    Author(s): {{ inproceeding[0] }}<br>
+    Title: {{ inproceeding[1] }}<br>
+    Year: {{ inproceeding[2] }}<br>
+    Booktitle: {{ inproceeding[3] }}<br>
+    <p></p>
+  {% endfor %}
+</form>
+
+{% else %}
+<h2>No references yet!</h2>
+{% endif %}
+
 {% endblock %}

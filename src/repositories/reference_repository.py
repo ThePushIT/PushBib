@@ -7,8 +7,6 @@ class ReferenceRepository:
         pass
 
     def insert_book_reference(self, user_id, authors, title, year, publisher):
-        # muutetaan mahdollisesti myöhemmin toimimaan Book Modelin avulla
-        # tällöin saa parametrina Bookin
         try:
             sql = """INSERT INTO books (user_id, authors, title, year, publisher)
                     VALUES (:user_id, :authors, :title, :year, :publisher)"""
@@ -26,14 +24,70 @@ class ReferenceRepository:
             return False
         return True
 
-    def fetch_all_references(self, user_id):
-        # change to accommodate all types of references, not just books
+    def insert_article_reference(self, user_id, authors, title, journal, year, volume, pages):
+        try:
+            sql = """INSERT INTO articles (user_id, authors, title, journal, year, volume, pages)
+                    VALUES (:user_id, :authors, :title, :journal, :year, :volume, :pages)"""
+            db.session.execute(sql,
+                               {
+                                   "user_id": user_id,
+                                   "authors": authors,
+                                   "title": title,
+                                   "journal": journal,
+                                   "year": year,
+                                   "volume": volume,
+                                   "pages": pages
+                               }
+                               )
+            db.session.commit()
+        except ProgrammingError:
+            return False
+        return True
+
+    def insert_inproceeding_reference(self, user_id, authors, title, year, booktitle):
+        try:
+            sql = """INSERT INTO inproceedings (user_id, authors, title, year, booktitle)
+                    VALUES (:user_id, :authors, :title, :year, :booktitle)"""
+            db.session.execute(sql,
+                               {
+                                   "user_id": user_id,
+                                   "authors": authors,
+                                   "title": title,
+                                   "year": year,
+                                   "booktitle": booktitle
+                               }
+                               )
+            db.session.commit()
+        except ProgrammingError:
+            return False
+        return True
+
+    def fetch_book_references(self, user_id):
         try:
             sql = """SELECT authors, title, year, publisher
                      FROM books
                      WHERE user_id=:user_id
                      ORDER BY authors"""
-            print(db.session.execute(sql, {"user_id": user_id}).fetchall())
+            return db.session.execute(sql, {"user_id": user_id}).fetchall()
+        except ProgrammingError:
+            return False
+
+    def fetch_article_references(self, user_id):
+        try:
+            sql = """SELECT authors, title, journal, year, volume, pages
+                     FROM articles
+                     WHERE user_id=:user_id
+                     ORDER BY authors"""
+            return db.session.execute(sql, {"user_id": user_id}).fetchall()
+        except ProgrammingError:
+            return False
+
+    def fetch_inproceeding_references(self, user_id):
+        try:
+            sql = """SELECT authors, title, year, booktitle
+                     FROM inproceedings
+                     WHERE user_id=:user_id
+                     ORDER BY authors"""
             return db.session.execute(sql, {"user_id": user_id}).fetchall()
         except ProgrammingError:
             return False
@@ -41,6 +95,22 @@ class ReferenceRepository:
     def delete_all_books(self):
         try:
             db.session.execute("""DELETE FROM books""")
+            db.session.commit()
+            return True
+        except ProgrammingError:
+            return False
+
+    def delete_all_articles(self):
+        try:
+            db.session.execute("""DELETE FROM articles""")
+            db.session.commit()
+            return True
+        except ProgrammingError:
+            return False
+
+    def delete_all_inproceedings(self):
+        try:
+            db.session.execute("""DELETE FROM inproceedings""")
             db.session.commit()
             return True
         except ProgrammingError:
