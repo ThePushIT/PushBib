@@ -10,9 +10,9 @@ ref_controller = Blueprint("ref", __name__)
 def show_references():
     user_id = user_service.get_id()
 
-    books = reference_service.get_book_references(int(user_id))
-    articles = reference_service.get_article_references(int(user_id))
-    inproceedings = reference_service.get_inproceeding_references(int(user_id))
+    books = reference_service.get_book_references(user_id)
+    articles = reference_service.get_article_references(user_id)
+    inproceedings = reference_service.get_inproceeding_references(user_id)
 
     return render_template('references.html', user_id=user_id, books=books,
                                             articles=articles, inproceedings=inproceedings)
@@ -26,8 +26,8 @@ def add_book():
     year = request.form.get('year')
     publisher = request.form.get('publisher')
 
-    reference_service.create_book_reference(user_id=user_id, authors=authors, title=title,
-                                            year=year, publisher=publisher)
+    reference_service.create_book_reference(user_id=user_id, authors=authors, 
+                                            title=title, year=year, publisher=publisher)
 
     return redirect('/references/')
 
@@ -57,7 +57,7 @@ def add_inproceeding():
     year = request.form.get('year')
     booktitle = request.form.get('booktitle')
 
-    reference_service.create_inproceeding_reference(user_id=user_id, authors=authors, title=title,
-                                                    year=year, booktitle=booktitle)
+    reference_service.create_inproceeding_reference(user_id=user_id, authors=authors, 
+                                                    title=title, year=year, booktitle=booktitle)
 
     return redirect('/references/')

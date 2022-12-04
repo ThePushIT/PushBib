@@ -53,7 +53,6 @@ def create_reference_tables():
             year INT,
             volume INT,
             pages TEXT
-
         );
         """)
         db.session.commit()
