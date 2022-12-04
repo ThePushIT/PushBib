@@ -44,20 +44,15 @@ jobs:
         poetry install
     - name: Install ChromeDriver
       uses: nanasess/setup-chromedriver@v1
-    - name: Start ChromeDriver
-      run: |
-        export DISPLAY=:99
-        chromedriver --url-base=/wd/hub &
-        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
     - name: Initialize database for tests
       run: |
         poetry run python3 src/init_db.py
       env:
         DATABASE_URL: postgres://postgres:postgres@localhost:5432
     - name: Run unit tests
-      run: coverage run --branch -m pytest
+      run: poetry run coverage run --branch -m pytest
     - name: Save coverage report
-      run: coverage xml
+      run: poetry run coverage xml
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v3.1.1
     - name: Start Flask server
