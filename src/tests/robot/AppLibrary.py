@@ -22,4 +22,4 @@ class AppLibrary:
         }
 
         requests.post(
-            f"{self._base_url}/tests/references/add/{user}", json=data)
+            f"{self._base_url}/tests/references/book/{user}", json=data)
