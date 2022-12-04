@@ -13,7 +13,7 @@ def show_references():
     books = reference_service.get_book_references(int(user_id))
     articles = reference_service.get_article_references(int(user_id))
     inproceedings = reference_service.get_inproceeding_references(int(user_id))
-    
+
     return render_template('references.html', user_id=user_id, books=books,
                                             articles=articles, inproceedings=inproceedings)
 
@@ -43,7 +43,8 @@ def add_article():
     pages = request.form.get('pages')
 
     reference_service.create_article_reference(user_id=user_id, authors=authors, title=title,
-                                               journal=journal, year=year, volume=volume, pages=pages)
+                                               journal=journal, year=year, volume=volume,
+                                               pages=pages)
 
     return redirect('/references/')
 
