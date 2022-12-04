@@ -1,9 +1,13 @@
 import unittest
-from repositories.reference_repository import reference_repository
-from repositories.user_repository import user_repository
-from services.user_service import user_service
 from services.reference_service import reference_service
+from repositories.user_repository import user_repository
+from services.reference_service import reference_service
+from app import create_app
 
+app = create_app()
+
+request_ctx = app.test_request_context()
+request_ctx.push()
 
 class TestReferenceRepository(unittest.TestCase):
     @classmethod
@@ -16,11 +20,11 @@ class TestReferenceRepository(unittest.TestCase):
 
     def setUp(self):
         # ajetaan ennen jokaista testiä
-        reference_repository.delete_all_books()
+        reference_service.delete_all_book_references()
 
     def test_insert_book_reference_succeeds(self):
-        reference_repository.insert_book_reference(
+        reference_service.create_book_reference(
             '1', "Anonyymi", "Kiva kirja", 2020, "Otava")
-        books = reference_repository.fetch_all_references(1)
+        books = reference_service.get_references(1)
         print(books)
         self.assertEqual(1, len(books))

@@ -39,6 +39,7 @@ class UserRepository:
         return session.get("user_id", 0)
 
     def delete_all_users(self):
+        session.clear()
         sql = 'DELETE FROM users'
         try:
             db.session.execute(sql)

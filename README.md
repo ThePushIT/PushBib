@@ -16,10 +16,12 @@ The product backlog and the sprint backlog are available here:
 ## Testing
 Code quality:
 
-![pylint](https://github.com/ThePushIT/PushBib/actions/workflows/pylint.yml/badge.svg?branch=main)
+[![pylint](https://github.com/ThePushIT/PushBib/actions/workflows/pylint.yml/badge.svg?branch=main)](https://github.com/ThePushIT/PushBib/actions/workflows/pylint.yml)
 
 App deployment:
 
-![deployment](https://github.com/ThePushIT/PushBib/actions/workflows/fly.yml/badge.svg?branch=main)
+[![deployment](https://github.com/ThePushIT/PushBib/actions/workflows/fly.yml/badge.svg?branch=main)](https://github.com/ThePushIT/PushBib/actions/workflows/fly.yml)
 
+Coverage report for unit tests:
 
+[![codecov](https://codecov.io/github/ThePushIT/PushBib/branch/main/graph/badge.svg?token=474EUUJAGC)](https://codecov.io/github/ThePushIT/PushBib)
