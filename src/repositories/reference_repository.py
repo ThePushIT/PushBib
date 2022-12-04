@@ -92,25 +92,11 @@ class ReferenceRepository:
         except ProgrammingError:
             return False
 
-    def delete_all_books(self):
+    def delete_all_references(self):
         try:
-            db.session.execute("""DELETE FROM books""")
-            db.session.commit()
-            return True
-        except ProgrammingError:
-            return False
-
-    def delete_all_articles(self):
-        try:
-            db.session.execute("""DELETE FROM articles""")
-            db.session.commit()
-            return True
-        except ProgrammingError:
-            return False
-
-    def delete_all_inproceedings(self):
-        try:
-            db.session.execute("""DELETE FROM inproceedings""")
+            db.session.execute("DELETE FROM books")
+            db.session.execute("DELETE FROM articles")
+            db.session.execute("DELETE FROM inproceedings")
             db.session.commit()
             return True
         except ProgrammingError:

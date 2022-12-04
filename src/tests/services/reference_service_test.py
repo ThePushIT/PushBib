@@ -20,11 +20,11 @@ class TestReferenceRepository(unittest.TestCase):
 
     def setUp(self):
         # ajetaan ennen jokaista testiä
-        reference_service.delete_all_book_references()
+        reference_service.delete_all_references()
 
     def test_insert_book_reference_succeeds(self):
         reference_service.create_book_reference(
             '1', "Anonyymi", "Kiva kirja", 2020, "Otava")
-        books = reference_service.get_references(1)
+        books = reference_service.get_book_references(1)
         print(books)
         self.assertEqual(1, len(books))

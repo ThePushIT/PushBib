@@ -27,8 +27,8 @@ class ReferenceService:
     def get_inproceeding_references(self, user_id):
         return self._reference_repository.fetch_inproceeding_references(user_id)
 
-    def delete_all_book_references(self):
-        return self._reference_repository.delete_all_books()
+    def delete_all_references(self):
+        return self._reference_repository.delete_all_references()
 
 
 reference_service = ReferenceService()
