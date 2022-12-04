@@ -8,7 +8,7 @@ test_controller = Blueprint("test", __name__)
 @test_controller.route("/tests/reset/", methods=["POST"])
 def reset():
     print('ollaan test reset routessa')
-    reference_service.delete_all_book_references()
+    reference_service.delete_all_references()
     user_service.delete_all_users()
 
     return "ok"
