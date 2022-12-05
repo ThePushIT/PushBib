@@ -60,6 +60,8 @@ jobs:
       uses: codecov/codecov-action@v3.1.1
       with: 
         fail_ci_if_error: true
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Start Flask server
       run: |
         poetry run nohup python3 src/index.py &
