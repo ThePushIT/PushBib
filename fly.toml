@@ -11,6 +11,9 @@ processes = []
 [env]
   PORT = "8080"
 
+[deploy]
+  release_command = "python src/init_db.py"
+
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
