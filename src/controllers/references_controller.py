@@ -9,6 +9,8 @@ ref_controller = Blueprint("ref", __name__)
 @ref_controller.route('/references/')
 def show_references():
     user_id = user_service.get_id()
+    if user_id == 0:
+        return redirect('/')
 
     books = reference_service.get_book_references(user_id)
     articles = reference_service.get_article_references(user_id)

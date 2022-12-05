@@ -40,3 +40,8 @@ def login():
     if user_service.login(username, password):
         return redirect("/references/")
     return render_template("index.html", message="Wrong username or password")
+
+@user_controller.route("/signout")
+def sign_out():
+    user_service.logout()
+    return redirect("/")
