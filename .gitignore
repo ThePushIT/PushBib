@@ -136,3 +136,5 @@ selenium-screenshot*
 
 # The files generated for the user. For example, the BibTex-files
 user_files/
+
+interactive_console_output.xml

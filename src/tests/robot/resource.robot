@@ -9,6 +9,7 @@ ${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}/references
 ${LOGIN URL}  http://${SERVER}
 ${REGISTER URL}  http://${SERVER}/signup
+${SIGNOUT_URL}  http://${SERVER}/signout
 
 
 *** Keywords ***
@@ -51,6 +52,7 @@ Go To Register Page And Register User
     Set Register Parameters  kalle  jeejeejee   jeejeejee
     Submit Register
     Home Page Should Be Open
+    Sign Out
     
 Set Register Parameters
     [Arguments]  ${username}  ${password}  ${password_again}
@@ -90,6 +92,9 @@ Go To Login Page And Login User
     Set Login Parameters  kalle  jeejeejee
     Submit Login
     Home Page Should Be Open
+
+Sign Out
+    Go To  ${SIGNOUT_URL}
 
 Clear Databases
     Reset Application

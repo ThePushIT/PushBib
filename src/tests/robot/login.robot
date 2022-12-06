@@ -3,6 +3,7 @@ Resource  resource.robot
 Suite Setup  Register Setup
 Suite Teardown  Close Browser
 # Test Setup  Clear Databases
+Test Teardown  Sign Out
 
 *** Test Cases ***
 Login Page Should Open
@@ -41,7 +42,7 @@ Login With Existing Username Should Work
     Set Register Parameters  testuser3  testpassword  testpassword
     Submit Register
     Register Should Succeed
-    Go To Login Page
+    Sign Out
     Set Login Parameters  testuser3  testpassword
     Submit Login
     Login Should Succeed

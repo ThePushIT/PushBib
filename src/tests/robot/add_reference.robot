@@ -3,6 +3,7 @@ Resource  resource.robot
 Suite Setup  Reference Setup
 Suite Teardown  Close Browser
 Test Setup  Go To Login Page And Login User
+Test Teardown  Sign Out
 
 *** Test Cases ***
 Add Reference With Authors, Title, Year and Publisher
