@@ -26,5 +26,17 @@ class TestReferenceRepository(unittest.TestCase):
         reference_service.create_book_reference(
             '1', "Anonyymi", "Kiva kirja", 2020, "Otava")
         books = reference_service.get_book_references(1)
-        print(books)
         self.assertEqual(1, len(books))
+
+    def test_insert_article_reference_succeeds(self):
+        reference_service.create_article_reference(
+            '1', "Allan Collins et al", "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
+        articles = reference_service.get_article_references(1)
+        self.assertEqual(1, len(articles))
+
+    def test_insert_inproceeding_reference_succeeds(self):
+        reference_service.create_inproceeding_reference(
+            '1', "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
+            Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
+        inproceedings = reference_service.get_inproceeding_references(1)
+        self.assertEqual(1, len(inproceedings))
