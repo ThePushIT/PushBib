@@ -3,10 +3,10 @@
   }
 
 label {
-  display:inline-block;
-  width:70px;
-  margin-right:20px;
-  text-align:left;
+  display: inline-block;
+  width: 70px;
+  margin-right: 20px;
+  text-align: left;
   }
 
 .download {
@@ -14,4 +14,10 @@ label {
   text-align: center;
   background-color: green;
   border-radius: 5px;
-}
+  }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  }

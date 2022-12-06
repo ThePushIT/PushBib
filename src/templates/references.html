@@ -12,11 +12,13 @@ Your references
 <script type="text/javascript" src="{{ url_for('static', filename='dropdown_forms.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
-<select class="div-toggle" data-target=".book-div,.article-div,.inproceeding-div">
+<div class="grid-container">
+  <div class="grid-child left">
+  <select class="div-toggle" data-target=".book-div,.article-div,.inproceeding-div">
   <option value="book" data-show=".book">Book</option>
   <option value="article" data-show=".article">Article</option>
   <option value="inproceeding" data-show=".inproceeding">Inproceeding</option>
-</select>
+  </select>
 <p></p>
 
 <div class="book-div">
@@ -84,9 +86,16 @@ Your references
     </form>
   </div>
 </div>
+</div>
 
+<div class="grid-child center">
 {% if books or articles or inproceedings %}
 <h2>Your references:</h2>
+
+<button class="download" onclick="window.open(window.location.href + '/download')">
+  Download all references as .bib
+</button>
+<p></p>
 
 <form action="/references/" method="get">
   {% for book in books %}
@@ -116,12 +125,9 @@ Your references
   {% endfor %}
 </form>
 
-<button class="download" onclick="window.open(window.location.href + '/download')">
-  Download all references as .bib
-</button>
-
 {% else %}
 <h2>No references yet!</h2>
 {% endif %}
+</div>
 
 {% endblock %}
