@@ -116,6 +116,10 @@ Your references
   {% endfor %}
 </form>
 
+<button class="download" onclick="window.open(window.location.href + '/download')">
+  Download all references as .bib
+</button>
+
 {% else %}
 <h2>No references yet!</h2>
 {% endif %}

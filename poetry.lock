@@ -49,6 +49,17 @@ pycodestyle = ">=2.9.1"
 tomli = "*"
 
 [[package]]
+name = "bibtexparser"
+version = "1.4.0"
+description = "Bibtex parser for python 3"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pyparsing = ">=2.0.3"
+
+[[package]]
 name = "certifi"
 version = "2022.9.24"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -395,7 +406,7 @@ testutils = ["gitpython (>3)"]
 name = "pyparsing"
 version = "3.0.9"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.8"
 
@@ -682,7 +693,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "cac00f256660a3eeeb0707fb48dc50d0576549473f337a664e8d3d42a7be2856"
+content-hash = "47c12a1a395524f339cf93464eebc8df67dac718d6d65fe0b372cad1b5bfa528"
 
 [metadata.files]
 astroid = [
@@ -700,6 +711,9 @@ attrs = [
 autopep8 = [
     {file = "autopep8-2.0.0-py2.py3-none-any.whl", hash = "sha256:ad924b42c2e27a1ac58e432166cc4588f5b80747de02d0d35b1ecbd3e7d57207"},
     {file = "autopep8-2.0.0.tar.gz", hash = "sha256:8b1659c7f003e693199f52caffdc06585bb0716900bbc6a7442fd931d658c077"},
+]
+bibtexparser = [
+    {file = "bibtexparser-1.4.0.tar.gz", hash = "sha256:ca7ce2bc34e7c48a678dd49416429bb567441f26dbb13b3609082d8cd109ace6"},
 ]
 certifi = [
     {file = "certifi-2022.9.24-py3-none-any.whl", hash = "sha256:90c1a32f1d68f940488354e36370f6cca89f0f106db09518524c88d6ed83f382"},

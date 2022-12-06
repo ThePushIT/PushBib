@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, redirect, request, send_file
 from services.reference_service import reference_service
 from services.user_service import user_service
 
@@ -63,3 +63,14 @@ def add_inproceeding():
                                                     title=title, year=year, booktitle=booktitle)
 
     return redirect('/references/')
+
+@ref_controller.route('/references/download')
+def download_references():
+    user_id = user_service.get_id()
+
+    if user_id == 0:
+        return redirect('/')
+
+    file_path = reference_service.convert_all_references_to_bibtex(user_id)
+
+    return send_file(file_path)

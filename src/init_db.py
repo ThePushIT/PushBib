@@ -11,6 +11,7 @@ def drop_tables():
         DROP TABLE IF EXISTS users, books, articles, inproceedings CASCADE;
     """)
 
+
 def create_user_table():
     try:
         db.session.execute("""
@@ -24,6 +25,7 @@ def create_user_table():
         print('Table users created')
     except ProgrammingError:
         print("Table users already exists, passing.")
+
 
 def create_reference_tables():
     try:
