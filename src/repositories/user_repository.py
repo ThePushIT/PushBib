@@ -35,6 +35,9 @@ class UserRepository:
     def create_session(self, user_id):
         session["user_id"] = user_id
 
+    def end_session(self):
+        del session["user_id"]
+
     def id(self):
         return session.get("user_id", 0)
 
