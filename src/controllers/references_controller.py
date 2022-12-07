@@ -73,4 +73,6 @@ def download_references():
 
     file_path = reference_service.convert_all_references_to_bibtex(user_id)
 
-    return send_file(file_path)
+    print(file_path)
+
+    return send_file(file_path, as_attachment=True)
