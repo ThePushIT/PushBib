@@ -19,7 +19,6 @@ class UserRepository:
         return True
 
     def validate(self, username, password):
-        print("validateen saavuttu")
         sql = "SELECT id, password FROM users WHERE username=:username"
         result = db.session.execute(sql, {"username": username})
         user = result.fetchone()
