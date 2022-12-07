@@ -96,6 +96,12 @@ Go To Login Page And Login User
 Sign Out
     Go To  ${SIGNOUT_URL}
 
+Logout Setup
+    Register Setup
+    Go To Register Page
+    Set Register Parameters  hemmo  hauhau123  hauhau123
+    Submit Register
+    
 Clear Databases
     Reset Application
     # tyhjennä kaikki testitietokannasta
