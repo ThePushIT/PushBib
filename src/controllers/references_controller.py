@@ -71,7 +71,7 @@ def download_references():
     if user_id == 0:
         return redirect('/')
 
-    file_path = reference_service.convert_all_references_to_bibtex(user_id)
+    file_path = reference_service.create_bibtex_file(user_id)
 
     print(file_path)
 

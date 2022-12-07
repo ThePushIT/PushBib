@@ -48,7 +48,30 @@ class ReferenceService:
         inproceedings = self.get_inproceeding_references(user_id)
         self._add_inproceedings_to_bib_database(inproceedings, bib_db, id_number)
 
+        return bib_db
+
         #Try to make the directory where the server will save all .bib files.
+    #    try:
+     #       os.mkdir(os.path.join(os.getcwd(), "user_files"))
+      #  except FileExistsError:
+       #     pass
+
+        #file_path = os.path.join(os.getcwd(),
+         #                       "user_files",
+          #                      f"references_{user_id}_{date.today()}.bib")
+
+        #writer = BibTexWriter()
+  #      with open(file_path, "w+", encoding="utf-8") as bibfile:
+   #         bibfile.write(writer.write(bib_db))
+#
+ #       return file_path
+
+    def create_bibtex_file(self, user_id):
+
+        bib_db = self.convert_all_references_to_bibtex(user_id)
+
+        print(bib_db)
+
         try:
             os.mkdir(os.path.join(os.getcwd(), "user_files"))
         except FileExistsError:
@@ -63,6 +86,7 @@ class ReferenceService:
             bibfile.write(writer.write(bib_db))
 
         return file_path
+
 
     def _add_books_to_bib_database(self,
                                         books : list,

@@ -35,7 +35,7 @@ def create_reference_tables():
             user_id INTEGER REFERENCES users,
             authors TEXT,
             title TEXT,
-            year INT,
+            year TEXT,
             publisher TEXT
         );
         """)
@@ -52,7 +52,7 @@ def create_reference_tables():
             authors TEXT,
             title TEXT,
             journal TEXT,
-            year INT,
+            year TEXT,
             volume INT,
             pages TEXT
         );
@@ -69,7 +69,7 @@ def create_reference_tables():
             user_id INTEGER REFERENCES users,
             authors TEXT,
             title TEXT,
-            year INT,
+            year TEXT,
             booktitle TEXT
         );
         """)

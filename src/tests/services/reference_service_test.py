@@ -2,7 +2,9 @@ import unittest
 from services.reference_service import reference_service
 from repositories.user_repository import user_repository
 from services.reference_service import reference_service
+from datetime import date
 from app import create_app
+import os
 
 app = create_app()
 
@@ -40,3 +42,14 @@ class TestReferenceRepository(unittest.TestCase):
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
         inproceedings = reference_service.get_inproceeding_references(1)
         self.assertEqual(1, len(inproceedings))
+
+    def test_create_bibtex(self):
+        user_id = 1
+        file_path = reference_service.create_bibtex_file(user_id)
+        try: 
+            os.mkdir(os.path.join(os.getcwd(), "user_files")) 
+        except FileExistsError: 
+            pass 
+        self.assertEqual(os.path.join(os.getcwd(), 
+                        "user_files",
+                        f"references_{user_id}_{date.today()}.bib"), file_path)
