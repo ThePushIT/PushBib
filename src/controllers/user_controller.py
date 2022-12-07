@@ -3,6 +3,13 @@ from services.user_service import user_service
 
 user_controller = Blueprint("user", __name__)
 
+@user_controller.route("/")
+def front_page():
+    user_id = user_service.get_id()
+    if user_id != 0:
+        return redirect('/references')
+
+    return render_template("index.html")
 
 @user_controller.route("/signup", methods=["GET", "POST"])
 def signup():
