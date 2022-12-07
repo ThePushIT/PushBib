@@ -98,7 +98,7 @@ class ReferenceService:
                 "author": book.authors,
                 "year": str(book.year),
                 "publisher": book.publisher,
-                "ID": str(id_number),
+                "ID": f"b{id_number}",
                 "ENTRYTYPE": "book"
                 }
             )
@@ -116,7 +116,7 @@ class ReferenceService:
                 "journal": article.journal,
                 "volume": str(article.volume),
                 "pages": article.pages,
-                "ID": str(id_number),
+                "ID": f"a{id_number}",
                 "ENTRYTYPE": "article"}
             )
             id_number+=1
@@ -131,7 +131,7 @@ class ReferenceService:
                 "author": inproceeding.authors,
                 "year": str(inproceeding.year),
                 "booktitle": inproceeding.booktitle,
-                "ID": str(id_number),
+                "ID": f"ip{id_number}",
                 "ENTRYTYPE": "InProceedings"
                 }
             )
