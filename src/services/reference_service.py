@@ -87,6 +87,14 @@ class ReferenceService:
 
         return file_path
 
+    @staticmethod
+    def replace_special_characters(text):
+        text = text.replace("&", "\&")
+        text = text.replace("_", "\_")
+        text = text.replace("%", "\%")
+        text = text.replace("#", "\#")
+
+        return text
 
     def _add_books_to_bib_database(self,
                                         books : list,
@@ -94,7 +102,7 @@ class ReferenceService:
                                         id_number : int):
         for book in books:
             bib_db.entries.append(
-                {"title": book.title,
+                {"title": ReferenceService.replace_special_characters(book.title),
                 "author": book.authors,
                 "year": str(book.year),
                 "publisher": book.publisher,
@@ -110,10 +118,10 @@ class ReferenceService:
                                         id_number: int):
         for article in articles:
             bib_db.entries.append(
-                {"title": article.title,
+                {"title": ReferenceService.replace_special_characters(article.title),
                 "author": article.authors,
                 "year": str(article.year),
-                "journal": article.journal,
+                "journal": ReferenceService.replace_special_characters(article.journal),
                 "volume": str(article.volume),
                 "pages": article.pages,
                 "ID": f"a{id_number}",
@@ -127,10 +135,10 @@ class ReferenceService:
                                             id_number : int):
         for inproceeding in inproceedings:
             bib_db.entries.append(
-                {"title": inproceeding.title,
+                {"title": ReferenceService.replace_special_characters(inproceeding.title),
                 "author": inproceeding.authors,
                 "year": str(inproceeding.year),
-                "booktitle": inproceeding.booktitle,
+                "booktitle": ReferenceService.replace_special_characters(inproceeding.booktitle),
                 "ID": f"ip{id_number}",
                 "ENTRYTYPE": "InProceedings"
                 }
