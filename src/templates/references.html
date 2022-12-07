@@ -91,10 +91,9 @@ Your references
 <div class="grid-child center">
 {% if books or articles or inproceedings %}
 <h2>Your references:</h2>
-
-<button class="download" onclick="window.open(window.location.href + '/download')">
-  Download all references as .bib
-</button>
+<form action="/references/download">
+  <input type="submit" class="download" value="Download all references as .bib"></input>
+</form>
 <p></p>
 
 <form action="/references/" method="get">
