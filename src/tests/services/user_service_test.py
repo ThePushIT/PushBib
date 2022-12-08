@@ -37,4 +37,11 @@ class TestUserService(unittest.TestCase):
     def test_cannot_login_with_nonexistent_username(self):
         self.assertFalse(user_service.login("user", "pass"))
         self.assertEqual(user_service.get_id(), 0)
+
+    def test_can_logout_after_logged_in(self):
+        user_service.register("testuser", "testpassword")
+        self.assertNotEqual(user_service.get_id(), 0)
+        user_service.logout()
+        self.assertEqual(user_service.get_id(), 0)
+
     
