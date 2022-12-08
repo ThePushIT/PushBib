@@ -12,3 +12,8 @@ def reset():
     user_service.delete_all_users()
 
     return "ok"
+
+@test_controller.route("/tests/csrf/")
+def token_test():
+    csrf_token = "111111111111111111111111111111"
+    user_service.check_csrf(csrf_token)

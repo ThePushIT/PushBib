@@ -22,6 +22,7 @@ def show_references():
 @ref_controller.route('/references/book/', methods=['POST'])
 def add_book():
     user_id = user_service.get_id()
+    user_service.check_csrf(request.form["csrf_token"])
 
     authors = request.form.get('authors')
     title = request.form.get('title')
@@ -36,6 +37,7 @@ def add_book():
 @ref_controller.route('/references/article/', methods=['POST'])
 def add_article():
     user_id = user_service.get_id()
+    user_service.check_csrf(request.form["csrf_token"])
 
     authors = request.form.get('authors')
     title = request.form.get('title')
@@ -53,6 +55,7 @@ def add_article():
 @ref_controller.route('/references/inproceeding/', methods=['POST'])
 def add_inproceeding():
     user_id = user_service.get_id()
+    user_service.check_csrf(request.form["csrf_token"])
 
     authors = request.form.get('authors')
     title = request.form.get('title')

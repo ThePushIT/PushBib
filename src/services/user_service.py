@@ -24,5 +24,7 @@ class UserService:
     def delete_all_users(self):
         return self._user_repository.delete_all_users()
 
+    def check_csrf(self, csrf_token):
+        self._user_repository.validate_csrf_token(csrf_token)
 
 user_service = UserService()
