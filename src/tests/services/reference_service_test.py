@@ -1,4 +1,5 @@
 import unittest
+import filecmp
 from services.reference_service import reference_service
 from repositories.user_repository import user_repository
 from services.reference_service import reference_service
@@ -42,20 +43,15 @@ class TestReferenceRepository(unittest.TestCase):
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
         inproceedings = reference_service.get_inproceeding_references(1)
         self.assertEqual(1, len(inproceedings))
-
-    def test_create_bibtex(self):
-        user_id = 1
-        file_path = reference_service.create_bibtex_file(user_id)
-        self.assertEqual(os.path.join(os.getcwd(), 
-                        "user_files",
-                        f"references_{user_id}_{date.today()}.bib"), file_path)
     
-    def test_bibtex_is_in_correct_format(self):
+    def test_bibtex_outputs_correctly(self):
         user_id = 1
         reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, 1, "1-24")
         reference_service.create_book_reference(user_id, "Jesus Christ", "The Holy Bible", 1, "The Vatican")
         reference_service.create_inproceeding_reference(user_id, "Me", "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
 
-        file_path = reference_service.convert_all_references_to_bibtex(user_id)
+        file_path = reference_service.create_bibtex_file(user_id)
 
-        self.assertTrue(1, 1)
+        reference_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_bib_output_should_be.bib")
+
+        self.assertTrue(filecmp.cmp(file_path, reference_file))

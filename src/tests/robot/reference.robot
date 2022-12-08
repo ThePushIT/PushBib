@@ -1,7 +1,7 @@
 *** Settings ***
 Resource  resource.robot
 Suite Setup  Reference Setup
-Suite Teardown  Close Browser
+Suite Teardown  Close Test Environment
 Test Setup  Go To Login Page And Login User
 Test Teardown  Sign Out
 
@@ -47,6 +47,17 @@ Add Reference With Missing Publisher Should Not Work
     Submit Book
     Page Should Not Contain  New Author
 
+Download References Should Work
+    Home Page Should Be Open
+    Set Reference Authors    New Author
+    Set Reference Title    The best book ever
+    Set Reference Year    2000
+    Set Reference Publisher    WSOY
+    Submit Book
+    Download References
+    Sleep    2
+    Download Directory Should Have A File
+
 *** Keywords ***
 Set Reference Authors
     [Arguments]  ${authors}
@@ -66,3 +77,6 @@ Set Reference Publisher
 
 Submit Book
     Click Button  Submit
+
+Download References
+    Click Button    download

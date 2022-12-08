@@ -1,6 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  ./AppLibrary.py
+Library    OperatingSystem
 
 *** Variables ***
 ${SERVER}  localhost:5000
@@ -10,6 +11,7 @@ ${HOME URL}  http://${SERVER}/references
 ${LOGIN URL}  http://${SERVER}
 ${REGISTER URL}  http://${SERVER}/signup
 ${SIGNOUT_URL}  http://${SERVER}/signout
+${DOWNLOAD_DIRECTORY}  /tmp/bib_files
 
 
 *** Keywords ***
@@ -25,12 +27,21 @@ Register Setup
     Register Keyword To Run On Failure  None
 
 Open And Configure Browser
+    Create Directory    ${DOWNLOAD_DIRECTORY}
     Open Browser  browser=${BROWSER}
+    ...  options=add_experimental_option("prefs", {"download.default_directory": "${DOWNLOAD_DIRECTORY}"})
     Maximize Browser Window
     Set Selenium Speed  ${DELAY}
 
+Close Test Environment
+    Remove Directory    ${DOWNLOAD_DIRECTORY}  recursive=True
+    Close Browser
+
 Home Page Should Be Open
     Title Should Be  Your references
+
+Download Directory Should Have A File
+    Directory Should Not Be Empty    ${DOWNLOAD_DIRECTORY}
 
 Go To Home Page
     Go To  ${HOME URL}
