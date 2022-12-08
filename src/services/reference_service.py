@@ -89,10 +89,10 @@ class ReferenceService:
 
     @staticmethod
     def replace_special_characters(text):
-        text = text.replace("&", "\&")
-        text = text.replace("_", "\_")
-        text = text.replace("%", "\%")
-        text = text.replace("#", "\#")
+        text = text.replace("&", r"\&")
+        text = text.replace("_", r"\_")
+        text = text.replace("%", r"\%")
+        text = text.replace("#", r"\#")
 
         return text
 
