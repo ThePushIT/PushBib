@@ -25,3 +25,4 @@ App deployment:
 Coverage report for unit tests:
 
 [![codecov](https://codecov.io/github/ThePushIT/PushBib/branch/main/graph/badge.svg?token=474EUUJAGC)](https://codecov.io/github/ThePushIT/PushBib)
+
