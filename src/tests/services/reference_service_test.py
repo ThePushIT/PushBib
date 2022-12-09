@@ -44,6 +44,18 @@ class TestReferenceRepository(unittest.TestCase):
         inproceedings = reference_service.get_inproceeding_references(1)
         self.assertEqual(1, len(inproceedings))
     
+    def test_cannot_access_other_users_data(self):
+        user_id = 1
+        reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, 1, "1-24")
+        reference_service.create_book_reference(user_id, "Jesus Christ", "The Holy Bible", 1, "The Vatican")
+        reference_service.create_inproceeding_reference(user_id, "Me", "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
+
+        user_repository.create("user2", "password2")
+        user_id = 2
+        self.assertEqual(len(reference_service.get_article_references(user_id)), 0)
+        self.assertEqual(len(reference_service.get_book_references(user_id)), 0)
+        self.assertEqual(len(reference_service.get_inproceeding_references(user_id)), 0)
+    
     def test_bibtex_outputs_correctly(self):
         user_id = 1
         reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, 1, "1-24")
