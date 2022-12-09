@@ -12,24 +12,29 @@ def drop_tables():
     """)
 
 
-def create_user_table():
+def create_table(sql_string: str, table_name: str):
     try:
-        db.session.execute("""
+        db.session.execute(sql_string)
+        db.session.commit()
+        print(f"Table {table_name} created")
+    except ProgrammingError:
+        print(f"Table {table_name} already exists, passing.")
+
+
+def create_user_table():
+    sql = """
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
             username TEXT UNIQUE,
             password TEXT
         );
-        """)
-        db.session.commit()
-        print('Table users created')
-    except ProgrammingError:
-        print("Table users already exists, passing.")
+        """
+
+    create_table(sql, "users")
 
 
-def create_reference_tables():
-    try:
-        db.session.execute("""
+def create_books():
+    sql = """
         CREATE TABLE books (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
@@ -38,14 +43,12 @@ def create_reference_tables():
             year TEXT,
             publisher TEXT
         );
-        """)
-        db.session.commit()
-        print('Table books created')
-    except ProgrammingError:
-        print("Table books already exists, passing.")
+        """
+    create_table(sql, "books")
 
-    try:
-        db.session.execute("""
+
+def create_articles():
+    sql = """
         CREATE TABLE articles (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
@@ -56,15 +59,13 @@ def create_reference_tables():
             volume INT,
             pages TEXT
         );
-        """)
-        db.session.commit()
-        print('Table articles created')
-    except ProgrammingError:
-        print("Table articles already exists, passing.")
+        """
+    create_table(sql, "articles")
 
-    try:
-        db.session.execute("""
-        CREATE TABLE inproceedings (
+
+def create_inproceedings():
+    sql = """
+    CREATE TABLE inproceedings (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
             authors TEXT,
@@ -72,11 +73,14 @@ def create_reference_tables():
             year TEXT,
             booktitle TEXT
         );
-        """)
-        db.session.commit()
-        print('Table inproceedings created')
-    except ProgrammingError:
-        print("Table inproceedings already exists, passing.")
+        """
+    create_table(sql, "inproceedings")
+
+
+def create_reference_tables():
+    create_books()
+    create_articles()
+    create_inproceedings()
 
 
 def initialize_db():
