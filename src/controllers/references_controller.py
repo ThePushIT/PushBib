@@ -76,4 +76,4 @@ def download_references():
 
     file_path = reference_service.create_bibtex_file(user_id)
 
-    return send_file(file_path, as_attachment=True)
+    return send_file(file_path, as_attachment=True, download_name="references.bib")

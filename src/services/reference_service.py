@@ -1,4 +1,3 @@
-from datetime import date
 import os
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
@@ -79,7 +78,7 @@ class ReferenceService:
 
         file_path = os.path.join(os.getcwd(),
                                 "user_files",
-                                f"references_{user_id}_{date.today()}.bib")
+                                f"references_{user_id}.bib")
 
         writer = BibTexWriter()
         with open(file_path, "w+", encoding="utf-8") as bibfile:
