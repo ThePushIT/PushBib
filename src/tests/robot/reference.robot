@@ -56,7 +56,7 @@ Download References Should Work
     Submit Book
     Download References
     Sleep    2
-    Download Directory Should Have A File
+    Download Directory Should Have A References File
 
 *** Keywords ***
 Set Reference Authors

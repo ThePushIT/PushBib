@@ -40,8 +40,8 @@ Close Test Environment
 Home Page Should Be Open
     Title Should Be  Your references
 
-Download Directory Should Have A File
-    Directory Should Not Be Empty    ${DOWNLOAD_DIRECTORY}
+Download Directory Should Have A References File
+    File Should Exist    ${DOWNLOAD_DIRECTORY}/references.bib
 
 Go To Home Page
     Go To  ${HOME URL}
