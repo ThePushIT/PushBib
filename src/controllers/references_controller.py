@@ -12,12 +12,10 @@ def show_references():
     if user_id == 0:
         return redirect('/')
 
-    books = reference_service.get_book_references(user_id)
-    articles = reference_service.get_article_references(user_id)
-    inproceedings = reference_service.get_inproceeding_references(user_id)
+    references = reference_service.get_all_references_by_user_id(user_id)
+    references = reference_service.sort_references_alphabetically_by_author(references)
 
-    return render_template('references.html', user_id=user_id, books=books,
-                                            articles=articles, inproceedings=inproceedings)
+    return render_template('references.html', user_id=user_id, references=references)
 
 @ref_controller.route('/references/book/', methods=['POST'])
 def add_book():

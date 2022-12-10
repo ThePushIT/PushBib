@@ -24,11 +24,72 @@ class ReferenceService:
     def get_book_references(self, user_id):
         return self._reference_repository.fetch_book_references(user_id)
 
+    def convert_books_into_dictionaries(self, book_tuples):
+        book_dicts = []
+        for book in book_tuples:
+            book_dict = {
+                "Author(s)": book[0],
+                "Title": book[1],
+                "Year": book[2],
+                "Publisher": book[3]
+            }
+
+            book_dicts.append(book_dict)
+
+        return book_dicts
+
     def get_article_references(self, user_id):
         return self._reference_repository.fetch_article_references(user_id)
 
+    def convert_articles_into_dictionaries(self, article_tuples):
+        article_dicts = []
+        for article in article_tuples:
+            article_dict = {
+                "Author(s)": article[0],
+                "Title": article[1],
+                "Journal": article[2],
+                "Year": article[3],
+                "Volume": article[4],
+                "Pages": article[5]
+            }
+
+            article_dicts.append(article_dict)
+
+        return article_dicts
+
     def get_inproceeding_references(self, user_id):
         return self._reference_repository.fetch_inproceeding_references(user_id)
+
+    def convert_inproceedings_into_dictionaries(self, inproceeding_tuples):
+        inproceeding_dicts = []
+        for inproceeding in inproceeding_tuples:
+            inproceeding_dict = {
+                "Author(s)": inproceeding[0],
+                "Title": inproceeding[1],
+                "Year": inproceeding[2],
+                "Booktitle": inproceeding[3]
+            }
+
+            inproceeding_dicts.append(inproceeding_dict)
+
+        return inproceeding_dicts
+
+    def get_all_references_by_user_id(self, user_id):
+        books = self.get_book_references(user_id)
+        books = self.convert_books_into_dictionaries(books)
+        articles = self.get_article_references(user_id)
+        articles = self.convert_articles_into_dictionaries(articles)
+        inproceedings = self.get_inproceeding_references(user_id)
+        inproceedings = self.convert_inproceedings_into_dictionaries(inproceedings)
+
+        references = books + articles + inproceedings
+
+        return references
+
+    def sort_references_alphabetically_by_author(self, references):
+        references.sort(key = lambda reference: reference["Author(s)"])
+
+        return references
 
     def delete_all_references(self):
         return self._reference_repository.delete_all_references()
@@ -42,7 +103,6 @@ class ReferenceService:
 
         articles = self.get_article_references(user_id)
         self._add_articles_to_bib_database(articles, bib_db, id_number)
-
 
         inproceedings = self.get_inproceeding_references(user_id)
         self._add_inproceedings_to_bib_database(inproceedings, bib_db, id_number)
