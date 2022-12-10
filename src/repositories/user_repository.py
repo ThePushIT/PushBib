@@ -51,7 +51,7 @@ class UserRepository:
 
     def delete_all_users(self):
         session.clear()
-        sql = 'DELETE FROM users'
+        sql = "DELETE FROM users"
         try:
             db.session.execute(sql)
             db.session.commit()

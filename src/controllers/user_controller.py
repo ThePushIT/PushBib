@@ -7,7 +7,7 @@ user_controller = Blueprint("user", __name__)
 def front_page():
     user_id = user_service.get_id()
     if user_id != 0:
-        return redirect('/references')
+        return redirect("/references")
 
     return render_template("index.html")
 

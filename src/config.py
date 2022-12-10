@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 ENV = os.getenv("FLASK_ENV") or "production"
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 if DATABASE_URL is None:
     raise Exception(
@@ -18,4 +18,4 @@ if DATABASE_URL is None:
     )
 
 # Fix for Fly
-DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://')
+DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://")
