@@ -62,6 +62,25 @@ class ReferenceRepository:
             return False
         return True
 
+    def insert_misc_reference(self, user_id, authors, title, howpublished, year, note):
+        try:
+            sql = """INSERT INTO misc (user_id, authors, title, howpublished, year, note)
+                    VALUES (:user_id, :authors, :title, :howpublished, :year, :note)"""
+            db.session.execute(sql,
+                               {
+                                   "user_id": user_id,
+                                   "authors": authors,
+                                   "title": title,
+                                   "howpublished": howpublished,
+                                   "year": year,
+                                   "note": note
+                               }
+                               )
+            db.session.commit()
+        except ProgrammingError:
+            return False
+        return True
+
     def fetch_book_references(self, user_id):
         try:
             sql = """SELECT authors, title, year, publisher
@@ -92,11 +111,22 @@ class ReferenceRepository:
         except ProgrammingError:
             return False
 
+    def fetch_misc_references(self, user_id):
+        try:
+            sql = """SELECT authors, title, howpublished, year, note
+                     FROM misc
+                     WHERE user_id=:user_id
+                     ORDER BY authors"""
+            return db.session.execute(sql, {"user_id": user_id}).fetchall()
+        except ProgrammingError:
+            return False
+
     def delete_all_references(self):
         try:
             db.session.execute("DELETE FROM books")
             db.session.execute("DELETE FROM articles")
             db.session.execute("DELETE FROM inproceedings")
+            db.session.execute("DELETE FROM misc")
             db.session.commit()
             return True
         except ProgrammingError:

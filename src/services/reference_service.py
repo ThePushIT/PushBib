@@ -21,6 +21,10 @@ class ReferenceService:
         self._reference_repository.insert_inproceeding_reference(
             user_id, authors, title, year, booktitle)
 
+    def create_misc_reference(self, user_id, authors, title, howpublished, year, note):
+        self._reference_repository.insert_misc_reference(
+            user_id, authors, title, howpublished, year, note)
+
     def get_book_references(self, user_id):
         return self._reference_repository.fetch_book_references(user_id)
 
@@ -74,6 +78,24 @@ class ReferenceService:
 
         return inproceeding_dicts
 
+    def get_misc_references(self, user_id):
+        return self._reference_repository.fetch_misc_references(user_id)
+
+    def convert_misc_into_dictionaries(self, misc_tuples):
+        misc_dicts = []
+        for misc in misc_tuples:
+            misc_dict = {
+                "Author(s)": misc[0],
+                "Title": misc[1],
+                "Howpublished": misc[2],
+                "Year": misc[3],
+                "Note": misc[4]
+            }
+
+            misc_dicts.append(misc_dict)
+
+        return misc_dicts
+
     def get_all_references_by_user_id(self, user_id):
         books = self.get_book_references(user_id)
         books = self.convert_books_into_dictionaries(books)
@@ -81,8 +103,10 @@ class ReferenceService:
         articles = self.convert_articles_into_dictionaries(articles)
         inproceedings = self.get_inproceeding_references(user_id)
         inproceedings = self.convert_inproceedings_into_dictionaries(inproceedings)
+        misc = self.get_misc_references(user_id)
+        misc = self.convert_misc_into_dictionaries(misc)
 
-        references = books + articles + inproceedings
+        references = books + articles + inproceedings + misc
 
         return references
 
@@ -107,23 +131,10 @@ class ReferenceService:
         inproceedings = self.get_inproceeding_references(user_id)
         self._add_inproceedings_to_bib_database(inproceedings, bib_db, id_number)
 
+        misc = self.get_misc_references(user_id)
+        self._add_misc_to_bib_database(misc, bib_db, id_number)
+
         return bib_db
-
-        #Try to make the directory where the server will save all .bib files.
-    #    try:
-     #       os.mkdir(os.path.join(os.getcwd(), "user_files"))
-      #  except FileExistsError:
-       #     pass
-
-        #file_path = os.path.join(os.getcwd(),
-         #                       "user_files",
-          #                      f"references_{user_id}_{date.today()}.bib")
-
-        #writer = BibTexWriter()
-  #      with open(file_path, "w+", encoding="utf-8") as bibfile:
-   #         bibfile.write(writer.write(bib_db))
-#
- #       return file_path
 
     def create_bibtex_file(self, user_id):
 
@@ -200,6 +211,23 @@ class ReferenceService:
                 "booktitle": ReferenceService.replace_special_characters(inproceeding.booktitle),
                 "ID": f"ip{id_number}",
                 "ENTRYTYPE": "InProceedings"
+                }
+            )
+            id_number+=1
+
+    def _add_misc_to_bib_database(self,
+                                            misc : list,
+                                            bib_db : BibDatabase,
+                                            id_number : int):
+        for misc in misc:
+            bib_db.entries.append(
+                {"title": ReferenceService.replace_special_characters(misc.title),
+                "author": misc.authors,
+                "howpublished": ReferenceService.replace_special_characters(misc.howpublished),
+                "year": str(misc.year),
+                "note": ReferenceService.replace_special_characters(misc.note),
+                "ID": f"m{id_number}",
+                "ENTRYTYPE": "misc"
                 }
             )
             id_number+=1
