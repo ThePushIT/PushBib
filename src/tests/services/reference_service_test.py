@@ -44,7 +44,13 @@ class TestReferenceRepository(unittest.TestCase):
         inproceedings = reference_service.get_inproceeding_references(1)
         self.assertEqual(1, len(inproceedings))
 
-    def test_qet_all_references_by_id_returns_all_users_references(self):
+    def test_insert_misc_reference_succeeds(self):
+        reference_service.create_misc_reference(
+            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
+        misc = reference_service.get_misc_references(1)
+        self.assertEqual(1, len(misc))
+
+    def test_get_all_references_by_id_returns_all_users_references(self):
         reference_service.create_book_reference(
             "1", "Vallaton, Ville", "Jäätelöhistoriikki", 2020, "Otava")
         reference_service.create_article_reference(
@@ -52,9 +58,11 @@ class TestReferenceRepository(unittest.TestCase):
         reference_service.create_inproceeding_reference(
             "1", "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
+        reference_service.create_misc_reference(
+            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
 
         references = reference_service.get_all_references_by_user_id(1)
-        self.assertEqual(len(references), 3)
+        self.assertEqual(len(references), 4)
 
     def test_convert_books_into_dictionaries_returns_correct_dictionary(self):
         reference_service.create_book_reference(
@@ -88,7 +96,7 @@ class TestReferenceRepository(unittest.TestCase):
 
         self.assertEqual(article_dict, correct)
 
-    def test_convert_inproceedings_into_dictionaries_returns_correct_dict(self):
+    def test_convert_inproceedings_into_dictionaries_returns_correct_dictionary(self):
         reference_service.create_inproceeding_reference(
             "1", "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
@@ -105,6 +113,22 @@ class TestReferenceRepository(unittest.TestCase):
 
         self.assertEqual(inproceeding_dict, correct)
 
+    def test_convert_misc_into_dictionaries_returns_correct_dictionary(self):
+        reference_service.create_misc_reference(
+            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
+        misc = reference_service.get_misc_references(1)
+        misc_dict = reference_service.convert_misc_into_dictionaries(misc)[0]
+
+        correct = {
+            "Author(s)": "NASA",
+            "Title": "Pluto: The 'Other' Red Planet",
+            "Howpublished": "https://www.nasa.gov/nh/pluto-the-other-red-planet",
+            "Year": "2015",
+            "Note": "Accessed: 2018-12-06"
+        }
+
+        self.assertEqual(misc_dict, correct)
+
     def test_sort_references_alphabetically_by_author_returns_correct_order(self):
         reference_service.create_book_reference(
             "1", "Vallaton, Ville", "Jäätelöhistoriikki", 2020, "Otava")
@@ -113,31 +137,37 @@ class TestReferenceRepository(unittest.TestCase):
         reference_service.create_inproceeding_reference(
             "1", "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
+        reference_service.create_misc_reference(
+            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
 
         references = reference_service.get_all_references_by_user_id(1)
         references = reference_service.sort_references_alphabetically_by_author(references)
 
         self.assertEqual(references[0]["Author(s)"], "Collins, Allan et al")
         self.assertEqual(references[1]["Author(s)"], "Luukkainen et al")
-        self.assertEqual(references[2]["Author(s)"], "Vallaton, Ville")
+        self.assertEqual(references[2]["Author(s)"], "NASA")
+        self.assertEqual(references[3]["Author(s)"], "Vallaton, Ville")
 
     def test_cannot_access_other_users_data(self):
         user_id = 1
         reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, 1, "1-24")
         reference_service.create_book_reference(user_id, "Jesus Christ", "The Holy Bible", 1, "The Vatican")
         reference_service.create_inproceeding_reference(user_id, "Me", "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
+        reference_service.create_misc_reference(user_id, "Miscella", "Miscellaneous Title: The Electric Boogaloo", "https://url.url", 1991, "Noteworthy")
 
         user_repository.create("user2", "password2")
         user_id = 2
         self.assertEqual(len(reference_service.get_article_references(user_id)), 0)
         self.assertEqual(len(reference_service.get_book_references(user_id)), 0)
         self.assertEqual(len(reference_service.get_inproceeding_references(user_id)), 0)
+        self.assertEqual(len(reference_service.get_misc_references(user_id)), 0)
     
     def test_bibtex_outputs_correctly(self):
         user_id = 1
         reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, 1, "1-24")
         reference_service.create_book_reference(user_id, "Jesus Christ", "The Holy Bible", 1, "The Vatican")
         reference_service.create_inproceeding_reference(user_id, "Me", "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
+        reference_service.create_misc_reference(user_id, "Miscella", "Miscellaneous Title: The Electric Boogaloo", "https://url.url", 1991, "Noteworthy")
 
         file_path = reference_service.create_bibtex_file(user_id)
 
