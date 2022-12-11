@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Login
+{{_('Login')}}
 {% endblock %}
 
 {% block body %}
 
-<h1>Welcome to PushBib!</h1>
+<h1>{{_('Welcome to PushBib!')}}</h1>
 
 <body>
-    <h2>Login</h2>
+    <h2>{{_('Login')}}</h2>
     <form action="/login" method="POST">
-    <p>Username:</p>
+    <p>{{_('Username')}}:</p>
     <input type="text" name="username">
-    <p>Password:</p>
+    <p>{{_('Password')}}:</p>
     <input type="password" name="password">
     <p>{{ message }}</p>
-    <input type="submit" value="Login">
+    <input type="submit" value="{{_('Login')}}"">
     </form>
-    <p><a href="/signup">Create new user</a></p>
+    <p><a href="/signup">{{_('Create new user')}}</a></p>
 </body>
 
 {% endblock %}

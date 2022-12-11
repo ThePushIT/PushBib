@@ -44,3 +44,16 @@ def autopep(ctx):
 def coveragereport(ctx):
     ctx.run('coverage run --branch -m pytest')
     ctx.run('coverage html')
+
+@task
+def update_translation_files(ctx):
+    ctx.run("pybabel extract -F babel.cfg -o messages.pot .")
+    ctx.run("pybabel update -i messages.pot -d translations")
+
+@task(update_translation_files)
+def create_translation_file(ctx, lang):
+    ctx.run(f"pybabel init -i messages.pot -d translations -l {lang}")
+
+@task
+def compile_translations(ctx):
+    ctx.run("pybabel compile -d translations")

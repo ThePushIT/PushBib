@@ -1,25 +1,25 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Signup
+{{_('Signup')}}
 {% endblock %}
 
 {% block body %}
 
-<h1>Create new user</h1>
+<h1>{{_('Create a new user')}}</h1>
 
 <body>
 <form action="/signup" method="post">
-    <p>Username:</p>
+    <p>{{_('Username')}}:</p>
     <input type="text" name="username" required minlength="5">
-    <p>Password:</p>
+    <p>{{_('Password')}}:</p>
     <input type="password" name="password" required minlength="8">
-    <p>Confirm password:</p>
+    <p>{{_('Confirm password')}}:</p>
     <input type="password" name="password_again" required minlength="8">
     <p>{{ message }}</p>
-    <input type="submit" value="Register" name="Register">
+    <input type="submit" value="{{_('Register')}}" name="Register">
 </form>
-<p><a href="/">Already have an account? Log in</a></p>
+<p><a href="/">{{_('Already have an account? Log in')}}</a></p>
 </body>
 
 {% endblock %}

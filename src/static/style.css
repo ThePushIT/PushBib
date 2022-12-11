@@ -21,3 +21,18 @@ label {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 40px;
   }
+
+.language {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.language li {
+  display: inline;
+  font-size: 20px;
+}
+
+.language a:link, a:visited{
+  color:blue;
+}

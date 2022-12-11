@@ -12,6 +12,11 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 ENV = os.getenv("FLASK_ENV") or "production"
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+LANGUAGES = {
+    "fi": "Finnish",
+    "en": "English"
+}
+
 if DATABASE_URL is None:
     raise Exception(
         "Database URI is not defined with the DATABASE_URL environment variable"
