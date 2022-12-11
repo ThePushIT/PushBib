@@ -3,7 +3,7 @@
 ## Käännettävien merkkijonojen ilmaisu
 
 ### Python
-Kun haluat lisätä Python-koodiin jonkin merkkijonon, jolle halutaan tehdä käännös, niin laita se python_babel kirjaston gettext()-funktion parametrina. Eli esimerkiksi kun meillä on alla oleva ohjelma
+Kun haluat lisätä Python-koodiin jonkin merkkijonon, jolle halutaan tehdä käännös, niin laita se flask_babel kirjaston gettext()-funktion parametrina. Eli esimerkiksi kun meillä on alla oleva ohjelma
 ``` python
 print("Hello World!")
 ```
