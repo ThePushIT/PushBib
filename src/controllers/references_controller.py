@@ -65,6 +65,23 @@ def add_inproceeding():
 
     return redirect("/references/")
 
+@ref_controller.route("/references/misc/", methods=["POST"])
+def add_misc():
+    user_id = user_service.get_id()
+    user_service.check_csrf(request.form["csrf_token"])
+
+    authors = request.form.get("authors")
+    title = request.form.get("title")
+    howpublished = request.form.get("howpublished")
+    year = request.form.get("year")
+    note = request.form.get("note")
+
+    reference_service.create_misc_reference(user_id=user_id, authors=authors,
+                                            title=title, howpublished=howpublished,
+                                            year=year, note=note)
+
+    return redirect("/references/")
+
 @ref_controller.route("/references/download")
 def download_references():
     user_id = user_service.get_id()

@@ -45,14 +45,23 @@ SQL_TABLES = {
             booktitle TEXT
         );
         """,
+    "misc": """
+        CREATE TABLE misc (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users,
+            authors TEXT,
+            title TEXT,
+            howpublished TEXT,
+            year TEXT,
+            note TEXT
+        );
+        """
 }
 
 
 def drop_tables():
     db.session.execute(
-        """
-        DROP TABLE IF EXISTS users, books, articles, inproceedings CASCADE;
-    """
+        "DROP TABLE IF EXISTS users, books, articles, inproceedings, misc CASCADE;"
     )
 
 
