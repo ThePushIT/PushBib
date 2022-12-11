@@ -57,3 +57,5 @@ Jotta käännökset näkyisivät nettisivuilla, ne täytyy aluksi kompiloida. T�
 ``` bash
 invoke compile-translations
 ```
+
+**HUOM! Jos yksittäinen lause ei jostakin syystä näy käännettynä, niin katso käännöstiedostosta että onko kyseisen käännöksen yläpuolella merkintä `#, fuzzy`. Jos on, niin tarkista että käännös on oikein ja poista merkintä.**
