@@ -31,7 +31,7 @@ SQL_TABLES = {
             title TEXT,
             journal TEXT,
             year TEXT,
-            volume INT,
+            volume TEXT,
             pages TEXT
         );
         """,
