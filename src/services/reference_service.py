@@ -219,13 +219,13 @@ class ReferenceService:
                                             misc : list,
                                             bib_db : BibDatabase,
                                             id_number : int):
-        for misc in misc:
+        for i in misc:
             bib_db.entries.append(
-                {"title": ReferenceService.replace_special_characters(misc.title),
-                "author": misc.authors,
-                "howpublished": ReferenceService.replace_special_characters(misc.howpublished),
-                "year": str(misc.year),
-                "note": ReferenceService.replace_special_characters(misc.note),
+                {"title": ReferenceService.replace_special_characters(i.title),
+                "author": i.authors,
+                "howpublished": ReferenceService.replace_special_characters(i.howpublished),
+                "year": str(i.year),
+                "note": ReferenceService.replace_special_characters(i.note),
                 "ID": f"m{id_number}",
                 "ENTRYTYPE": "misc"
                 }
