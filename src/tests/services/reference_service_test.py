@@ -90,7 +90,7 @@ class TestReferenceRepository(unittest.TestCase):
             "Title": "Cognitive Apprenticeship",
             "Journal": "American Educator",
             "Year": "1991",
-            "Volume": 6,
+            "Volume": "6",
             "Pages": "38-46"
         }
 
