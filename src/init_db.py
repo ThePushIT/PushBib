@@ -5,36 +5,15 @@ from app import create_app
 app = create_app()
 app.app_context().push()
 
-
-def drop_tables():
-    db.session.execute("""
-        DROP TABLE IF EXISTS users, books, articles, inproceedings CASCADE;
-    """)
-
-
-def create_table(sql_string: str, table_name: str):
-    try:
-        db.session.execute(sql_string)
-        db.session.commit()
-        print(f"Table {table_name} created")
-    except ProgrammingError:
-        print(f"Table {table_name} already exists, passing.")
-
-
-def create_user_table():
-    sql = """
+SQL_TABLES = {
+    "user": """
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
             username TEXT UNIQUE,
             password TEXT
         );
-        """
-
-    create_table(sql, "users")
-
-
-def create_books():
-    sql = """
+        """,
+    "books": """
         CREATE TABLE books (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
@@ -43,12 +22,8 @@ def create_books():
             year TEXT,
             publisher TEXT
         );
-        """
-    create_table(sql, "books")
-
-
-def create_articles():
-    sql = """
+        """,
+    "articles": """
         CREATE TABLE articles (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
@@ -59,13 +34,9 @@ def create_articles():
             volume INT,
             pages TEXT
         );
-        """
-    create_table(sql, "articles")
-
-
-def create_inproceedings():
-    sql = """
-    CREATE TABLE inproceedings (
+        """,
+    "inproceedings": """
+        CREATE TABLE inproceedings (
             id SERIAL PRIMARY KEY,
             user_id INTEGER REFERENCES users,
             authors TEXT,
@@ -73,20 +44,31 @@ def create_inproceedings():
             year TEXT,
             booktitle TEXT
         );
+        """,
+}
+
+
+def drop_tables():
+    db.session.execute(
         """
-    create_table(sql, "inproceedings")
+        DROP TABLE IF EXISTS users, books, articles, inproceedings CASCADE;
+    """
+    )
 
 
-def create_reference_tables():
-    create_books()
-    create_articles()
-    create_inproceedings()
+def create_tables(tables: dict):
+    for table_name, sql_str in tables.items():
+        try:
+            db.session.execute(sql_str)
+            db.session.commit()
+            print(f"Table {table_name} created")
+        except ProgrammingError:
+            print(f"Table {table_name} already exists, passing.")
 
 
 def initialize_db():
     drop_tables()
-    create_user_table()
-    create_reference_tables()
+    create_tables(SQL_TABLES)
 
 
 if __name__ == "__main__":
