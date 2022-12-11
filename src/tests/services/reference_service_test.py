@@ -164,7 +164,7 @@ class TestReferenceRepository(unittest.TestCase):
     
     def test_bibtex_outputs_correctly(self):
         user_id = 1
-        reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, 1, "1-24")
+        reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, "1", "1-24")
         reference_service.create_book_reference(user_id, "Jesus Christ", "The Holy Bible", 1, "The Vatican")
         reference_service.create_inproceeding_reference(user_id, "Me", "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
         reference_service.create_misc_reference(user_id, "Miscella", "Miscellaneous Title: The Electric Boogaloo", "https://url.url", 1991, "Noteworthy")

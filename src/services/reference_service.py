@@ -152,6 +152,8 @@ class ReferenceService:
                                 f"references_{user_id}.bib")
 
         writer = BibTexWriter()
+        writer.order_entries_by = ("author", "year")
+        writer.display_order = ("author", "howpublished", "title", "journal", "year", "volume", "pages")
         with open(file_path, "w+", encoding="utf-8") as bibfile:
             bibfile.write(writer.write(bib_db))
 
