@@ -19,7 +19,7 @@ def show_references():
 @ref_controller.route("/references/book/", methods=["POST"])
 def add_book():
 
-    print('tultiin bookin post metodin controllointiin')
+    print("tultiin bookin post metodin controllointiin")
     user_id = user_service.get_id()
     user_service.check_csrf(request.form["csrf_token"])
 
@@ -27,15 +27,15 @@ def add_book():
 
     form = request.form
     for key in form.keys():
-        if 'author' in key:
+        if "author" in key:
             value = form.get(key)
             if len(value) > 0:
                 authors.append(value)
 
     print(authors)
-    title = request.form.get('title')
-    year = request.form.get('year')
-    publisher = request.form.get('publisher')
+    title = request.form.get("title")
+    year = request.form.get("year")
+    publisher = request.form.get("publisher")
 
     reference_service.create_book_reference(user_id=user_id, authors=authors,
                                             title=title, year=year,publisher=publisher)
@@ -51,16 +51,16 @@ def add_article():
 
     form = request.form
     for key in form.keys():
-        if 'author' in key:
+        if "author" in key:
             value = form.get(key)
             if len(value) > 0:
                 authors.append(value)
 
-    title = request.form.get('title')
-    journal = request.form.get('journal')
-    year = request.form.get('year')
-    volume = request.form.get('volume')
-    pages = request.form.get('pages')
+    title = request.form.get("title")
+    journal = request.form.get("journal")
+    year = request.form.get("year")
+    volume = request.form.get("volume")
+    pages = request.form.get("pages")
 
     reference_service.create_article_reference(user_id=user_id, authors=authors, title=title,
                                                journal=journal, year=year, volume=volume,
@@ -76,14 +76,14 @@ def add_inproceeding():
     authors = []
     form = request.form
     for key in form.keys():
-        if 'author' in key:
+        if "author" in key:
             value = form.get(key)
             if len(value) > 0:
                 authors.append(value)
 
-    title = request.form.get('title')
-    year = request.form.get('year')
-    booktitle = request.form.get('booktitle')
+    title = request.form.get("title")
+    year = request.form.get("year")
+    booktitle = request.form.get("booktitle")
 
     reference_service.create_inproceeding_reference(user_id=user_id, authors=authors,
                                                     title=title, year=year, booktitle=booktitle)
@@ -95,7 +95,14 @@ def add_misc():
     user_id = user_service.get_id()
     user_service.check_csrf(request.form["csrf_token"])
 
-    authors = request.form.get("authors")
+    authors = []
+    form = request.form
+    for key in form.keys():
+        if "author" in key:
+            value = form.get(key)
+            if len(value) > 0:
+                authors.append(value)
+
     title = request.form.get("title")
     howpublished = request.form.get("howpublished")
     year = request.form.get("year")
