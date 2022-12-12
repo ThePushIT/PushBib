@@ -47,6 +47,8 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install
+    - name: Compile translations
+      run: poetry run invoke compile-translations
     - name: Install ChromeDriver
       uses: nanasess/setup-chromedriver@v1
     - name: Initialize database for tests
@@ -59,7 +61,7 @@ jobs:
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v3.1.1
       with: 
-        fail_ci_if_error: true
+        fail_ci_if_error: false
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Start Flask server
