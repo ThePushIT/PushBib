@@ -19,7 +19,7 @@
           for(let i = 0; i < allAuthorsField.length; i++) {
               authorInputIds.push(parseInt(allAuthorsField[i].name.split('-')[1]));
           }
-          let newFieldName = `author-${Math.max(...authorInputIds) + 1}`;
+          let newFieldName = `author-${Math.max(...authorInputIds) + 1}-${clickedFrom}`;
           allAuthorsFieldWrapper.insertAdjacentHTML('beforeend',`
           <li><input id="${newFieldName}" name="${newFieldName}" type="text" placeholder = "Last name, first name"></li>
           `);
@@ -82,33 +82,34 @@ Your references
  <br>
   <label for = 'authors'>Authors</label><br>
   <div id = 'book_authors_container'><br>
-    <li><input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name" required><br></li>
+    <li><input type = 'text', id = 'author-0-book' name = 'author-0' placeholder="Last name, first name" required><br></li>
   </div>
   <button id = 'book-add-author-field' class = 'add-author-field'>Add new author</button><br>
   <label for = 'title'>Title</label>
-  <input type = 'text', id = 'title' name = 'title' required><br>
+  <input type = 'text', id = 'title-book' name = 'title' required><br>
   <label for = 'year'>Year</label>
-  <input type = 'text', id = 'year', name = 'year' required><br>
+  <input type = 'text', name = 'year', id = 'year-book' required><br>
   <label for = 'publisher'>Publisher</label>
-  <input type = 'text' id = 'publisher', name = 'publisher' required><br>
+  <input type = 'text' id = 'publisher-book', name = 'publisher' required><br>
   <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-<button id = 'submit-form' type="submit">Add reference</button>
+<button id = 'submit-book' type="submit">Add reference</button>
 </form>
 
 <form action="/references/article/" method="post" id = 'article_form' style="display:none">
+  <br>
   <label for = 'authors'>Authors</label><br>
   <div id = 'article_authors_container'><br>
-    <li><input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name" required><br></li>
+    <li><input type = 'text', id = 'author-0-article' name = 'author-0' placeholder="Last name, first name" required><br></li>
   </div>
   <button id = 'article-add-author-field' class = 'add-author-field'>Add new author</button><br>
   <label for="title">Title</label>
-  <input type="text" class="form-control" name="title" required>
+  <input type="text" class="form-control" name="title" id = 'title-article' required>
   <br>
   <label for="journal">Journal</label>
   <input type="text" class="form-control" name="journal" required>
   <br>
   <label for="year">Year</label>
-  <input type="text" class="form-control" name="year" required>
+  <input type="text" class="form-control" name="year" id = 'year-article' required>
   <br>
   <label for="volume">Volume</label>
   <input type="text" class="form-control" name="volume" required>
@@ -117,26 +118,27 @@ Your references
   <input type="text" class="form-control" name="pages" required>
   <p></p>
   <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-  <button type="submit" id = 'submit-form'>Add reference</button>
+  <button type="submit" id = 'submit-article'>Add reference</button>
 </form>
 
 <form action="/references/inproceeding/" method="post" id = 'inproceeding_form' style = 'display:none'>
-  <label for="authors">Author</label>
+  <br>
+  <label for="authors">Authors</label>
   <div id = 'inproceeding_authors_container'><br>
-    <li><input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name" required><br></li>
+    <li><input type = 'text', id = 'author-0-inproceeding' name = 'author-0' placeholder="Last name, first name" required><br></li>
   </div>
   <button id = 'inproceeding-add-author-field' class = 'add-author-field'>Add new author</button><br>
   <label for="title">Title</label>
-  <input type="text" class="form-control" name="title" required>
+  <input type="text" class="form-control" name="title" id = 'title-inproceeding' required>
   <br>
   <label for="year">Year</label>
-  <input type="text" class="form-control" name="year" required>
+  <input type="text" class="form-control" name="year" id = 'year-inproceeding' required>
   <br>
   <label for="booktitle">Booktitle</label>
   <input type="text" class="form-control" name="booktitle" required>
   <p></p>
   <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-  <button type="submit" id = 'submit-form'>Add reference</button>
+  <button type="submit" id = 'submit-inproceeding'>Add reference</button>
 </form>
 
 <div class="grid-child center">
