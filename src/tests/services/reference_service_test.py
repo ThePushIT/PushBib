@@ -12,7 +12,7 @@ app = create_app()
 request_ctx = app.test_request_context()
 request_ctx.push()
 
-class TestReferenceRepository(unittest.TestCase):
+class TestReferenceService(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # ajetaan ennen kaikkia testitapauksia
@@ -27,19 +27,19 @@ class TestReferenceRepository(unittest.TestCase):
 
     def test_insert_book_reference_succeeds(self):
         reference_service.create_book_reference(
-            "1", "Vallaton, Ville", "Jäätelöhistoriikki", 2020, "Otava")
+            '1', ["Anonyymi"], "Kiva kirja", 2020, "Otava")
         books = reference_service.get_book_references(1)
         self.assertEqual(1, len(books))
 
     def test_insert_article_reference_succeeds(self):
         reference_service.create_article_reference(
-            "1", "Collins, Allan et al", "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
+            '1', ["Allan Collins et al"], "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
         articles = reference_service.get_article_references(1)
         self.assertEqual(1, len(articles))
 
     def test_insert_inproceeding_reference_succeeds(self):
         reference_service.create_inproceeding_reference(
-            "1", "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
+            '1', ["Luukkainen et al"], "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
         inproceedings = reference_service.get_inproceeding_references(1)
         self.assertEqual(1, len(inproceedings))
@@ -150,10 +150,10 @@ class TestReferenceRepository(unittest.TestCase):
 
     def test_cannot_access_other_users_data(self):
         user_id = 1
-        reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, 1, "1-24")
-        reference_service.create_book_reference(user_id, "Jesus Christ", "The Holy Bible", 1, "The Vatican")
-        reference_service.create_inproceeding_reference(user_id, "Me", "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
-        reference_service.create_misc_reference(user_id, "Miscella", "Miscellaneous Title: The Electric Boogaloo", "https://url.url", 1991, "Noteworthy")
+        reference_service.create_article_reference(user_id, ["J. Jonah Jameson"], "An article", "The Times", 2022, 1, "1-24")
+        reference_service.create_book_reference(user_id, ["Jesus Christ"], "The Holy Bible", 1, "The Vatican")
+        reference_service.create_inproceeding_reference(user_id, ["Me"], "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
+        reference_service.create_misc_reference(user_id, ["Miscella"], "Miscellaneous Title: The Electric Boogaloo", "https://url.url", 1991, "Noteworthy")
 
         user_repository.create("user2", "password2")
         user_id = 2
@@ -164,10 +164,10 @@ class TestReferenceRepository(unittest.TestCase):
     
     def test_bibtex_outputs_correctly(self):
         user_id = 1
-        reference_service.create_article_reference(user_id, "J. Jonah Jameson", "An article", "The Times", 2022, "1", "1-24")
-        reference_service.create_book_reference(user_id, "Jesus Christ", "The Holy Bible", 1, "The Vatican")
-        reference_service.create_inproceeding_reference(user_id, "Me", "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
-        reference_service.create_misc_reference(user_id, "Miscella", "Miscellaneous Title: The Electric Boogaloo", "https://url.url", 1991, "Noteworthy")
+        reference_service.create_article_reference(user_id, ["J. Jonah Jameson"], "An article", "The Times", 2022, 1, "1-24")
+        reference_service.create_book_reference(user_id, ["Jesus Christ"], "The Holy Bible", 1, "The Vatican")
+        reference_service.create_inproceeding_reference(user_id, ["Me"], "What is an inproceeding?", 2020, "I can't come up with a fun title :/")
+        reference_service.create_misc_reference(user_id, ["Miscella"], "Miscellaneous Title: The Electric Boogaloo", "https://url.url", 1991, "Noteworthy")
 
         file_path = reference_service.create_bibtex_file(user_id)
 

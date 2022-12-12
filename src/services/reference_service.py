@@ -10,18 +10,23 @@ class ReferenceService:
 
     # syötteiden oikeellisuuden tarkistaminen
     def create_book_reference(self, user_id, authors, title, year, publisher):
+        authors_str = self.create_author_str(authors)
+        print(authors_str)
         self._reference_repository.insert_book_reference(
-            user_id, authors, title, year, publisher)
+            user_id, authors_str, title, year, publisher)
 
     def create_article_reference(self, user_id, authors, title, journal, year, volume, pages):
+        authors_str = self.create_author_str(authors)
         self._reference_repository.insert_article_reference(
-            user_id, authors, title, journal, year, volume, pages)
+            user_id, authors_str, title, journal, year, volume, pages)
 
     def create_inproceeding_reference(self, user_id, authors, title, year, booktitle):
+        authors_str = self.create_author_str(authors)
         self._reference_repository.insert_inproceeding_reference(
-            user_id, authors, title, year, booktitle)
+            user_id, authors_str, title, year, booktitle)
 
     def create_misc_reference(self, user_id, authors, title, howpublished, year, note):
+        authors_str = self.create_author_str(authors)
         self._reference_repository.insert_misc_reference(
             user_id, authors, title, howpublished, year, note)
 
@@ -168,6 +173,13 @@ class ReferenceService:
         text = text.replace("#", r"\#")
 
         return text
+
+    def create_author_str(self, authors):
+        authors.sort()
+        authors_str = authors[0]
+        for author in authors[1:]:
+            authors_str += ' and ' + author
+        return authors_str
 
     def _add_books_to_bib_database(self,
                                         books : list,
