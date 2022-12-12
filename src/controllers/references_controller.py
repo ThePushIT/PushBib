@@ -7,7 +7,6 @@ ref_controller = Blueprint("ref", __name__)
 
 @ref_controller.route("/references/")
 def show_references():
-    
     user_id = user_service.get_id()
     if user_id == 0:
         return redirect("/")
@@ -26,10 +25,10 @@ def add_book():
 
     authors = []
 
-    f = request.form
-    for key in f.keys():
+    form = request.form
+    for key in form.keys():
         if 'author' in key:
-            value = f.get(key)
+            value = form.get(key)
             if len(value) > 0:
                 authors.append(value)
 
@@ -50,10 +49,10 @@ def add_article():
 
     authors = []
 
-    f = request.form
-    for key in f.keys():
+    form = request.form
+    for key in form.keys():
         if 'author' in key:
-            value = f.get(key)
+            value = form.get(key)
             if len(value) > 0:
                 authors.append(value)
 
@@ -75,11 +74,10 @@ def add_inproceeding():
     user_service.check_csrf(request.form["csrf_token"])
 
     authors = []
-    
-    f = request.form
-    for key in f.keys():
+    form = request.form
+    for key in form.keys():
         if 'author' in key:
-            value = f.get(key)
+            value = form.get(key)
             if len(value) > 0:
                 authors.append(value)
 
