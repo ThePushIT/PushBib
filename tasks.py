@@ -5,10 +5,14 @@ def startdatabase(ctx):
     ctx.run('start-pg.sh', pty=True)
 
 @task
+def compile_translations(ctx):
+    ctx.run("pybabel compile -d translations")
+
+@task(compile_translations)
 def start(ctx):
     ctx.run('python3 src/index.py', pty = True)
 
-@task
+@task(compile_translations)
 def starttestapp(ctx):
     ctx.run('dotenv -f .env.test run -- python3 src/index.py', pty = True)
 
@@ -54,6 +58,3 @@ def update_translation_files(ctx):
 def create_translation_file(ctx, lang):
     ctx.run(f"pybabel init -i messages.pot -d translations -l {lang}")
 
-@task
-def compile_translations(ctx):
-    ctx.run("pybabel compile -d translations")
