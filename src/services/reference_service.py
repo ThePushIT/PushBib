@@ -28,7 +28,7 @@ class ReferenceService:
     def create_misc_reference(self, user_id, authors, title, howpublished, year, note):
         authors_str = self.create_author_str(authors)
         self._reference_repository.insert_misc_reference(
-            user_id, authors, title, howpublished, year, note)
+            user_id, authors_str, title, howpublished, year, note)
 
     def get_book_references(self, user_id):
         return self._reference_repository.fetch_book_references(user_id)

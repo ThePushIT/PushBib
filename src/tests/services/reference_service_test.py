@@ -46,27 +46,27 @@ class TestReferenceService(unittest.TestCase):
 
     def test_insert_misc_reference_succeeds(self):
         reference_service.create_misc_reference(
-            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
+            "1", ["NASA"], "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
         misc = reference_service.get_misc_references(1)
         self.assertEqual(1, len(misc))
 
     def test_get_all_references_by_id_returns_all_users_references(self):
         reference_service.create_book_reference(
-            "1", "Vallaton, Ville", "Jäätelöhistoriikki", 2020, "Otava")
+            "1", ["Vallaton, Ville"], "Jäätelöhistoriikki", 2020, "Otava")
         reference_service.create_article_reference(
-            "1", "Collins, Allan et al", "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
+            "1", ["Collins, Allan et al"], "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
         reference_service.create_inproceeding_reference(
-            "1", "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
+            "1", ["Luukkainen et al"], "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
         reference_service.create_misc_reference(
-            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
+            "1", ["NASA"], "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
 
         references = reference_service.get_all_references_by_user_id(1)
         self.assertEqual(len(references), 4)
 
     def test_convert_books_into_dictionaries_returns_correct_dictionary(self):
         reference_service.create_book_reference(
-            "1", "Vallaton, Ville", "Jäätelöhistoriikki", 2020, "Otava")
+            "1", ["Vallaton, Ville"], "Jäätelöhistoriikki", 2020, "Otava")
         books = reference_service.get_book_references(1)
         book_dict = reference_service.convert_books_into_dictionaries(books)[0]
 
@@ -81,7 +81,7 @@ class TestReferenceService(unittest.TestCase):
 
     def test_convert_articles_into_dictionaries_returns_correct_dictionary(self):
         reference_service.create_article_reference(
-            "1", "Collins, Allan et al", "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
+            "1", ["Collins, Allan et al"], "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
         articles = reference_service.get_article_references(1)
         article_dict = reference_service.convert_articles_into_dictionaries(articles)[0]
 
@@ -98,7 +98,7 @@ class TestReferenceService(unittest.TestCase):
 
     def test_convert_inproceedings_into_dictionaries_returns_correct_dictionary(self):
         reference_service.create_inproceeding_reference(
-            "1", "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
+            "1", ["Luukkainen et al"], "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
         inproceedings = reference_service.get_inproceeding_references(1)
         inproceeding_dict = reference_service.convert_inproceedings_into_dictionaries(inproceedings)[0]
@@ -115,7 +115,7 @@ class TestReferenceService(unittest.TestCase):
 
     def test_convert_misc_into_dictionaries_returns_correct_dictionary(self):
         reference_service.create_misc_reference(
-            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
+            "1", ["NASA"], "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
         misc = reference_service.get_misc_references(1)
         misc_dict = reference_service.convert_misc_into_dictionaries(misc)[0]
 
@@ -131,14 +131,14 @@ class TestReferenceService(unittest.TestCase):
 
     def test_sort_references_alphabetically_by_author_returns_correct_order(self):
         reference_service.create_book_reference(
-            "1", "Vallaton, Ville", "Jäätelöhistoriikki", 2020, "Otava")
+            "1", ["Vallaton, Ville"], "Jäätelöhistoriikki", 2020, "Otava")
         reference_service.create_article_reference(
-            "1", "Collins, Allan et al", "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
+            "1", ["Collins, Allan et al"], "Cognitive Apprenticeship", "American Educator", 1991, 6, "38-46")
         reference_service.create_inproceeding_reference(
-            "1", "Luukkainen et al", "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
+            "1", ["Luukkainen et al"], "Extreme Apprenticeship Method", 2011, "SIGCSE '11: \
             Proceedings of the 42nd SIGCSE technical symposium on Computer science education")
         reference_service.create_misc_reference(
-            "1", "NASA", "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
+            "1", ["NASA"], "Pluto: The 'Other' Red Planet", "https://www.nasa.gov/nh/pluto-the-other-red-planet", 2015, "Accessed: 2018-12-06")
 
         references = reference_service.get_all_references_by_user_id(1)
         references = reference_service.sort_references_alphabetically_by_author(references)
