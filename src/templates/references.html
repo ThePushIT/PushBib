@@ -3,8 +3,13 @@
 
 
   let handleAddAuthorField = function (e) {
-    clickedFrom = e.target.id
-    let allAuthorsFieldWrapper = document.getElementById('authors'.concat('_', clickedFrom));
+    regex = '^(.*?)\-'
+    console.log(e.target.id)
+    clickedFrom = e.target.id.match(regex)[1]
+    console.log(clickedFrom)
+    let allAuthorsFieldWrapper = document.getElementById(clickedFrom.concat('_authors_container'));
+      e.preventDefault()  
+      console.log(allAuthorsFieldWrapper)
           let allAuthorsField = allAuthorsFieldWrapper.getElementsByTagName('input');
           if(allAuthorsField.length > 5) {
               alert('You can  have only six authors name');
@@ -16,7 +21,7 @@
           }
           let newFieldName = `authors-${Math.max(...authorInputIds) + 1}`;
           allAuthorsFieldWrapper.insertAdjacentHTML('beforeend',`
-          <li><label for="${newFieldName}">Author Name</label> <input id="${newFieldName}" name="${newFieldName}" type="text" value=""></li> 
+          <li><input id="${newFieldName}" name="${newFieldName}" type="text" placeholder = "Last name, first name"></li>
           `);
      
   }
@@ -74,200 +79,65 @@ Your references
 
 
 <form method = 'POST' action = '/references/book/' id = 'book_form', style="display: inline;">
- <!--
-  jotenkin csrf token tähän mukaan
- -->
-  <label for = 'authors'>Authores</label><br>
+ <br>
+  <label for = 'authors'>Authors</label><br>
   <div id = 'book_authors_container'><br>
-    <input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name"><br>
-    <button id = 'book-add-author-field' class = 'add-author-field'>Add new auhtor</button><br>
+    <li><input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name" required><br></li>
   </div>
-  <label for = 'title'></label><br>
-  <input type = 'text', id = 'title' name = 'title'><br>
-  <label for = 'year'></label><br>
-  <input type = 'text', id = 'year', name = 'year'><br>
-  <label for = 'publisher'></label><br>
-  <input type = 'text' id = 'publisher', name = 'publisher'><br>
- 
+  <button id = 'book-add-author-field' class = 'add-author-field'>Add new author</button><br>
+  <label for = 'title'>Title</label>
+  <input type = 'text', id = 'title' name = 'title' required><br>
+  <label for = 'year'>Year</label>
+  <input type = 'text', id = 'year', name = 'year' required><br>
+  <label for = 'publisher'>Publisher</label>
+  <input type = 'text' id = 'publisher', name = 'publisher' required><br>
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 <button id = 'submit-form' type="submit">Add reference</button>
 </form>
 
-
-<!--
-<form method = 'POST' action = '/references/book/' id = 'book_form', style="display: inline;">
-  {{ book_form.csrf_token }}
+<form action="/references/article/" method="post" id = 'article_form' style="display:none">
+  <label for = 'authors'>Authors</label><br>
+  <div id = 'article_authors_container'><br>
+    <li><input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name" required><br></li>
+  </div>
+  <button id = 'article-add-author-field' class = 'add-author-field'>Add new author</button><br>
+  <label for="title">Title</label>
+  <input type="text" class="form-control" name="title" required>
   <br>
-  {{ book_form.authors_book.label }}
-  {{ book_form.authors_book() }}
-  <button id = 'book' class = 'add-author-field' type="submit">Add new author</button>
+  <label for="journal">Journal</label>
+  <input type="text" class="form-control" name="journal" required>
   <br>
-  {{book_form.title.label}}
-  {{ book_form.title() }}
+  <label for="year">Year</label>
+  <input type="text" class="form-control" name="year" required>
   <br>
-  {{book_form.year.label}}
-  {{ book_form.year() }}
-
+  <label for="volume">Volume</label>
+  <input type="text" class="form-control" name="volume" required>
   <br>
-  {{book_form.publisher.label}}
-  {{book_form.publisher()}}
-  <br>
-
-<button id = 'submit-form' type="submit">Add reference</button>
-
+  <label for="pages">Pages</label>
+  <input type="text" class="form-control" name="pages" required>
+  <p></p>
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+  <button type="submit" id = 'submit-form'>Add reference</button>
 </form>
 
-<form method = 'POST' action = '/references/article/' id = 'article_form' style = 'display:none'>
-
-  {{ article_form.csrf_token }}
+<form action="/references/inproceeding/" method="post" id = 'inproceeding_form' style = 'display:none'>
+  <label for="authors">Author</label>
+  <div id = 'inproceeding_authors_container'><br>
+    <li><input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name" required><br></li>
+  </div>
+  <button id = 'inproceeding-add-author-field' class = 'add-author-field'>Add new author</button><br>
+  <label for="title">Title</label>
+  <input type="text" class="form-control" name="title" required>
   <br>
-  {{ article_form.authors_article.label }}
-  {{ article_form.authors_article() }}
-  <button id = 'article' class = 'add-author-field' type = 'submit'>Add new author</button>
+  <label for="year">Year</label>
+  <input type="text" class="form-control" name="year" required>
   <br>
-  {{article_form.title.label}}
-  {{ article_form.title() }}
-  <br>
-  {{article_form.year.label}}
-  {{ article_form.year() }}
-  <br>
-  {{article_form.journal.label}}
-  {{article_form.journal()}}
-  <br>
-  {{article_form.volume.label}}
-  {{article_form.volume()}}
-  <br>
-  {{article_form.pages.label}}
-  {{article_form.pages()}}
-  <br>
-
-  <button id = 'submit-form' type="submit">Add reference</button>
+  <label for="booktitle">Booktitle</label>
+  <input type="text" class="form-control" name="booktitle" required>
+  <p></p>
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+  <button type="submit" id = 'submit-form'>Add reference</button>
 </form>
-
-<form method = 'POST' action = 'references/inproceeding/' id = 'inproceeding_form' style = 'display: none;'>
-  
-  {{ inproceeding_form.csrf_token }}
-  <br>
-  {{ inproceeding_form.authors_inproceeding.label }}
-  {{ inproceeding_form.authors_inproceeding() }}
-  <button id = 'inproceeding' class = 'add-author-field' type="submit">Add new author</button>
-  <br>
-  {{inproceeding_form.title.label}}
-  {{ inproceeding_form.title() }}
-  <br>
-  {{inproceeding_form.year.label}}
-  {{ inproceeding_form.year() }}  
-  <br>
-  {{inproceeding_form.booktitle.label}}
-  {{inproceeding_form.booktitle()}}
-  <br>
-
-  <button id = 'submit-form' type="submit">Add reference</button>
-</form>
-
-
-
--->
-<!-- templates/index.html  -->
-<!--
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='dropdown_forms.js') }}"></script>
-
--->
-
-
-<!--
-
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
-<div class="grid-container">
-  <div class="grid-child left">
-  <select class="div-toggle" data-target=".book-div,.article-div,.inproceeding-div">
-  <option value="book" data-show=".book">Book</option>
-  <option value="article" data-show=".article">Article</option>
-  <option value="inproceeding" data-show=".inproceeding">Inproceeding</option>
-  </select>
-<p></p>
-
-<div class="book-div">
-  <div class="book hide">
-    <form action="/references/book" method="post">
-        <label for="authors">Author</label>
-      <input type="text" class="form-control" name="authors" required>
-      
-      <br>
-      <label for = 'add_name'>Author</label>
-      <div id = "add_name">
-        <input type="text" name="add_name[]" class="add_name">
-      </div>
-      <div class="controls">
-        <a href="#" id="add_more_fields"><i class="fa fa-plus"></i>Add More</a>
-        <a href="#" id="remove_fields"><i class="fa fa-plus"></i>Remove Field</a>
-
-      <label for="title">Title</label>
-      <input type="text" class="form-control" name="title" required>
-      <br>
-      <label for="year">Year</label>
-      <input type="text" class="form-control" name="year" required>
-      <br>
-      <label for="publisher">Publisher</label>
-      <input type="text" class="form-control" name="publisher" required>
-      <p></p>
-      <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-      <button type="submit" class="btn btn-outline-primary">Submit</button>
-    </form>
-  </div>
-</div>
-
-<div class="article-div">
-  <div class="article hide">
-    <form action="/references/article" method="post">
-      <label for="authors">Author(s)</label>
-      <input type="text" class="form-control" name="authors" required>
-      <br>
-      <label for="title">Title</label>
-      <input type="text" class="form-control" name="title" required>
-      <br>
-      <label for="journal">Journal</label>
-      <input type="text" class="form-control" name="journal" required>
-      <br>
-      <label for="year">Year</label>
-      <input type="text" class="form-control" name="year" required>
-      <br>
-      <label for="volume">Volume</label>
-      <input type="text" class="form-control" name="volume" required>
-      <br>
-      <label for="pages">Pages</label>
-      <input type="text" class="form-control" name="pages" required>
-      <p></p>
-      <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-      <button type="submit" class="btn btn-outline-primary">Submit</button>
-    </form>
-  </div>
-</div>
-
-<div class="inproceeding-div">
-  <div class="inproceeding hide">
-    <form action="/references/inproceeding" method="post">
-      <label for="authors">Author(s)</label>
-      <input type="text" class="form-control" name="authors" required>
-      <br>
-      <label for="title">Title</label>
-      <input type="text" class="form-control" name="title" required>
-      <br>
-      <label for="year">Year</label>
-      <input type="text" class="form-control" name="year" required>
-      <br>
-      <label for="booktitle">Booktitle</label>
-      <input type="text" class="form-control" name="booktitle" required>
-      <p></p>
-      <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-      <button type="submit" class="btn btn-outline-primaddNewReferenceForm = AddNewReferenceForm()ary">Submit</button>
-    </form>
-  </div>
-</div>
-</div>
--->
-
 
 <div class="grid-child center">
 {% if books or articles or inproceedings %}

@@ -48,25 +48,6 @@ def show_references():
     if user_id == 0:
         return redirect('/')
 
-   # bookForm = BookForm()
-   # articleForm = ArticleForm()
-   # inproceedingForm = InproceedingForm()
-
-   # if addNewReferenceForm.validate_on_submit():
-    #    ref_type = addNewReferenceForm.type.data
-    #    authors = addNewReferenceForm.authors.entries
-     #   author_list = []
-      #  for author in authors:
-       #     author_list.append(author)
-
-        #title = addNewReferenceForm.title.data
-        #year = addNewReferenceForm.year.data
-
-        #if ref_type == 'book':
-         #   publisher = addNewReferenceForm.publisher.data
-          #  if len(publisher) == 0:
-           #     print('publisher on none')
-
     books = reference_service.get_book_references(user_id)
     articles = reference_service.get_article_references(user_id)
     inproceedings = reference_service.get_inproceeding_references(user_id)
@@ -81,20 +62,16 @@ def add_book():
 
     print('tultiin bookin post metodin controllointiin')
     user_id = user_service.get_id()
-    #user_service.check_csrf(request.form["csrf_token"])
+    user_service.check_csrf(request.form["csrf_token"])
 
-    # TODO
-    # csrf token toimimaan
-    # authorien hakeminen toimimaan
+    authors = []
 
-    bookForm = BookForm()
+    f = request.form
+    for key in f.keys():
+        if 'author' in key:
+            authors.append(f.getlist(key)[0])
 
-    if bookForm.validate_on_submit():
-        print('bookissa validate on submittissa')
-        authors = bookForm.authors_book.entries
-        print(authors)
-
-    authors = request.form.get('authors_book')
+    print(authors)
     title = request.form.get('title')
     year = request.form.get('year')
     publisher = request.form.get('publisher')
@@ -107,9 +84,15 @@ def add_book():
 @ref_controller.route('/references/article/', methods=['POST'])
 def add_article():
     user_id = user_service.get_id()
-    #user_service.check_csrf(request.form["csrf_token"])
+    user_service.check_csrf(request.form["csrf_token"])
 
-    authors = request.form.get('authors_article')
+    authors = []
+
+    f = request.form
+    for key in f.keys():
+        if 'author' in key:
+            authors.append(f.get(key))
+
     title = request.form.get('title')
     journal = request.form.get('journal')
     year = request.form.get('year')
@@ -125,9 +108,14 @@ def add_article():
 @ref_controller.route('/references/inproceeding/', methods=['POST'])
 def add_inproceeding():
     user_id = user_service.get_id()
-    #user_service.check_csrf(request.form["csrf_token"])
+    user_service.check_csrf(request.form["csrf_token"])
 
-    authors = request.form.get('authors_inproceeding')
+    authors = []
+    f = request.form
+    for key in f.keys():
+        if 'author' in key:
+            authors.append(f.getlist(key)[0])
+
     title = request.form.get('title')
     year = request.form.get('year')
     booktitle = request.form.get('booktitle')
