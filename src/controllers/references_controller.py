@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, redirect, request, send_file
 from services.reference_service import reference_service
 from services.user_service import user_service
 
-
 ref_controller = Blueprint("ref", __name__)
 
 
@@ -19,13 +18,24 @@ def show_references():
 
 @ref_controller.route("/references/book/", methods=["POST"])
 def add_book():
+
+    print('tultiin bookin post metodin controllointiin')
     user_id = user_service.get_id()
     user_service.check_csrf(request.form["csrf_token"])
 
-    authors = request.form.get("authors")
-    title = request.form.get("title")
-    year = request.form.get("year")
-    publisher = request.form.get("publisher")
+    authors = []
+
+    form = request.form
+    for key in form.keys():
+        if 'author' in key:
+            value = form.get(key)
+            if len(value) > 0:
+                authors.append(value)
+
+    print(authors)
+    title = request.form.get('title')
+    year = request.form.get('year')
+    publisher = request.form.get('publisher')
 
     reference_service.create_book_reference(user_id=user_id, authors=authors,
                                             title=title, year=year,publisher=publisher)
@@ -37,12 +47,20 @@ def add_article():
     user_id = user_service.get_id()
     user_service.check_csrf(request.form["csrf_token"])
 
-    authors = request.form.get("authors")
-    title = request.form.get("title")
-    journal = request.form.get("journal")
-    year = request.form.get("year")
-    volume = request.form.get("volume")
-    pages = request.form.get("pages")
+    authors = []
+
+    form = request.form
+    for key in form.keys():
+        if 'author' in key:
+            value = form.get(key)
+            if len(value) > 0:
+                authors.append(value)
+
+    title = request.form.get('title')
+    journal = request.form.get('journal')
+    year = request.form.get('year')
+    volume = request.form.get('volume')
+    pages = request.form.get('pages')
 
     reference_service.create_article_reference(user_id=user_id, authors=authors, title=title,
                                                journal=journal, year=year, volume=volume,
@@ -55,10 +73,17 @@ def add_inproceeding():
     user_id = user_service.get_id()
     user_service.check_csrf(request.form["csrf_token"])
 
-    authors = request.form.get("authors")
-    title = request.form.get("title")
-    year = request.form.get("year")
-    booktitle = request.form.get("booktitle")
+    authors = []
+    form = request.form
+    for key in form.keys():
+        if 'author' in key:
+            value = form.get(key)
+            if len(value) > 0:
+                authors.append(value)
+
+    title = request.form.get('title')
+    year = request.form.get('year')
+    booktitle = request.form.get('booktitle')
 
     reference_service.create_inproceeding_reference(user_id=user_id, authors=authors,
                                                     title=title, year=year, booktitle=booktitle)

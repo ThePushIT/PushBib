@@ -2,7 +2,7 @@
 Resource  resource.robot
 Suite Setup  Register Setup
 Suite Teardown  Close Browser
-# Test Setup  Clear Databases
+Test Setup  Clear Databases
 
 *** Test Cases ***
 Login Page Should Open
