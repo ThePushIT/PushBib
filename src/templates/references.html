@@ -1,3 +1,62 @@
+<script>
+  window.onload = function() {
+
+
+  let handleAddAuthorField = function (e) {
+    clickedFrom = e.target.id
+    let allAuthorsFieldWrapper = document.getElementById('authors'.concat('_', clickedFrom));
+          let allAuthorsField = allAuthorsFieldWrapper.getElementsByTagName('input');
+          if(allAuthorsField.length > 5) {
+              alert('You can  have only six authors name');
+              return;
+          }
+          let authorInputIds = []
+          for(let i = 0; i < allAuthorsField.length; i++) {
+              authorInputIds.push(parseInt(allAuthorsField[i].name.split('-')[1]));
+          }
+          let newFieldName = `authors-${Math.max(...authorInputIds) + 1}`;
+          allAuthorsFieldWrapper.insertAdjacentHTML('beforeend',`
+          <li><label for="${newFieldName}">Author Name</label> <input id="${newFieldName}" name="${newFieldName}" type="text" value=""></li> 
+          `);
+     
+  }
+
+      let bookForm = document.getElementById('book_form')
+      let articleForm = document.getElementById('article_form')
+      let inproceedingsForm = document.getElementById('inproceeding_form')
+
+      /// control the adding of new authors
+      let addAuthorFieldButtons = document.getElementsByClassName('add-author-field');
+      console.log(addAuthorFieldButtons)
+      Array.from(addAuthorFieldButtons).forEach(element => {
+        console.log(element)
+        element.addEventListener('click', handleAddAuthorField)
+      });
+     
+      /// control which form is shown
+      let changeFormTypeBtn = document.getElementById('type')
+      console.log(changeFormTypeBtn)
+      changeFormTypeBtn.addEventListener('change', function(e){
+        e.preventDefault();
+        let formType = changeFormTypeBtn.options[changeFormTypeBtn.selectedIndex].value
+        console.log(formType)
+        if (formType == 'book') {
+          bookForm.style.display = 'inline'
+          articleForm.style.display = 'none'
+          inproceedingsForm.style.display = 'none'
+        } else if (formType == 'article') {
+          bookForm.style.display = 'none'
+          articleForm.style.display = 'inline'
+          inproceedingsForm.style.display = 'none'
+        } else if (formType == 'inproceeding') {
+          bookForm.style.display = 'none'
+          articleForm.style.display = 'none'
+          inproceedingsForm.style.display = 'inline'
+        }
+      })
+  }
+</script>
+
 {% extends "layout.html" %}
 
 {% block title %}
@@ -6,10 +65,118 @@ Your references
 
 {% block body %}
 <p><a href="/signout">Sign out</a></p>
-<hr>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<select name = 'type' id = 'type'>
+  <option value = 'book'>book</option>
+  <option article = 'book'>article</option>
+  <option inproceeding = 'book'>inproceeding</option>
+</select>
+
+
+<form method = 'POST' action = '/references/book/' id = 'book_form', style="display: inline;">
+ <!--
+  jotenkin csrf token tähän mukaan
+ -->
+  <label for = 'authors'>Authores</label><br>
+  <div id = 'book_authors_container'><br>
+    <input type = 'text', id = 'author-0' name = 'author-0' placeholder="Last name, first name"><br>
+    <button id = 'book-add-author-field' class = 'add-author-field'>Add new auhtor</button><br>
+  </div>
+  <label for = 'title'></label><br>
+  <input type = 'text', id = 'title' name = 'title'><br>
+  <label for = 'year'></label><br>
+  <input type = 'text', id = 'year', name = 'year'><br>
+  <label for = 'publisher'></label><br>
+  <input type = 'text' id = 'publisher', name = 'publisher'><br>
+ 
+<button id = 'submit-form' type="submit">Add reference</button>
+</form>
+
+
+<!--
+<form method = 'POST' action = '/references/book/' id = 'book_form', style="display: inline;">
+  {{ book_form.csrf_token }}
+  <br>
+  {{ book_form.authors_book.label }}
+  {{ book_form.authors_book() }}
+  <button id = 'book' class = 'add-author-field' type="submit">Add new author</button>
+  <br>
+  {{book_form.title.label}}
+  {{ book_form.title() }}
+  <br>
+  {{book_form.year.label}}
+  {{ book_form.year() }}
+
+  <br>
+  {{book_form.publisher.label}}
+  {{book_form.publisher()}}
+  <br>
+
+<button id = 'submit-form' type="submit">Add reference</button>
+
+</form>
+
+<form method = 'POST' action = '/references/article/' id = 'article_form' style = 'display:none'>
+
+  {{ article_form.csrf_token }}
+  <br>
+  {{ article_form.authors_article.label }}
+  {{ article_form.authors_article() }}
+  <button id = 'article' class = 'add-author-field' type = 'submit'>Add new author</button>
+  <br>
+  {{article_form.title.label}}
+  {{ article_form.title() }}
+  <br>
+  {{article_form.year.label}}
+  {{ article_form.year() }}
+  <br>
+  {{article_form.journal.label}}
+  {{article_form.journal()}}
+  <br>
+  {{article_form.volume.label}}
+  {{article_form.volume()}}
+  <br>
+  {{article_form.pages.label}}
+  {{article_form.pages()}}
+  <br>
+
+  <button id = 'submit-form' type="submit">Add reference</button>
+</form>
+
+<form method = 'POST' action = 'references/inproceeding/' id = 'inproceeding_form' style = 'display: none;'>
+  
+  {{ inproceeding_form.csrf_token }}
+  <br>
+  {{ inproceeding_form.authors_inproceeding.label }}
+  {{ inproceeding_form.authors_inproceeding() }}
+  <button id = 'inproceeding' class = 'add-author-field' type="submit">Add new author</button>
+  <br>
+  {{inproceeding_form.title.label}}
+  {{ inproceeding_form.title() }}
+  <br>
+  {{inproceeding_form.year.label}}
+  {{ inproceeding_form.year() }}  
+  <br>
+  {{inproceeding_form.booktitle.label}}
+  {{inproceeding_form.booktitle()}}
+  <br>
+
+  <button id = 'submit-form' type="submit">Add reference</button>
+</form>
+
+
+
+-->
+<!-- templates/index.html  -->
+<!--
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='dropdown_forms.js') }}"></script>
+
+-->
+
+
+<!--
+
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
 <div class="grid-container">
@@ -24,9 +191,18 @@ Your references
 <div class="book-div">
   <div class="book hide">
     <form action="/references/book" method="post">
-      <label for="authors">Author(s)</label>
+        <label for="authors">Author</label>
       <input type="text" class="form-control" name="authors" required>
+      
       <br>
+      <label for = 'add_name'>Author</label>
+      <div id = "add_name">
+        <input type="text" name="add_name[]" class="add_name">
+      </div>
+      <div class="controls">
+        <a href="#" id="add_more_fields"><i class="fa fa-plus"></i>Add More</a>
+        <a href="#" id="remove_fields"><i class="fa fa-plus"></i>Remove Field</a>
+
       <label for="title">Title</label>
       <input type="text" class="form-control" name="title" required>
       <br>
@@ -85,11 +261,13 @@ Your references
       <input type="text" class="form-control" name="booktitle" required>
       <p></p>
       <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-      <button type="submit" class="btn btn-outline-primary">Submit</button>
+      <button type="submit" class="btn btn-outline-primaddNewReferenceForm = AddNewReferenceForm()ary">Submit</button>
     </form>
   </div>
 </div>
 </div>
+-->
+
 
 <div class="grid-child center">
 {% if books or articles or inproceedings %}
