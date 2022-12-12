@@ -19,7 +19,7 @@
           for(let i = 0; i < allAuthorsField.length; i++) {
               authorInputIds.push(parseInt(allAuthorsField[i].name.split('-')[1]));
           }
-          let newFieldName = `authors-${Math.max(...authorInputIds) + 1}`;
+          let newFieldName = `author-${Math.max(...authorInputIds) + 1}`;
           allAuthorsFieldWrapper.insertAdjacentHTML('beforeend',`
           <li><input id="${newFieldName}" name="${newFieldName}" type="text" placeholder = "Last name, first name"></li>
           `);
@@ -73,8 +73,8 @@ Your references
 
 <select name = 'type' id = 'type'>
   <option value = 'book'>book</option>
-  <option article = 'book'>article</option>
-  <option inproceeding = 'book'>inproceeding</option>
+  <option value = 'article'>article</option>
+  <option value = 'inproceeding'>inproceeding</option>
 </select>
 
 
