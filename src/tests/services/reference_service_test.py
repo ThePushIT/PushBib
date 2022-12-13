@@ -212,3 +212,4 @@ class TestReferenceService(unittest.TestCase):
         reference_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_bib_output_should_be.bib")
 
         self.assertTrue(filecmp.cmp(file_path, reference_file))
+
