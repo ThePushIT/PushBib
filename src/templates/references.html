@@ -204,7 +204,7 @@ Your references
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="hidden" name="reference_type" value=" {{ reference.type }} ">
     <input type="hidden" name="reference_id" value=" {{ reference.id }} ">
-    <input type="submit" value="Delete">
+    <input type="submit" value="{{_('Delete')}}">
   </form>
   <br><br>
 {% endfor %}

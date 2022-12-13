@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-12-13 16:22+0200\n"
+"POT-Creation-Date: 2022-12-14 00:18+0200\n"
 "PO-Revision-Date: 2022-12-11 11:17+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fi\n"
@@ -18,92 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: src/controllers/user_controller.py:26
+#: src/controllers/user_controller.py:27
 msgid "Passwords do not match."
 msgstr "Salasanat eivät täsmää."
 
-#: src/controllers/user_controller.py:29
+#: src/controllers/user_controller.py:30
 msgid "Username length must be 5-25 characters."
 msgstr "Käyttäjänimen pituus täytyy olla 5-25 merkkiä."
 
-#: src/controllers/user_controller.py:32
+#: src/controllers/user_controller.py:33
 msgid "Password length must be 8-25 characters."
 msgstr "Salasanan pituus täytyy olla 8-25 merkkiä."
 
-#: src/controllers/user_controller.py:39
+#: src/controllers/user_controller.py:40
 msgid "Username already reserved."
 msgstr "Käyttäjänimi on jo käytössä."
 
 #: src/controllers/user_controller.py:53
 msgid "Wrong username or password."
 msgstr "Väärä käyttäjätunnus tai salasana."
-
-#: src/services/reference_service.py:43 src/services/reference_service.py:62
-#: src/services/reference_service.py:83 src/services/reference_service.py:102
-#: src/services/reference_service.py:128
-#: src/tests/services/reference_service_test.py:77
-#: src/tests/services/reference_service_test.py:96
-#: src/tests/services/reference_service_test.py:116
-#: src/tests/services/reference_service_test.py:134
-msgid "Author(s)"
-msgstr "Tekijät"
-
-#: src/services/reference_service.py:44 src/services/reference_service.py:63
-#: src/services/reference_service.py:84 src/services/reference_service.py:103
-#: src/templates/references.html:102 src/templates/references.html:123
-#: src/templates/references.html:150 src/templates/references.html:171
-#: src/tests/services/reference_service_test.py:78
-#: src/tests/services/reference_service_test.py:97
-#: src/tests/services/reference_service_test.py:117
-#: src/tests/services/reference_service_test.py:135
-msgid "Title"
-msgstr "Otsikko"
-
-#: src/services/reference_service.py:45 src/services/reference_service.py:65
-#: src/services/reference_service.py:85 src/services/reference_service.py:105
-#: src/templates/references.html:105 src/templates/references.html:129
-#: src/templates/references.html:153
-#: src/tests/services/reference_service_test.py:79
-#: src/tests/services/reference_service_test.py:99
-#: src/tests/services/reference_service_test.py:118
-#: src/tests/services/reference_service_test.py:137
-msgid "Year"
-msgstr "Vuosi"
-
-#: src/services/reference_service.py:46 src/templates/references.html:108
-#: src/tests/services/reference_service_test.py:80
-msgid "Publisher"
-msgstr "Kustantaja"
-
-#: src/services/reference_service.py:64 src/templates/references.html:126
-#: src/tests/services/reference_service_test.py:98
-msgid "Journal"
-msgstr "Julkaisu"
-
-#: src/services/reference_service.py:66 src/templates/references.html:132
-#: src/tests/services/reference_service_test.py:100
-msgid "Volume"
-msgstr "Painos"
-
-#: src/services/reference_service.py:67 src/templates/references.html:135
-#: src/tests/services/reference_service_test.py:101
-msgid "Pages"
-msgstr "Sivut"
-
-#: src/services/reference_service.py:86 src/templates/references.html:156
-#: src/tests/services/reference_service_test.py:119
-msgid "Booktitle"
-msgstr "Otsikko"
-
-#: src/services/reference_service.py:104 src/templates/references.html:174
-#: src/tests/services/reference_service_test.py:136
-msgid "Howpublished"
-msgstr "Julkaisupaikka"
-
-#: src/services/reference_service.py:106 src/templates/references.html:180
-#: src/tests/services/reference_service_test.py:138
-msgid "Note"
-msgstr "Muistiinpano"
 
 #: src/templates/index.html:4
 msgid "Login"
@@ -141,7 +74,7 @@ msgstr "Lisää lähdeviite"
 
 #: src/templates/references.html:85
 msgid "Select reference type:"
-msgstr "Valitse viitteen tyyppi"
+msgstr "Valitse viitteen tyyppi:"
 
 #: src/templates/references.html:87
 msgid "book"
@@ -169,14 +102,67 @@ msgstr "Tekijät"
 msgid "Add new author"
 msgstr "Lisää toinen tekijä"
 
+#: src/templates/references.html:102 src/templates/references.html:123
+#: src/templates/references.html:150 src/templates/references.html:171
+#: src/tests/services/reference_service_test.py:78
+#: src/tests/services/reference_service_test.py:95
+#: src/tests/services/reference_service_test.py:115
+#: src/tests/services/reference_service_test.py:133
+msgid "Title"
+msgstr "Otsikko"
+
+#: src/templates/references.html:105 src/templates/references.html:129
+#: src/templates/references.html:153
+#: src/tests/services/reference_service_test.py:79
+#: src/tests/services/reference_service_test.py:97
+#: src/tests/services/reference_service_test.py:116
+#: src/tests/services/reference_service_test.py:135
+msgid "Year"
+msgstr "Vuosi"
+
+#: src/templates/references.html:108
+#: src/tests/services/reference_service_test.py:80
+msgid "Publisher"
+msgstr "Kustantaja"
+
 #: src/templates/references.html:112 src/templates/references.html:139
 #: src/templates/references.html:160 src/templates/references.html:184
 msgid "Add reference"
 msgstr "Lisää viite"
 
+#: src/templates/references.html:126
+#: src/tests/services/reference_service_test.py:96
+msgid "Journal"
+msgstr "Julkaisu"
+
+#: src/templates/references.html:132
+#: src/tests/services/reference_service_test.py:98
+msgid "Volume"
+msgstr "Painos"
+
+#: src/templates/references.html:135
+#: src/tests/services/reference_service_test.py:99
+msgid "Pages"
+msgstr "Sivut"
+
+#: src/templates/references.html:156
+#: src/tests/services/reference_service_test.py:117
+msgid "Booktitle"
+msgstr "Otsikko"
+
+#: src/templates/references.html:174
+#: src/tests/services/reference_service_test.py:134
+msgid "Howpublished"
+msgstr "Julkaisupaikka"
+
 #: src/templates/references.html:177
 msgid "year"
 msgstr "Vuosi"
+
+#: src/templates/references.html:180
+#: src/tests/services/reference_service_test.py:136
+msgid "Note"
+msgstr "Muistiinpano"
 
 #: src/templates/references.html:190
 msgid "Your references"
@@ -185,6 +171,10 @@ msgstr "Lähdeviitteesi"
 #: src/templates/references.html:192
 msgid "Download .bib"
 msgstr "Lataa .bib"
+
+#: src/templates/references.html:207
+msgid "Delete"
+msgstr "Poista"
 
 #: src/templates/references.html:214
 msgid "No references yet!"
@@ -205,4 +195,11 @@ msgstr "Vahvista salasana"
 #: src/templates/signup.html:20
 msgid "Log in!"
 msgstr "Kirjaudu sisään!"
+
+#: src/tests/services/reference_service_test.py:77
+#: src/tests/services/reference_service_test.py:94
+#: src/tests/services/reference_service_test.py:114
+#: src/tests/services/reference_service_test.py:132
+msgid "Author(s)"
+msgstr "Tekijät"
 
