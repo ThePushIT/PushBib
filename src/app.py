@@ -1,11 +1,11 @@
 from flask import Flask
+from flask_babel import Babel
 from controllers.user_controller import user_controller
 from controllers.references_controller import ref_controller
 from controllers.test_controller import test_controller
 from controllers.language_controller import language_controller
 from database import db
 from config import DATABASE_URL, ENV, SECRET_KEY
-from flask_babel import Babel
 
 
 def create_app():
@@ -23,6 +23,6 @@ def create_app():
         app.register_blueprint(test_controller)
 
     db.init_app(app)
-    babel = Babel(app)
+    Babel(app)
 
     return app
