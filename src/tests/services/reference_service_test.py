@@ -156,6 +156,30 @@ class TestReferenceService(unittest.TestCase):
         self.assertEqual(references[2]["Author(s)"], "NASA")
         self.assertEqual(references[3]["Author(s)"], "Vallaton, Ville")
 
+    def test_delete_book_reference_succeeds(self):
+        user_id = 1
+        reference_service.create_book_reference('1', ["Testi Testaaja"], "Testititle", 2003, "Otava")
+        reference_service.delete_reference(4, "book")
+        self.assertEqual(len(reference_service.get_book_references(user_id)), 0)
+
+    def test_delete_article_succeeds(self):
+        user_id = 1
+        reference_service.create_article_reference('1', ["Testi Testaaja"], "Testititle", "Helsingin Sanomat", 2021, 3, 12-15)
+        reference_service.delete_reference(4, "article")
+        self.assertEqual(len(reference_service.get_article_references(user_id)), 0)
+
+    def test_delete_inproceeding_succeeds(self):
+        user_id = 1
+        reference_service.create_inproceeding_reference('1', ["Testi Testaaja"], "Testititle", 2001, "Booktitle")
+        reference_service.delete_reference(4, "inproceeding")
+        self.assertEqual(len(reference_service.get_inproceeding_references(user_id)), 0)
+
+    def test_delete_misc_succeeds(self):
+        user_id = 1
+        reference_service.create_misc_reference('1', ["Testi Testaaja"], "Testititle", "Howpublished", 1992, "-")
+        reference_service.delete_reference(4, "misc")
+        self.assertEqual(len(reference_service.get_misc_references(user_id)), 0)
+
     def test_cannot_access_other_users_data(self):
         user_id = 1
         reference_service.create_article_reference(user_id, ["J. Jonah Jameson"], "An article", "The Times", 2022, 1, "1-24")
