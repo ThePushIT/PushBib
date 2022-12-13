@@ -52,6 +52,9 @@ Go To Login Page
 Login Page Should Be Open
     Page Should Contain  Log in
 
+Login Page Should Be Open In Finnish
+    Page Should Contain  Kirjaudu sisään
+
 Go To Register Page
     Go To  ${REGISTER URL}
 
