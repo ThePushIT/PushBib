@@ -71,6 +71,8 @@ class TestReferenceService(unittest.TestCase):
         book_dict = reference_service.convert_books_into_dictionaries(books)[0]
 
         correct = {
+            "type": "book",
+            "id": 3,
             "Author(s)": "Vallaton, Ville",
             "Title": "Jäätelöhistoriikki",
             "Year": "2020",
@@ -86,6 +88,8 @@ class TestReferenceService(unittest.TestCase):
         article_dict = reference_service.convert_articles_into_dictionaries(articles)[0]
 
         correct = {
+            "type": "article",
+            "id": 3,
             "Author(s)": "Collins, Allan et al",
             "Title": "Cognitive Apprenticeship",
             "Journal": "American Educator",
@@ -104,6 +108,8 @@ class TestReferenceService(unittest.TestCase):
         inproceeding_dict = reference_service.convert_inproceedings_into_dictionaries(inproceedings)[0]
 
         correct = {
+            "type": "inproceeding",
+            "id": 3,
             "Author(s)": "Luukkainen et al",
             "Title": "Extreme Apprenticeship Method",
             "Year": "2011",
@@ -120,6 +126,8 @@ class TestReferenceService(unittest.TestCase):
         misc_dict = reference_service.convert_misc_into_dictionaries(misc)[0]
 
         correct = {
+            "type": "misc",
+            "id": 3,
             "Author(s)": "NASA",
             "Title": "Pluto: The 'Other' Red Planet",
             "Howpublished": "https://www.nasa.gov/nh/pluto-the-other-red-planet",

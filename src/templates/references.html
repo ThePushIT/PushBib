@@ -193,14 +193,19 @@ Your references
 </form>
 <br>
 
-<form action="/references/" method="get">
-  {% for reference in references %}
-    {% for key, value in reference.items() %}
-      {{ key }}: {{ value }}<br>
-    {% endfor %}
-    <br><br>
+{% for reference in references %}
+  {% for key, value in reference.items() %}
+    {{ key }}: {{ value }}<br>
   {% endfor %}
-</form>
+  <form action="/references/delete" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="hidden" name="reference_type" value=" {{ reference.type }} ">
+    <input type="hidden" name="reference_id" value=" {{ reference.id }} ">
+    <input type="submit" value="Delete">
+  </form>
+  <br><br>
+{% endfor %}
+
 
 {% else %}
 <h2>No references yet!</h2>

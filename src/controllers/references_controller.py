@@ -114,6 +114,17 @@ def add_misc():
 
     return redirect("/references/")
 
+@ref_controller.route("/references/delete", methods=["POST"])
+def delete_reference():
+    user_id = user_service.get_id()
+    user_service.check_csrf(request.form["csrf_token"])
+
+    reference_id = request.form["reference_id"].strip()
+    reference_type = request.form["reference_type"].strip()
+    reference_service.delete_reference(reference_id, reference_type)
+
+    return redirect("/references")
+
 @ref_controller.route("/references/download")
 def download_references():
     user_id = user_service.get_id()

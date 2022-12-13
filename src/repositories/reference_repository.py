@@ -83,7 +83,7 @@ class ReferenceRepository:
 
     def fetch_book_references(self, user_id):
         try:
-            sql = """SELECT authors, title, year, publisher
+            sql = """SELECT id, authors, title, year, publisher
                      FROM books
                      WHERE user_id=:user_id
                      ORDER BY authors"""
@@ -93,7 +93,7 @@ class ReferenceRepository:
 
     def fetch_article_references(self, user_id):
         try:
-            sql = """SELECT authors, title, journal, year, volume, pages
+            sql = """SELECT id, authors, title, journal, year, volume, pages
                      FROM articles
                      WHERE user_id=:user_id
                      ORDER BY authors"""
@@ -103,7 +103,7 @@ class ReferenceRepository:
 
     def fetch_inproceeding_references(self, user_id):
         try:
-            sql = """SELECT authors, title, year, booktitle
+            sql = """SELECT id, authors, title, year, booktitle
                      FROM inproceedings
                      WHERE user_id=:user_id
                      ORDER BY authors"""
@@ -113,13 +113,49 @@ class ReferenceRepository:
 
     def fetch_misc_references(self, user_id):
         try:
-            sql = """SELECT authors, title, howpublished, year, note
+            sql = """SELECT id, authors, title, howpublished, year, note
                      FROM misc
                      WHERE user_id=:user_id
                      ORDER BY authors"""
             return db.session.execute(sql, {"user_id": user_id}).fetchall()
         except ProgrammingError:
             return False
+
+    def delete_book_reference(self, reference_id):
+        try:
+            sql = """DELETE FROM books WHERE id=:reference_id"""
+            db.session.execute(sql, {"reference_id":reference_id})
+            db.session.commit()
+        except ProgrammingError:
+            return False
+        return True
+
+    def delete_article_reference(self, reference_id):
+        try:
+            sql = """DELETE FROM articles WHERE id=:reference_id"""
+            db.session.execute(sql, {"reference_id":reference_id})
+            db.session.commit()
+        except ProgrammingError:
+            return False
+        return True
+
+    def delete_inproceeding_reference(self, reference_id):
+        try:
+            sql = """DELETE FROM inproceedings WHERE id=:reference_id"""
+            db.session.execute(sql, {"reference_id":reference_id})
+            db.session.commit()
+        except ProgrammingError:
+            return False
+        return True
+
+    def delete_misc_reference(self, reference_id):
+        try:
+            sql = """DELETE FROM misc WHERE id=:reference_id"""
+            db.session.execute(sql, {"reference_id":reference_id})
+            db.session.commit()
+        except ProgrammingError:
+            return False
+        return True
 
     def delete_all_references(self):
         try:

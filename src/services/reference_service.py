@@ -37,10 +37,12 @@ class ReferenceService:
         book_dicts = []
         for book in book_tuples:
             book_dict = {
-                "Author(s)": book[0],
-                "Title": book[1],
-                "Year": book[2],
-                "Publisher": book[3]
+                "type": "book",
+                "id": book[0],
+                "Author(s)": book[1],
+                "Title": book[2],
+                "Year": book[3],
+                "Publisher": book[4]
             }
 
             book_dicts.append(book_dict)
@@ -54,12 +56,14 @@ class ReferenceService:
         article_dicts = []
         for article in article_tuples:
             article_dict = {
-                "Author(s)": article[0],
-                "Title": article[1],
-                "Journal": article[2],
-                "Year": article[3],
-                "Volume": article[4],
-                "Pages": article[5]
+                "type": "article",
+                "id": article[0],
+                "Author(s)": article[1],
+                "Title": article[2],
+                "Journal": article[3],
+                "Year": article[4],
+                "Volume": article[5],
+                "Pages": article[6]
             }
 
             article_dicts.append(article_dict)
@@ -73,10 +77,12 @@ class ReferenceService:
         inproceeding_dicts = []
         for inproceeding in inproceeding_tuples:
             inproceeding_dict = {
-                "Author(s)": inproceeding[0],
-                "Title": inproceeding[1],
-                "Year": inproceeding[2],
-                "Booktitle": inproceeding[3]
+                "type": "inproceeding",
+                "id": inproceeding[0],
+                "Author(s)": inproceeding[1],
+                "Title": inproceeding[2],
+                "Year": inproceeding[3],
+                "Booktitle": inproceeding[4]
             }
 
             inproceeding_dicts.append(inproceeding_dict)
@@ -90,11 +96,13 @@ class ReferenceService:
         misc_dicts = []
         for misc in misc_tuples:
             misc_dict = {
-                "Author(s)": misc[0],
-                "Title": misc[1],
-                "Howpublished": misc[2],
-                "Year": misc[3],
-                "Note": misc[4]
+                "type": "misc",
+                "id": misc[0],
+                "Author(s)": misc[1],
+                "Title": misc[2],
+                "Howpublished": misc[3],
+                "Year": misc[4],
+                "Note": misc[5]
             }
 
             misc_dicts.append(misc_dict)
@@ -119,6 +127,17 @@ class ReferenceService:
         references.sort(key = lambda reference: reference["Author(s)"])
 
         return references
+
+    def delete_reference(self, reference_id, reference_type):
+        if reference_type == "book":
+            self._reference_repository.delete_book_reference(reference_id)
+        if reference_type == "article":
+            self._reference_repository.delete_article_reference(reference_id)
+        if reference_type == "inproceeding":
+            self._reference_repository.delete_inproceeding_reference(reference_id)
+        if reference_type == "misc":
+            self._reference_repository.delete_misc_reference(reference_id)
+
 
     def delete_all_references(self):
         return self._reference_repository.delete_all_references()
