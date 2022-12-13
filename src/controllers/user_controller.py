@@ -10,12 +10,13 @@ def front_page():
     if user_id != 0:
         return redirect("/references")
 
-    return render_template("index.html")
+    return render_template("index.html", page="login")
 
 @user_controller.route("/signup", methods=["GET", "POST"])
 def signup():
+    page = "signup"
     if request.method == "GET":
-        return render_template("signup.html")
+        return render_template("signup.html", page=page)
 
     if request.method == "POST":
         username = request.form["username"]
@@ -24,19 +25,20 @@ def signup():
 
         if password != password_again:
             message_text = gettext("Passwords do not match.")
-            return render_template("signup.html", message=message_text)
+            return render_template("signup.html", message=message_text, page=page)
         if len(username) < 5 or len(username) > 25:
             message_text = gettext("Username length must be 5-25 characters.")
-            return render_template("signup.html", message=message_text)
+            return render_template("signup.html", message=message_text, page=page)
         if len(password) < 8 or len(password) > 25:
             message_text = gettext("Password length must be 8-25 characters.")
-            return render_template("signup.html", message=message_text)
+            return render_template("signup.html", message=message_text, page=page)
 
     # Onnistunut käyttäjätilin luonti
     if user_service.register(username, password):
         return redirect("/references/")
 
-    return render_template("signup.html", message=gettext("Username already reserved."))
+    message_text = gettext("Username already reserved.")
+    return render_template("signup.html", message=message_text, page=page)
 
 
 @user_controller.route("/login", methods=["POST", "GET"])
@@ -47,7 +49,9 @@ def login():
     # Onnistunut kirjautuminen
     if user_service.login(username, password):
         return redirect("/references/")
-    return render_template("index.html", message=gettext("Wrong username or password."))
+
+    message_text = gettext("Wrong username or password.")
+    return render_template("index.html", message=message_text, page="login")
 
 @user_controller.route("/signout")
 def sign_out():
