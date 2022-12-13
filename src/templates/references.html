@@ -195,8 +195,11 @@ Your references
 
 {% for reference in references %}
   {% for key, value in reference.items() %}
-    {{ key }}: {{ value }}<br>
+    {% if key != "id" and key != "type" %}
+      {{ key }}: {{ value }}<br>
+    {% endif %}
   {% endfor %}
+  <br>
   <form action="/references/delete" method="POST">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="hidden" name="reference_type" value=" {{ reference.type }} ">
