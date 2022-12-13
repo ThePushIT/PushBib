@@ -6,19 +6,15 @@
 
 {% block body %}
 
-<h1>{{_('Welcome to PushBib!')}}</h1>
-
-<body>
-    <h2>{{_('Login')}}</h2>
-    <form action="/login" method="POST">
-    <p>{{_('Username')}}:</p>
-    <input type="text" name="username">
-    <p>{{_('Password')}}:</p>
-    <input type="password" name="password">
+<h2>{{_('Log in')}}</h2>
+<form action="/login" method="POST">
+    <label for="username">{{_('Username')}}:</label>
+    <input type="text" name="username"><br>
+    <label for="password">{{_('Password')}}:</label>
+    <input type="password" name="password"><br>
     <p>{{ message }}</p>
-    <input type="submit" value="{{_('Login')}}"">
-    </form>
-    <p><a href="/signup">{{_('Create new user')}}</a></p>
-</body>
+    <input type="submit" value="{{_('Log in')}}">
+</form>
+<p><a href="/signup">{{_('Sign up!')}}</a></p>
 
 {% endblock %}

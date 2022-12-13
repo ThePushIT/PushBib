@@ -11,7 +11,7 @@ Login Page Should Open
 
 Clicking Register Link Should Open Register Page
     Go To Login Page
-    Click Link  Create new user
+    Click Link  Sign up!
     Register Page Should Be Open
 
 Registering New User Should Work

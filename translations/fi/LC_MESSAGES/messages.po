@@ -19,63 +19,58 @@ msgstr ""
 "Generated-By: Babel 2.11.0\n"
 
 #: src/controllers/user_controller.py:27
-msgid "Passwords do not match"
-msgstr "Salasanat eivät täsmää"
+msgid "Passwords do not match."
+msgstr "Salasanat eivät täsmää."
 
 #: src/controllers/user_controller.py:30
-msgid "Username length must be between 5 and 25 characters."
-msgstr "Käyttäjänimen pituus täytyy olla 8:n ja 25:n merkin väliltä"
+msgid "Username length must be 5-25 characters."
+msgstr "Käyttäjänimen pituus täytyy olla 5-25 merkkiä."
 
 #: src/controllers/user_controller.py:33
-msgid "Password length must be between 8 and 25 characters."
-msgstr "Salasanan pituus täytyy olla 8:n ja 25:n merkin väliltä"
+msgid "Password length must be 8-25 characters."
+msgstr "Salasanan pituus täytyy olla 8-25 merkkiä."
 
 #: src/controllers/user_controller.py:40
-msgid "Username already reserved"
-msgstr "Käyttäjänimi on jo käytössä"
+msgid "Username already reserved."
+msgstr "Käyttäjänimi on jo käytössä."
 
 #: src/controllers/user_controller.py:51
-msgid "Wrong username or password"
-msgstr "Väärä käyttäjätunnus tai salasana"
+msgid "Wrong username or password."
+msgstr "Väärä käyttäjätunnus tai salasana."
 
-#: src/templates/index.html:4 src/templates/index.html:12
-#: src/templates/index.html:19
+#: src/templates/index.html:4
 msgid "Login"
+msgstr "Kirjautuminen"
+
+#: src/templates/index.html:9 src/templates/index.html:16
+msgid "Log in"
 msgstr "Kirjaudu sisään"
 
-#: src/templates/index.html:9
-msgid "Welcome to PushBib!"
-msgstr "Tervetuloa PushBib:iin!"
-
-#: src/templates/index.html:14 src/templates/signup.html:13
+#: src/templates/index.html:11 src/templates/signup.html:11
 msgid "Username"
 msgstr "Käyttäjänimi"
 
-#: src/templates/index.html:16 src/templates/signup.html:15
+#: src/templates/index.html:13 src/templates/signup.html:13
 msgid "Password"
 msgstr "Salasana"
 
-#: src/templates/index.html:21
-msgid "Create new user"
-msgstr "Luo uusi käyttäjä"
+#: src/templates/index.html:18
+msgid "Sign up!"
+msgstr "Rekisteröidy!"
 
 #: src/templates/signup.html:4
 msgid "Signup"
+msgstr "Rekisteröityminen"
+
+#: src/templates/signup.html:9 src/templates/signup.html:18
+msgid "Sign up"
 msgstr "Rekisteröidy"
 
-#: src/templates/signup.html:9
-msgid "Create a new user"
-msgstr "Luo uusi käyttäjä"
-
-#: src/templates/signup.html:17
+#: src/templates/signup.html:15
 msgid "Confirm password"
 msgstr "Vahvista salasana"
 
 #: src/templates/signup.html:20
-msgid "Register"
-msgstr "Rekisteröidy"
-
-#: src/templates/signup.html:22
-msgid "Already have an account? Log in"
-msgstr "Onko sinulla jo tili? Kirjaudu sisään"
+msgid "Log in!"
+msgstr "Kirjaudu sisään!"
 

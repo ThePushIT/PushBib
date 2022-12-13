@@ -23,20 +23,20 @@ def signup():
         password_again = request.form["password_again"]
 
         if password != password_again:
-            message_text = gettext("Passwords do not match")
+            message_text = gettext("Passwords do not match.")
             return render_template("signup.html", message=message_text)
         if len(username) < 5 or len(username) > 25:
-            message_text = gettext("Username length must be between 5 and 25 characters.")
+            message_text = gettext("Username length must be 5-25 characters.")
             return render_template("signup.html", message=message_text)
         if len(password) < 8 or len(password) > 25:
-            message_text = gettext("Password length must be between 8 and 25 characters.")
+            message_text = gettext("Password length must be 8-25 characters.")
             return render_template("signup.html", message=message_text)
 
     # Onnistunut käyttäjätilin luonti
     if user_service.register(username, password):
         return redirect("/references/")
 
-    return render_template("signup.html", message=gettext("Username already reserved"))
+    return render_template("signup.html", message=gettext("Username already reserved."))
 
 
 @user_controller.route("/login", methods=["POST", "GET"])
@@ -47,7 +47,7 @@ def login():
     # Onnistunut kirjautuminen
     if user_service.login(username, password):
         return redirect("/references/")
-    return render_template("index.html", message=gettext("Wrong username or password"))
+    return render_template("index.html", message=gettext("Wrong username or password."))
 
 @user_controller.route("/signout")
 def sign_out():

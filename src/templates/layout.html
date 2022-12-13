@@ -4,17 +4,22 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <title>{% block title %}{% endblock %}</title>
 </head>
 
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
 <body>
-  <ul class="language">
-    <li><a href="/language/en">English</a></li>
-    <li><a href="/language/fi">Suomi</a></li>
-  </ul>
-  {% block body %}{% endblock %}
+  <div class="header">
+    <ul class="language">
+      <li><a href="/language/en">English</a></li>
+      <li><a href="/language/fi">Suomi</a></li>
+    </ul>
+    <br>
+    <h1>PushBib</h1>
+  </div>
+  <div class="content">
+    {% block body %}{% endblock %}
+  </div>
 </body>
 
 </html>
