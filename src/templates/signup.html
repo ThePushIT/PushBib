@@ -6,20 +6,17 @@
 
 {% block body %}
 
-<h1>{{_('Create a new user')}}</h1>
-
-<body>
+<h2>{{_('Sign up')}}</h2>
 <form action="/signup" method="post">
-    <p>{{_('Username')}}:</p>
-    <input type="text" name="username" required minlength="5">
-    <p>{{_('Password')}}:</p>
-    <input type="password" name="password" required minlength="8">
-    <p>{{_('Confirm password')}}:</p>
-    <input type="password" name="password_again" required minlength="8">
+    <label for="username">{{_('Username')}}:</label>
+    <input type="text" name="username" required minlength="5"><br>
+    <label for="password">{{_('Password')}}:</label>
+    <input type="password" name="password" required minlength="8"><br>
+    <label for="password_again">{{_('Confirm password')}}:</label>
+    <input type="password" name="password_again" required minlength="8"><br>
     <p>{{ message }}</p>
-    <input type="submit" value="{{_('Register')}}" name="Register">
+    <input type="submit" value="{{_('Sign up')}}" name="Register">
 </form>
-<p><a href="/">{{_('Already have an account? Log in')}}</a></p>
-</body>
+<p><a href="/">{{_('Log in!')}}</a></p>
 
 {% endblock %}

@@ -50,13 +50,13 @@ Go To Login Page
     Go To  ${LOGIN URL}
 
 Login Page Should Be Open
-    Page Should Contain  Welcome to PushBib!
+    Page Should Contain  Log in
 
 Go To Register Page
     Go To  ${REGISTER URL}
 
 Register Page Should Be Open
-    Page Should Contain  Already have an account? Log in
+    Page Should Contain  Sign up
 
 Go To Register Page And Register User
     Go To Register Page
@@ -88,7 +88,7 @@ Set Login Parameters
     Input Text  password  ${password}
 
 Submit Login
-    Click Button  Login
+    Click Button  Log in
 
 Login Should Succeed
     Home Page Should Be Open
