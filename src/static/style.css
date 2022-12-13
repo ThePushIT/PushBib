@@ -12,14 +12,18 @@ body {
   font-weight: bold;
   font-size: 28px;
   text-align: center;
-  position: relative;
+  position: sticky;
   top: 0;
   padding: 20px;
+  z-index: 0;
+  margin-top: 5%;
+  background-color: white;
 }
 
 .content {
   display: block;
   margin-bottom: 20px;
+  z-index: -1;
 }
 
 .hide {
