@@ -1,5 +1,5 @@
 import os
-from flask_babel import gettext
+from flask_babel import lazy_gettext
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 from repositories.reference_repository import reference_repository as default_reference_repository
@@ -35,15 +35,16 @@ class ReferenceService:
         return self._reference_repository.fetch_book_references(user_id)
 
     def convert_books_into_dictionaries(self, book_tuples):
+        print('book tuples', book_tuples)
         book_dicts = []
         for book in book_tuples:
             book_dict = {
                 "type": "book",
                 "id": book[0],
-                gettext("Author(s)"): book[1],
-                gettext("Title"): book[2],
-                gettext("Year"): book[3],
-                gettext("Publisher"): book[4]
+                lazy_gettext("Author(s)"): book[1],
+                lazy_gettext("Title"): book[2],
+                lazy_gettext("Year"): book[3],
+                lazy_gettext("Publisher"): book[4]
             }
 
             book_dicts.append(book_dict)
@@ -59,12 +60,12 @@ class ReferenceService:
             article_dict = {
                 "type": "article",
                 "id": article[0],
-                gettext("Author(s)"): article[1],
-                gettext("Title"): article[2],
-                gettext("Journal"): article[3],
-                gettext("Year"): article[4],
-                gettext("Volume"): article[5],
-                gettext("Pages"): article[6]
+                lazy_gettext("Author(s)"): article[1],
+                lazy_gettext("Title"): article[2],
+                lazy_gettext("Journal"): article[3],
+                lazy_gettext("Year"): article[4],
+                lazy_gettext("Volume"): article[5],
+                lazy_gettext("Pages"): article[6]
             }
 
             article_dicts.append(article_dict)
@@ -80,10 +81,10 @@ class ReferenceService:
             inproceeding_dict = {
                 "type": "inproceeding",
                 "id": inproceeding[0],
-                gettext("Author(s)"): inproceeding[1],
-                gettext("Title"): inproceeding[2],
-                gettext("Year"): inproceeding[3],
-                gettext("Booktitle"): inproceeding[4]
+                lazy_gettext("Author(s)"): inproceeding[1],
+                lazy_gettext("Title"): inproceeding[2],
+                lazy_gettext("Year"): inproceeding[3],
+                lazy_gettext("Booktitle"): inproceeding[4]
             }
 
             inproceeding_dicts.append(inproceeding_dict)
@@ -99,11 +100,11 @@ class ReferenceService:
             misc_dict = {
                 "type": "misc",
                 "id": misc[0],
-                gettext("Author(s)"): misc[1],
-                gettext("Title"): misc[2],
-                gettext("Howpublished"): misc[3],
-                gettext("Year"): misc[4],
-                gettext("Note"): misc[5]
+                lazy_gettext("Author(s)"): misc[1],
+                lazy_gettext("Title"): misc[2],
+                lazy_gettext("Howpublished"): misc[3],
+                lazy_gettext("Year"): misc[4],
+                lazy_gettext("Note"): misc[5]
             }
 
             misc_dicts.append(misc_dict)
@@ -125,7 +126,7 @@ class ReferenceService:
         return references
 
     def sort_references_alphabetically_by_author(self, references):
-        references.sort(key = lambda reference: reference[gettext("Author(s)")])
+        references.sort(key = lambda reference: reference[lazy_gettext("Author(s)")])
 
         return references
 

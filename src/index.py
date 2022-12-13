@@ -3,8 +3,11 @@ from flask import session, request
 from app import create_app
 from config import LANGUAGES
 
+print('ollaan indexissa')
+
 app = create_app()
-babel = Babel(app)
+babel = Babel()
+babel.init_app(app)
 
 @babel.localeselector
 def get_locale():

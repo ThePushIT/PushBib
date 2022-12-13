@@ -19,7 +19,6 @@ def show_references():
 
 @ref_controller.route("/references/book/", methods=["POST"])
 def add_book():
-    print("tultiin bookin post metodin controllointiin")
     user_id = user_service.get_id()
     user_service.check_csrf(request.form["csrf_token"])
 

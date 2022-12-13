@@ -5,6 +5,7 @@ from controllers.test_controller import test_controller
 from controllers.language_controller import language_controller
 from database import db
 from config import DATABASE_URL, ENV, SECRET_KEY
+from flask_babel import Babel
 
 
 def create_app():
@@ -22,5 +23,6 @@ def create_app():
         app.register_blueprint(test_controller)
 
     db.init_app(app)
+    babel = Babel(app)
 
     return app
