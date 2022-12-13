@@ -21,7 +21,7 @@
           }
           let newFieldName = `author-${Math.max(...authorInputIds) + 1}-${clickedFrom}`;
           allAuthorsFieldWrapper.insertAdjacentHTML("beforeend",`
-          <li><input id="${newFieldName}" name="${newFieldName}" type="text" placeholder = "Last name, First name"></li>
+          <li><input id="${newFieldName}" name="${newFieldName}" type="text" placeholder = "{{_('Last name, First name')}}"></li>
           `);
      
   }
@@ -78,118 +78,118 @@ Your references
 {% endblock %}
 
 {% block body %}
-<p><a href="/signout">Sign out</a></p>
+<p><a href="/signout">{{_('Sign out')}}</a></p>
 <hr>
 
-<h2>Add new reference</h2>
-<p>Select reference type:</p>
+<h2>{{_('Add new reference')}}</h2>
+<p>{{_('Select reference type:')}}</p>
 <select name="type" id="type">
-  <option value="book">book</option>
-  <option value="article">article</option>
-  <option value="inproceeding">inproceeding</option>
-  <option value="misc">miscellaneous</option>
+  <option value="book">{{_('book')}}</option>
+  <option value="article">{{_('article')}}</option>
+  <option value="inproceeding">{{_('inproceeding')}}</option>
+  <option value="misc">{{_('miscellaneous')}}</option>
 </select>
 <hr>
 
 <form method="POST" action="/references/book/" id="book_form", style="display: inline;">
-  <label for="authors">Authors</label>
+  <label for="authors">{{_('Authors')}}</label>
   <div id="book_authors_container"><br>
-    <li><input type="text" id="author-0-book" name="author-0" placeholder="Last name, First name" required></li>
+    <li><input type="text" id="author-0-book" name="author-0" placeholder="{{_('Last name, First name')}}" required></li>
   </div>
   <br>
-  <button id="book-add-author-field" class="add-author-field">Add new author</button>
+  <button id="book-add-author-field" class="add-author-field">{{_('Add new author')}}</button>
   <br><br>
-  <label for="title">Title</label>
+  <label for="title">{{_('Title')}}</label>
   <input type="text" id="title-book" name="title" required>
   <br>
-  <label for="year">Year</label>
+  <label for="year">{{_('Year')}}</label>
   <input type="text" id="year-book" name="year" required>
   <br>
-  <label for="publisher">Publisher</label>
+  <label for="publisher">{{_('Publisher')}}</label>
   <input type="text" id="publisher-book" name="publisher" required>
   <br><br>
   <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-  <button id="submit-book" type="submit">Add reference</button>
+  <button id="submit-book" type="submit">{{_('Add reference')}}</button>
 </form>
 
 <form action="/references/article/" method="post" id="article_form" style="display:none">
-  <label for = "authors">Authors</label>
+  <label for = "authors">{{_('Authors')}}</label>
   <div id="article_authors_container"><br>
-    <li><input type="text" id="author-0-article" name="author-0" placeholder="Last name, First name" required><br></li>
+    <li><input type="text" id="author-0-article" name="author-0" placeholder="{{_('Last name, First name')}}" required><br></li>
   </div>
   <br>
-  <button id="article-add-author-field" class="add-author-field">Add new author</button>
+  <button id="article-add-author-field" class="add-author-field">{{_('Add new author')}}</button>
   <br><br>
-  <label for="title">Title</label>
+  <label for="title">{{_('Title')}}</label>
   <input type="text" class="form-control" id="title-article" name="title" required>
   <br>
-  <label for="journal">Journal</label>
+  <label for="journal">{{_('Journal')}}</label>
   <input type="text" class="form-control" id="journal-article" name="journal" required>
   <br>
-  <label for="year">Year</label>
+  <label for="year">{{_('Year')}}</label>
   <input type="text" class="form-control" id="year-article" name="year" required>
   <br>
-  <label for="volume">Volume</label>
+  <label for="volume">{{_('Volume')}}</label>
   <input type="text" class="form-control" id="volume-article" name="volume" required>
   <br>
-  <label for="pages">Pages</label>
+  <label for="pages">{{_('Pages')}}</label>
   <input type="text" class="form-control" id="pages-article" name="pages" required>
   <br><br>
   <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-  <button type="submit" id="submit-article">Add reference</button>
+  <button type="submit" id="submit-article">{{_('Add reference')}}</button>
 </form>
 
 <form action="/references/inproceeding/" method="post" id="inproceeding_form" style="display:none">
-  <label for="authors">Authors</label>
+  <label for="authors">{{_('Authors')}}</label>
   <div id="inproceeding_authors_container"><br>
-    <li><input type="text" id="author-0-inproceeding" name="author-0" placeholder="Last name, First name" required><br></li>
+    <li><input type="text" id="author-0-inproceeding" name="author-0" placeholder="{{_('Last name, First name')}}" required><br></li>
   </div>
   <br>
-  <button id="inproceeding-add-author-field" class="add-author-field">Add new author</button>
+  <button id="inproceeding-add-author-field" class="add-author-field">{{_('Add new author')}}</button>
   <br><br>
-  <label for="title">Title</label>
+  <label for="title">{{_('Title')}}</label>
   <input type="text" class="form-control" id = "title-inproceeding" name="title" required>
   <br>
-  <label for="year">Year</label>
+  <label for="year">{{_('Year')}}</label>
   <input type="text" class="form-control" id="year-inproceeding" name="year" required>
   <br>
-  <label for="booktitle">Booktitle</label>
+  <label for="booktitle">{{_('Booktitle')}}</label>
   <input type="text" class="form-control" id="booktitle-inproceeding" name="booktitle" required>
   <br><br>
   <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-  <button type="submit" id="submit-inproceeding">Add reference</button>
+  <button type="submit" id="submit-inproceeding">{{_('Add reference')}}</button>
 </form>
 
 <form action="/references/misc/" method="post" id="misc_form" style="display:none">
-  <label for="authors">Authors</label>
+  <label for="authors">{{_('Authors')}}</label>
   <div id="misc_authors_container"><br>
-    <li><input type="text" id="author-0-misc" name="author-0" placeholder="Last name, First name" required><br></li>
+    <li><input type="text" id="author-0-misc" name="author-0" placeholder="{{_('Last name, First name')}}" required><br></li>
   </div>
   <br>
-  <button id="misc-add-author-field" class="add-author-field">Add new author</button>
+  <button id="misc-add-author-field" class="add-author-field">{{_('Add new author')}}</button>
   <br><br>
-  <label for="title">Title</label>
+  <label for="title">{{_('Title')}}</label>
   <input type="text" class="form-control" id="title-misc" name="title" required>
   <br>
-  <label for="howpublished">Howpublished</label>
+  <label for="howpublished">{{_('Howpublished')}}</label>
   <input type="text" class="form-control" id="howpublished-misc" name="howpublished" required>
   <br>
-  <label for="year">Year</label>
+  <label for="year">{{_('year')}}</label>
   <input type="text" class="form-control" id="year-misc" name="year" required>
   <br>
-  <label for="note">Note</label>
+  <label for="note">{{_('Note')}}</label>
   <input type="text" class="form-control" id="note-misc" name="note" required>
   <br><br>
   <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-  <button type="submit" id="submit-misc">Add reference</button>
+  <button type="submit" id="submit-misc">{{_('Add reference')}}</button>
 </form>
 <hr>
 
 <div class="grid-child center">
 {% if references %}
-<h2>Your references</h2>
+<h2>{{_('Your references')}}</h2>
 <form action="/references/download">
-  <input type="submit" id="download" value="Download .bib"></input>
+  <input type="submit" id="download" value="{{_('Download .bib')}}"></input>
 </form>
 <br>
 
@@ -211,7 +211,7 @@ Your references
 
 
 {% else %}
-<h2>No references yet!</h2>
+<h2>{{_('No references yet!')}}</h2>
 {% endif %}
 </div>
 
