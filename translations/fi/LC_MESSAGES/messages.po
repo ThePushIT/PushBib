@@ -34,7 +34,7 @@ msgstr "Salasanan pituus täytyy olla 8-25 merkkiä."
 msgid "Username already reserved."
 msgstr "Käyttäjänimi on jo käytössä."
 
-#: src/controllers/user_controller.py:51
+#: src/controllers/user_controller.py:53
 msgid "Wrong username or password."
 msgstr "Väärä käyttäjätunnus tai salasana."
 
