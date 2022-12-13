@@ -116,7 +116,6 @@ def add_misc():
 
 @ref_controller.route("/references/delete", methods=["POST"])
 def delete_reference():
-    user_id = user_service.get_id()
     user_service.check_csrf(request.form["csrf_token"])
 
     reference_id = request.form["reference_id"].strip()
