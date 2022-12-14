@@ -77,10 +77,11 @@
 Your references
 {% endblock %}
 
-{% block body %}
-<p><a href="/signout">{{_('Sign out')}}</a></p>
-<hr>
+{% block signout %}
+  <a href="/signout">{{_('Sign out')}}</a>
+{% endblock %}
 
+{% block body %}
 <h2>{{_('Add new reference')}}</h2>
 <p>{{_('Select reference type:')}}</p>
 <select name="type" id="type">
@@ -185,7 +186,6 @@ Your references
 </form>
 <hr>
 
-<div class="grid-child center">
 {% if references %}
 <h2>{{_('Your references')}}</h2>
 <form action="/references/download">
@@ -213,6 +213,5 @@ Your references
 {% else %}
 <h2>{{_('No references yet!')}}</h2>
 {% endif %}
-</div>
 
 {% endblock %}
