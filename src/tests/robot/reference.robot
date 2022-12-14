@@ -136,7 +136,6 @@ Add Inproceeding Reference With Two Authors
     Page Should Contain  The best book ever
     Page Should Contain  Arthur Author and Wilma Writer
 
-
 Select Article Type
     Home Page Should Be Open
     Select From Dropdown  article
@@ -149,9 +148,6 @@ Select Inproceeding Type
 
 
 *** Keywords ***
-Set Book First Author
-    [Arguments]  ${author}
-    Input Text  author-0-book  ${author}
 
 Set Book Second Author
     [Arguments]  ${author}
@@ -161,11 +157,6 @@ Set Book Third Author
     [Arguments]  ${author}
     Input Text  author-2-book  ${author}
 
-
-Set Article First Author
-    [Arguments]  ${author}
-    Input Text  author-0-article  ${author}
-
 Set Article Second Author
     [Arguments]  ${author}
     Input Text  author-1-article  ${author}
@@ -173,11 +164,6 @@ Set Article Second Author
 Set Article Third Author
     [Arguments]  ${author}
     Input Text  author-2-article  ${author}
-
-
-Set Inproceeding First Author
-    [Arguments]  ${author}
-    Input Text  author-0-inproceeding  ${author}
 
 Set Inproceeding Second Author
     [Arguments]  ${author}
@@ -187,83 +173,14 @@ Set Inproceeding Third Author
     [Arguments]  ${author}
     Input Text  author-2-inproceeding  ${author}
 
-
-Set Book Title
-    [Arguments]  ${title}
-    Input Text  title-book  ${title}
-
-Set Article Title
-    [Arguments]  ${title}
-    Input Text  title-article  ${title}
-    
-Set Inproceeding Title
-    [Arguments]  ${title}
-    Input Text  title-inproceeding  ${title}
-    
-
-Set Book Year
-    [Arguments]  ${year}
-    Input Text  year-book  ${year}
-
-Set Article Year
-    [Arguments]  ${year}
-    Input Text  year-article  ${year}
-
-Set Inproceeding Year
-    [Arguments]  ${year}
-    Input Text  year-inproceeding  ${year}
-
-Set Book Publisher
-    [Arguments]  ${publisher}
-    Input Text  publisher-book  ${publisher}
-
-
-Set Article Journal
-    [Arguments]  ${journal}
-    Input Text  journal  ${journal}
-    # to do next
-    # testaa miksi dropdown ei toimi osana muuta kutsua
-    # korjaa unittestit
-    # puske gittiin
-
-Set Article Volume
-    [Arguments]  ${volume}
-    Input Text  volume  ${volume}
-
-
-Set Article Pages
-    [Arguments]  ${pages}
-    Input Text  pages  ${pages}
-
-Set Inproceeding Booktitle
-    [Arguments]  ${booktitle}
-    Input Text  booktitle  ${booktitle}
-
-Select From Dropdown
-    [Arguments]  ${type}
-    Wait Until Element is Enabled  type
-    Select from List by Value  type   ${type}
-
-
 Add New Author Book
     Click Button  id:book-add-author-field
 
 Add New Author Article
     Click Button  id:article-add-author-field
 
-
 Add New Author Inproceeding
     Click Button  id:inproceeding-add-author-field
-
-Submit Article
-    Click Button  id:submit-article
-
-Submit Book
-    Click Button  id:submit-book
-
-Submit Inproceeding
-    Click Button  id:submit-inproceeding
-
 
 Download References
     Click Button    download

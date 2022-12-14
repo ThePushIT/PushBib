@@ -120,5 +120,96 @@ Clear Databases
     Reset Application
     # tyhjennä kaikki testitietokannasta
 
+Set Book First Author
+    [Arguments]  ${author}
+    Input Text  author-0-book  ${author}
+
+Set Article First Author
+    [Arguments]  ${author}
+    Input Text  author-0-article  ${author}
     
     
+Set Inproceeding First Author
+    [Arguments]  ${author}
+    Input Text  author-0-inproceeding  ${author}
+
+Set Misc First Author
+    [Arguments]  ${author}
+    Input Text  author-0-misc  ${author}
+
+Set Book Title
+    [Arguments]  ${title}
+    Input Text  title-book  ${title}
+
+Set Article Title
+    [Arguments]  ${title}
+    Input Text  title-article  ${title}
+    
+Set Inproceeding Title
+    [Arguments]  ${title}
+    Input Text  title-inproceeding  ${title}
+
+Set Misc Title
+    [Arguments]  ${title}
+    Input Text  title-misc  ${title}
+
+Set Book Year
+    [Arguments]  ${year}
+    Input Text  year-book  ${year}
+
+Set Article Year
+    [Arguments]  ${year}
+    Input Text  year-article  ${year}
+
+Set Inproceeding Year
+    [Arguments]  ${year}
+    Input Text  year-inproceeding  ${year}
+
+Set Misc Year
+    [Arguments]  ${year}
+    Input Text  year-misc  ${year}
+
+Set Book Publisher
+    [Arguments]  ${publisher}
+    Input Text  publisher-book  ${publisher}
+
+Set Misc Published
+    [Arguments]  ${published}
+    Input Text  howpublished-misc  ${published}
+
+Set Article Volume
+    [Arguments]  ${volume}
+    Input Text  volume  ${volume}
+
+Set Article Pages
+    [Arguments]  ${pages}
+    Input Text  pages  ${pages}
+
+Set Article Journal
+    [Arguments]  ${journal}
+    Input Text  journal  ${journal}
+
+Set Inproceeding Booktitle
+    [Arguments]  ${booktitle}
+    Input Text  booktitle  ${booktitle}
+
+Set Misc Note
+    [Arguments]  ${note}
+    Input Text  note-misc  ${note}
+
+Select From Dropdown
+    [Arguments]  ${type}
+    Wait Until Element is Enabled  type
+    Select from List by Value  type   ${type}
+
+Submit Article
+    Click Button  id:submit-article
+
+Submit Book
+    Click Button  id:submit-book
+
+Submit Inproceeding
+    Click Button  id:submit-inproceeding
+
+Submit Misc
+    Click Button  id:submit-misc
