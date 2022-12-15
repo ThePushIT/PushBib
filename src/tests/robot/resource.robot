@@ -173,9 +173,9 @@ Set Book Publisher
     [Arguments]  ${publisher}
     Input Text  publisher-book  ${publisher}
 
-Set Misc Published
-    [Arguments]  ${published}
-    Input Text  howpublished-misc  ${published}
+Set Misc Howpublished
+    [Arguments]  ${howpublished}
+    Input Text  howpublished-misc  ${howpublished}
 
 Set Article Volume
     [Arguments]  ${volume}

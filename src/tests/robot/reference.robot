@@ -120,7 +120,6 @@ Add Article Reference With Two Authors
     Page Should Contain  The best book ever
     Page Should Contain  Arthur Author and Wilma Writer
 
-
 Add Inproceeding Reference With Two Authors
     Home Page Should Be Open
     Select From Dropdown  inproceeding
@@ -136,6 +135,22 @@ Add Inproceeding Reference With Two Authors
     Page Should Contain  The best book ever
     Page Should Contain  Arthur Author and Wilma Writer
 
+Add Misc Reference With Two Authors
+    Home Page Should Be Open
+    Select From Dropdown  miscellaneous
+    Wait Until Page Contains Element  id:author-0-misc
+    #Click Element  id:author-0
+    Set Misc First Author  Wilma Writer
+    Add New Author Misc
+    Set Misc Second Author  Arthur Author
+    Set Misc Title  The best misc ever
+    Set Misc Published  https://url
+    Set Misc Year  2000
+    Set Misc Note  Noteworthy note
+    Submit Misc
+    Page Should Contain  The best misc ever
+    Page Should Contain  Noteworthy note
+
 Select Article Type
     Home Page Should Be Open
     Select From Dropdown  article
@@ -145,6 +160,11 @@ Select Inproceeding Type
     Home Page Should Be Open
     Select From Dropdown  inproceeding
     Page Should Contain  inproceeding
+
+Select Misc Type
+    Home Page Should Be Open
+    Select From Dropdown  miscellaneous
+    Page Should Contain  miscellaneous
 
 
 *** Keywords ***
@@ -173,6 +193,14 @@ Set Inproceeding Third Author
     [Arguments]  ${author}
     Input Text  author-2-inproceeding  ${author}
 
+Set Misc Second Author
+    [Arguments]  ${author}
+    Input Text  author-1-misc  ${author}
+
+Set Misc Third Author
+    [Arguments]  ${author}
+    Input Text  author-2-misc  ${author}
+
 Add New Author Book
     Click Button  id:book-add-author-field
 
@@ -181,6 +209,9 @@ Add New Author Article
 
 Add New Author Inproceeding
     Click Button  id:inproceeding-add-author-field
+
+Add New Author Misc
+    Click Button  id:misc-add-author-field
 
 Download References
     Click Button    download
