@@ -86,7 +86,7 @@ msgstr "artikkeli"
 
 #: src/templates/references.html:89
 msgid "inproceeding"
-msgstr "asiakirja"
+msgstr "konferenssijulkaisu"
 
 #: src/templates/references.html:90
 msgid "miscellaneous"
