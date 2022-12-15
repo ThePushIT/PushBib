@@ -48,7 +48,7 @@ Delete Existing Inproceeding Reference
 
 Delete Existing Misc Reference
     Home Page Should Be Open
-    Select From Dropdown  miscellaneous
+    Select From Dropdown  misc
     Wait Until Page Contains Element  id:author-0-misc
     Set Misc First Author  Testauthor Second
     Set Misc Title  The greatest misc available

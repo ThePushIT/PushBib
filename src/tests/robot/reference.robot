@@ -137,14 +137,14 @@ Add Inproceeding Reference With Two Authors
 
 Add Misc Reference With Two Authors
     Home Page Should Be Open
-    Select From Dropdown  miscellaneous
+    Select From Dropdown  misc
     Wait Until Page Contains Element  id:author-0-misc
     #Click Element  id:author-0
     Set Misc First Author  Wilma Writer
     Add New Author Misc
     Set Misc Second Author  Arthur Author
     Set Misc Title  The best misc ever
-    Set Misc Published  https://url
+    Set Misc Howpublished  https://url
     Set Misc Year  2000
     Set Misc Note  Noteworthy note
     Submit Misc
@@ -163,8 +163,8 @@ Select Inproceeding Type
 
 Select Misc Type
     Home Page Should Be Open
-    Select From Dropdown  miscellaneous
-    Page Should Contain  miscellaneous
+    Select From Dropdown  misc
+    Page Should Contain  misc
 
 
 *** Keywords ***
