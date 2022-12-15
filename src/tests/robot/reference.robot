@@ -5,6 +5,7 @@ Suite Teardown  Close Test Environment
 Test Setup  Go To Login Page And Login User
 Test Teardown  Sign Out
 Library  SeleniumLibrary
+Library  AppLibrary
 
 *** Test Cases ***
 Add Book With Authors, Title, Year and Publisher
@@ -125,7 +126,6 @@ Add Inproceeding Reference With Two Authors
     Home Page Should Be Open
     Select From Dropdown  inproceeding
     Wait Until Page Contains Element  id:author-0-inproceeding
-    #Click Element  id:author-0
     Set Inproceeding First Author  Writer, Wilma
     Add New Author Inproceeding
     Set Inproceeding Second Author  Author, Arthur
@@ -146,6 +146,24 @@ Select Inproceeding Type
     Select From Dropdown  inproceeding
     Page Should Contain  inproceeding
 
+References Should Be In Alphabetical Order By Author
+    Set Book First Author  Storyteller, Steve
+    Set Book Title  Once upon a time
+    Set Book Year  2000
+    Set Book Publisher  Comma Press
+    Submit Book
+    Set Book First Author  Williams, Walter
+    Set Book Title  Memoir
+    Set Book Year  1830
+    Set Book Publisher  Elite Press
+    Submit Book
+    Set Book First Author  Grey, Earl
+    Set Book Title  The Art of Afternoon Tea
+    Set Book Year  1993
+    Set Book Publisher  Elite Press
+    Submit Book
+    ${page_content}=  Get Text  class=content
+    Reference Order Should Be  ${page_content}  Grey, Earl  Storyteller, Steve  Williams, Walter
 
 *** Keywords ***
 
