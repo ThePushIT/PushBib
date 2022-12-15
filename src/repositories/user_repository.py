@@ -43,9 +43,6 @@ class UserRepository:
         if session["csrf_token"] != csrf_token:
             abort(403)
 
-    def csrf(self):
-        return session.get("csrf_token", 0)
-
     def id(self):
         return session.get("user_id", 0)
 

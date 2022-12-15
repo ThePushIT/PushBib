@@ -1,5 +1,6 @@
 import unittest
 from services.user_service import user_service
+from werkzeug.exceptions import HTTPException
 from flask import session
 from init_db import initialize_db
 from app import create_app
@@ -44,4 +45,12 @@ class TestUserService(unittest.TestCase):
         user_service.logout()
         self.assertEqual(user_service.get_id(), 0)
 
-    
+    def test_cannot_post_using_wrong_token(self):
+        user_service.register("testuser", "testpassword")
+        self.assertNotEqual(user_service.get_id(), 0)
+        csrf_token = "111111111111111111111111111111"
+        try:
+            user_service.check_csrf(csrf_token)
+            self.fail()
+        except HTTPException as e:
+            self.assertEqual(e.code, 403)
