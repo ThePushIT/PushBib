@@ -9,7 +9,7 @@ Library  SeleniumLibrary
 *** Test Cases ***
 Add Book With Authors, Title, Year and Publisher
     Home Page Should Be Open
-    Set Book First Author  Wilma Writer
+    Set Book First Author  Writer, Wilma
     Set Book Title  The best book ever
     Set Book Year  2000
     Set Book Publisher  WSOY
@@ -22,35 +22,35 @@ Add Book With Missing Author Should Not Work
     Set Book Year  2000
     Set Book Publisher  WSOY
     Submit Book
-    Page Should Not Contain  New Author
+    Page Should Not Contain  Teller, Taylor
 
 Add Book With Missing Name Should Not Work
     Home Page Should Be Open
-    Set Book First Author  New Author
+    Set Book First Author  Teller, Taylor
     Set Book Year  2000
     Set Book Publisher  WSOY
     Submit Book
-    Page Should Not Contain  New Author
+    Page Should Not Contain  Teller, Taylor
 
 Add Book With Missing Year Should Not Work
     Home Page Should Be Open
-    Set Book First Author  New Author
+    Set Book First Author  Teller, Taylor
     Set Book Title  The best book ever
     Set Book Publisher  WSOY
     Submit Book
-    Page Should Not Contain  New Author
+    Page Should Not Contain  Teller, Taylor
 
 Add Book With Missing Publisher Should Not Work
     Home Page Should Be Open
-    Set Book First Author  New Author
+    Set Book First Author  Teller, Taylor
     Set Book Title  The best book ever
     Set Book Year  2000
     Submit Book
-    Page Should Not Contain  New Author
+    Page Should Not Contain  Teller, Taylor
 
 Download References Should Work
     Home Page Should Be Open
-    Set Book First Author   New Author
+    Set Book First Author   Teller, Taylor
     Set Book Title    The best book ever
     Set Book Year    2000
     Set Book Publisher    WSOY
@@ -61,21 +61,21 @@ Download References Should Work
 
 Add Book Reference With Two Authors
     Home Page Should Be Open
-    Set Book First Author  Wilma Writer
+    Set Book First Author  Writer, Wilma
     Add New Author Book
-    Set Book Second Author  Arthur Author
+    Set Book Second Author  Author, Arthur
     Set Book Title  The best book ever
     Set Book Year  2000
     Set Book Publisher  WSOY
     Submit Book
     Page Should Contain  The best book ever
-    Page Should Contain  Arthur Author and Wilma Writer
+    Page Should Contain  Author, Arthur and Writer, Wilma
 
 Add Book Reference With Three Authors
     Home Page Should Be Open
-    Set Book First Author  Wilma Writer
+    Set Book First Author  Writer, Wilma
     Add New Author Book
-    Set Book Second Author  Arthur Author
+    Set Book Second Author  Author, Arthur
     Add New Author Book
     Set Book Third Author  Kaisa Kirjailija
     Set Book Title  The best book ever
@@ -83,16 +83,16 @@ Add Book Reference With Three Authors
     Set Book Publisher  WSOY
     Submit Book
     Page Should Contain  The best book ever
-    Page Should Contain  Arthur Author and Kaisa Kirjailija and Wilma Writer
+    Page Should Contain  Author, Arthur and Kaisa Kirjailija and Writer, Wilma
 
 Add Article Reference With Three Authors
     Home Page Should Be Open
     Select From Dropdown  article
     Wait Until Page Contains Element  id:author-0-article
     #Click Element  id:author-0
-    Set Article First Author  Wilma Writer
+    Set Article First Author  Writer, Wilma
     Add New Author Article
-    Set Article Second Author  Arthur Author
+    Set Article Second Author  Author, Arthur
     Add New Author Article
     Set Article Third Author  Kaisa Kirjailija
     Set Article Title  The best book ever
@@ -101,16 +101,16 @@ Add Article Reference With Three Authors
     Set Article Pages  44-46
     Submit Article
     Page Should Contain  The best book ever
-    Page Should Contain  Arthur Author and Kaisa Kirjailija and Wilma Writer
+    Page Should Contain  Author, Arthur and Kaisa Kirjailija and Writer, Wilma
 
 Add Article Reference With Two Authors
     Home Page Should Be Open
     Select From Dropdown  article
     Wait Until Page Contains Element  id:author-0-article
     #Click Element  id:author-0
-    Set Article First Author  Wilma Writer
+    Set Article First Author  Writer, Wilma
     Add New Author Article
-    Set Article Second Author  Arthur Author
+    Set Article Second Author  Author, Arthur
     Set Article Title  The best book ever
     Set Article Journal  The best journal ever
     Set Article Year  2000
@@ -118,7 +118,7 @@ Add Article Reference With Two Authors
     Set Article Pages  44-46
     Submit Article
     Page Should Contain  The best book ever
-    Page Should Contain  Arthur Author and Wilma Writer
+    Page Should Contain  Author, Arthur and Writer, Wilma
 
 
 Add Inproceeding Reference With Two Authors
@@ -126,15 +126,15 @@ Add Inproceeding Reference With Two Authors
     Select From Dropdown  inproceeding
     Wait Until Page Contains Element  id:author-0-inproceeding
     #Click Element  id:author-0
-    Set Inproceeding First Author  Wilma Writer
+    Set Inproceeding First Author  Writer, Wilma
     Add New Author Inproceeding
-    Set Inproceeding Second Author  Arthur Author
+    Set Inproceeding Second Author  Author, Arthur
     Set Inproceeding Title  The best article ever
     Set Inproceeding Booktitle  The best book ever
     Set Inproceeding Year  2000
     Submit Inproceeding
     Page Should Contain  The best book ever
-    Page Should Contain  Arthur Author and Wilma Writer
+    Page Should Contain  Author, Arthur and Writer, Wilma
 
 Select Article Type
     Home Page Should Be Open

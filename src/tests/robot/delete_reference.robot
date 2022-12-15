@@ -9,7 +9,7 @@ Library  SeleniumLibrary
 *** Test Cases ***
 Delete Existing Book Reference
     Home Page Should Be Open
-    Set Book First Author  Thomas Cormen
+    Set Book First Author  Cormen, Thomas
     Set Book Title  Introduction to algorithms
     Set Book Year  1990
     Set Book Publisher  MIT Press
@@ -22,7 +22,7 @@ Delete Existing Article Reference
     Home Page Should Be Open
     Select From Dropdown  article
     Wait Until Page Contains Element  id:author-0-article
-    Set Article First Author  Silver David
+    Set Article First Author  David, Silver
     Set Article Title  Mastering the game of go without human knowledge
     Set Article Journal  Nature
     Set Article Year  2017
@@ -31,13 +31,13 @@ Delete Existing Article Reference
     Submit Article
     Page Should Contain  Mastering the game of go without human knowledge
     Delete Reference
-    Page Should Not Contain  Arthur Author and Kaisa Kirjailija and Wilma Writer
+    Page Should Not Contain  Mastering the game of go without human knowledge
 
 Delete Existing Inproceeding Reference
     Home Page Should Be Open
     Select From Dropdown  inproceeding
     Wait Until Page Contains Element  id:author-0-inproceeding
-    Set Inproceeding First Author  Testauthor
+    Set Inproceeding First Author  Researcher, Richard
     Set Inproceeding Title  The best inproceeding ever
     Set Inproceeding Booktitle  Collection of the best inproceedings
     Set Inproceeding Year  2022
@@ -50,7 +50,7 @@ Delete Existing Misc Reference
     Home Page Should Be Open
     Select From Dropdown  misc
     Wait Until Page Contains Element  id:author-0-misc
-    Set Misc First Author  Testauthor Second
+    Set Misc First Author  Commoner, Cal
     Set Misc Title  The greatest misc available
     Set Misc Published  1993
     Set Misc Year  1993
