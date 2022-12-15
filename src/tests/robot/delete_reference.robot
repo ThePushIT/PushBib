@@ -52,7 +52,7 @@ Delete Existing Misc Reference
     Wait Until Page Contains Element  id:author-0-misc
     Set Misc First Author  Commoner, Cal
     Set Misc Title  The greatest misc available
-    Set Misc Published  1993
+    Set Misc Howpublished  https://url
     Set Misc Year  1993
     Set Misc Note  Testnote
     Submit Misc

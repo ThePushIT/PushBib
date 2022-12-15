@@ -78,13 +78,13 @@ Add Book Reference With Three Authors
     Add New Author Book
     Set Book Second Author  Author, Arthur
     Add New Author Book
-    Set Book Third Author  Kaisa Kirjailija
+    Set Book Third Author  Kirjailija, Kaisa
     Set Book Title  The best book ever
     Set Book Year  2000
     Set Book Publisher  WSOY
     Submit Book
     Page Should Contain  The best book ever
-    Page Should Contain  Author, Arthur and Kaisa Kirjailija and Writer, Wilma
+    Page Should Contain  Author, Arthur and Kirjailija, Kaisa and Writer, Wilma
 
 Add Article Reference With Three Authors
     Home Page Should Be Open
@@ -95,32 +95,30 @@ Add Article Reference With Three Authors
     Add New Author Article
     Set Article Second Author  Author, Arthur
     Add New Author Article
-    Set Article Third Author  Kaisa Kirjailija
-    Set Article Title  The best book ever
+    Set Article Third Author  Kirjailija, Kaisa
+    Set Article Title  The best article ever
     Set Article Year  2000
     Set Article Volume  1
     Set Article Pages  44-46
     Submit Article
-    Page Should Contain  The best book ever
-    Page Should Contain  Author, Arthur and Kaisa Kirjailija and Writer, Wilma
+    Page Should Contain  The best article ever
+    Page Should Contain  Author, Arthur and Kirjailija, Kaisa and Writer, Wilma
 
 Add Article Reference With Two Authors
     Home Page Should Be Open
     Select From Dropdown  article
     Wait Until Page Contains Element  id:author-0-article
-    #Click Element  id:author-0
     Set Article First Author  Writer, Wilma
     Add New Author Article
     Set Article Second Author  Author, Arthur
-    Set Article Title  The best book ever
+    Set Article Title  The best article ever
     Set Article Journal  The best journal ever
     Set Article Year  2000
     Set Article Volume  1
     Set Article Pages  44-46
     Submit Article
-    Page Should Contain  The best book ever
+    Page Should Contain  The best article ever
     Page Should Contain  Author, Arthur and Writer, Wilma
-
 
 Add Inproceeding Reference With Two Authors
     Home Page Should Be Open
@@ -129,12 +127,27 @@ Add Inproceeding Reference With Two Authors
     Set Inproceeding First Author  Writer, Wilma
     Add New Author Inproceeding
     Set Inproceeding Second Author  Author, Arthur
-    Set Inproceeding Title  The best article ever
+    Set Inproceeding Title  The best inproceeding ever
     Set Inproceeding Booktitle  The best book ever
     Set Inproceeding Year  2000
     Submit Inproceeding
-    Page Should Contain  The best book ever
+    Page Should Contain  The best inproceeding ever
     Page Should Contain  Author, Arthur and Writer, Wilma
+
+Add Misc Reference With Two Authors
+    Home Page Should Be Open
+    Select From Dropdown  misc
+    Wait Until Page Contains Element  id:author-0-misc
+    Set Misc First Author  Writer, Wilma
+    Add New Author Misc
+    Set Misc Second Author  Author, Arthur
+    Set Misc Title  The best misc ever
+    Set Misc Howpublished  https://url
+    Set Misc Year  2000
+    Set Misc Note  Noteworthy note
+    Submit Misc
+    Page Should Contain  The best misc ever
+    Page Should Contain  Noteworthy note
 
 Select Article Type
     Home Page Should Be Open
@@ -145,6 +158,11 @@ Select Inproceeding Type
     Home Page Should Be Open
     Select From Dropdown  inproceeding
     Page Should Contain  inproceeding
+
+Select Misc Type
+    Home Page Should Be Open
+    Select From Dropdown  misc
+    Page Should Contain  misc
 
 References Should Be In Alphabetical Order By Author
     Set Book First Author  Storyteller, Steve
@@ -191,6 +209,14 @@ Set Inproceeding Third Author
     [Arguments]  ${author}
     Input Text  author-2-inproceeding  ${author}
 
+Set Misc Second Author
+    [Arguments]  ${author}
+    Input Text  author-1-misc  ${author}
+
+Set Misc Third Author
+    [Arguments]  ${author}
+    Input Text  author-2-misc  ${author}
+
 Add New Author Book
     Click Button  id:book-add-author-field
 
@@ -199,6 +225,9 @@ Add New Author Article
 
 Add New Author Inproceeding
     Click Button  id:inproceeding-add-author-field
+
+Add New Author Misc
+    Click Button  id:misc-add-author-field
 
 Download References
     Click Button    download
