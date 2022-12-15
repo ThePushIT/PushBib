@@ -52,7 +52,7 @@ Add Book With Missing Publisher Should Not Work
 Download References Should Work
     Home Page Should Be Open
     Set Book First Author   Teller, Taylor
-    Set Book Title    The best book ever
+    Set Book Title    Magic Handbook
     Set Book Year    2000
     Set Book Publisher    WSOY
     Submit Book
@@ -65,11 +65,11 @@ Add Book Reference With Two Authors
     Set Book First Author  Writer, Wilma
     Add New Author Book
     Set Book Second Author  Author, Arthur
-    Set Book Title  The best book ever
+    Set Book Title  World Class Writings
     Set Book Year  2000
     Set Book Publisher  WSOY
     Submit Book
-    Page Should Contain  The best book ever
+    Page Should Contain  World Class Writings
     Page Should Contain  Author, Arthur and Writer, Wilma
 
 Add Book Reference With Three Authors
@@ -79,38 +79,22 @@ Add Book Reference With Three Authors
     Set Book Second Author  Author, Arthur
     Add New Author Book
     Set Book Third Author  Kirjailija, Kaisa
-    Set Book Title  The best book ever
+    Set Book Title  May The Force Be With You
     Set Book Year  2000
     Set Book Publisher  WSOY
     Submit Book
-    Page Should Contain  The best book ever
+    Page Should Contain  May The Force Be With You
     Page Should Contain  Author, Arthur and Kirjailija, Kaisa and Writer, Wilma
 
 Add Article Reference With Three Authors
     Home Page Should Be Open
     Select From Dropdown  article
     Wait Until Page Contains Element  id:author-0-article
-    #Click Element  id:author-0
-    Set Article First Author  Writer, Wilma
+    Set Article First Author  Writer, Will
     Add New Author Article
-    Set Article Second Author  Author, Arthur
+    Set Article Second Author  Author, Astrid
     Add New Author Article
     Set Article Third Author  Kirjailija, Kaisa
-    Set Article Title  The best article ever
-    Set Article Year  2000
-    Set Article Volume  1
-    Set Article Pages  44-46
-    Submit Article
-    Page Should Contain  The best article ever
-    Page Should Contain  Author, Arthur and Kirjailija, Kaisa and Writer, Wilma
-
-Add Article Reference With Two Authors
-    Home Page Should Be Open
-    Select From Dropdown  article
-    Wait Until Page Contains Element  id:author-0-article
-    Set Article First Author  Writer, Wilma
-    Add New Author Article
-    Set Article Second Author  Author, Arthur
     Set Article Title  The best article ever
     Set Article Journal  The best journal ever
     Set Article Year  2000
@@ -118,13 +102,29 @@ Add Article Reference With Two Authors
     Set Article Pages  44-46
     Submit Article
     Page Should Contain  The best article ever
-    Page Should Contain  Author, Arthur and Writer, Wilma
+    Page Should Contain  Author, Astrid and Kirjailija, Kaisa and Writer, Will
+
+Add Article Reference With Two Authors
+    Home Page Should Be Open
+    Select From Dropdown  article
+    Wait Until Page Contains Element  id:author-0-article
+    Set Article First Author  Researcher, Raymond
+    Add New Author Article
+    Set Article Second Author  Scientist, Stephen
+    Set Article Title  The best study ever
+    Set Article Journal  The best journal ever
+    Set Article Year  2000
+    Set Article Volume  1
+    Set Article Pages  44-46
+    Submit Article
+    Page Should Contain  The best study ever
+    Page Should Contain  Researcher, Raymond and Scientist, Stephen
 
 Add Inproceeding Reference With Two Authors
     Home Page Should Be Open
     Select From Dropdown  inproceeding
     Wait Until Page Contains Element  id:author-0-inproceeding
-    Set Inproceeding First Author  Writer, Wilma
+    Set Inproceeding First Author  Storyteller, Sean
     Add New Author Inproceeding
     Set Inproceeding Second Author  Author, Arthur
     Set Inproceeding Title  The best inproceeding ever
@@ -132,15 +132,15 @@ Add Inproceeding Reference With Two Authors
     Set Inproceeding Year  2000
     Submit Inproceeding
     Page Should Contain  The best inproceeding ever
-    Page Should Contain  Author, Arthur and Writer, Wilma
+    Page Should Contain  Author, Arthur and Storyteller, Sean
 
 Add Misc Reference With Two Authors
     Home Page Should Be Open
     Select From Dropdown  misc
     Wait Until Page Contains Element  id:author-0-misc
-    Set Misc First Author  Writer, Wilma
+    Set Misc First Author  Writer, W.
     Add New Author Misc
-    Set Misc Second Author  Author, Arthur
+    Set Misc Second Author  Author, A.
     Set Misc Title  The best misc ever
     Set Misc Howpublished  https://url
     Set Misc Year  2000
@@ -152,17 +152,17 @@ Add Misc Reference With Two Authors
 Select Article Type
     Home Page Should Be Open
     Select From Dropdown  article
-    Page Should Contain  article
+    Element Should Be Visible  id=article_form
 
 Select Inproceeding Type
     Home Page Should Be Open
     Select From Dropdown  inproceeding
-    Page Should Contain  inproceeding
+    Element Should Be Visible  id=inproceeding_form
 
 Select Misc Type
     Home Page Should Be Open
     Select From Dropdown  misc
-    Page Should Contain  misc
+    Element Should Be Visible  id=misc_form
 
 References Should Be In Alphabetical Order By Author
     Set Book First Author  Storyteller, Steve
