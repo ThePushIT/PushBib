@@ -12,6 +12,7 @@ The product backlog and the sprint backlog are available here:
 * [Architecture](/docs/Arkkitehtuuri.md)
 * [Database](/docs/Tietokanta.md)
 * [User guide](/docs/K%C3%A4ytt%C3%B6ohje.md)
+* [Final report](https://github.com/ThePushIT/PushBib/blob/main/docs/raportti.md)
 
 ## Testing
 Code quality:
